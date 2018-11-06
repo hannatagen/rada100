@@ -37,6 +37,6 @@ public class TrailRepositoryTest {
     public void testFindAll() throws Exception {
         List<Trail> allTrails = trails.findAll();
 
-        assertThat(allTrails, contains(moisad));
+        assertEquals(2, allTrails.size());
     }
 }
