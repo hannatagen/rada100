@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Ddatabase.url=$JDBC_DATABASE_URL -jar backend/target/backend-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -Dspring.datasource.url -jar backend/target/backend-0.0.1-SNAPSHOT.jar
