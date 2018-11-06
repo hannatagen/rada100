@@ -1,7 +1,13 @@
-language: java
-jdk:
-- oraclejdk8
-script: mvn clean install
-cache:
-  directories:
-  - node_modules
+build:
+  language: java
+  jdk:
+  - oraclejdk8
+  script: mvn clean install
+  cache:
+    directories:
+    - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure:  Gqf6XZAvdAPulLrBQ66adsCfUHQjxX+Kefq8lt42piqQwiCniUN3unGdPRaKThbK7I3NAZMJhPtA09JmZSG6DZ3/bBgJwAhesDIziwA1LmeEYg9hmotWWp5Z4KaCAMiYqfrDhhVuIxdbXWLpTs/pan2SVuJfGx5EBPpGxFOnw1J6g9kt9RaKN0TcAxh439vbALXYOM5Nf0QkHldizG9yYbzXHQylAFwsm6Pyh1ww8vgfB7AgS6rwjzPQSl17l6G5/U9KgpbN0m1CYV8CH0UD2/0v/bHdaJBNIv0fnsbcBfJyceR678AnDfFOwjETma5Wmm8p8ERNAfUDhQAXrO6JCRayyUkpiavnG4skZEM6pQkPJylFdRw4Dn/fmivcDBTNUirNh/cNFDs2Ief/ALjxEUmnAxbGGQ3cu6Jqq6s0hbPa+OCYJP4ZhgoGnXQUr16I76ZZmN5JhcpWsNr9Y6wm3zesmhiWGmsIZY2he5o104+wGiBPODQaexNLXmJRIJi+Mgd4zc2fj67alwADclEaeE34L4hT+H5gh7w+Rk84/RfBlBkVP9NZf6moF8FLg5I+OJJlamcrwHMTgewh+pmWUmRtRYzOOFiAeCe+uO4o2v7V747jwtE+FpHQBqLFtcObnqHFkBcJS2apmJRJZi53jzPyDE9ZXcJEA62rkihXJo0=
+    app: tarkvaraprojekt
