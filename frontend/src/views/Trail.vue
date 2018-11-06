@@ -19,7 +19,6 @@
 </template>
 
 <script>
-    // import axios from 'axios'
     import {AXIOS} from './http-common'
 
     export default {
