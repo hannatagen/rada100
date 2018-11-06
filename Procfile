@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Dspring.datasource.url=jdbc:postgresql:ec2-54-217-205-90.eu-west-1.compute.amazonaws.com:5432/d72sustdkihvpm -jar backend/target/backend-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar backend/target/backend-0.0.1-SNAPSHOT.jar
