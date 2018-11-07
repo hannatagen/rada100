@@ -1,41 +1,92 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Hello</router-link> |
-      <router-link to="/callservice">Service</router-link> |
+    <Admin v-if="(this.$route.path).includes('admin')"></Admin>
+    <div v-else>
+      <User></User>
+      <Map></Map>
     </div>
-    <router-view :hellomsg="msg"></router-view>
   </div>
 </template>
 
 <script>
+
+    import User from './components/User';
+    import Admin from './components/Admin';
+    import Map from './components/User/Map';
+
     export default {
-        name: 'app',
-        data () {
-            return {
-                msg: 'Welcome to your Vue.js powered Spring Boot App'
-            }
-        }
-    }
+        name: 'App',
+        components: {
+            User,
+            Admin,
+            Map,
+        },
+    };
 </script>
 
-<style lang="scss">
+<style>
+  * {
+    font-family: Lato,serif;
+  }
+
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 20px;
   }
-  #nav {
-    padding: 30px;
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-      &.router-link-exact-active {
-        color: #42b983;
-      }
+  .button {
+    min-width: unset !important;
+  }
+
+  .bm-menu {
+    background-image: url('./assets/sbg6.jpg') !important;
+    background-position: bottom;
+    background-size: cover;
+    /*background-color: #ffc107;*/
+    z-index: 2000 !important;
+  }
+
+  .bm-item-list {
+    font-size: unset !important;
+    margin-left: unset !important;
+  }
+
+  .bm-burger-button {
+    z-index: 1100;
+    left: 0 !important;
+    top: 0 !important;
+    margin-left: 2em;
+    margin-top: 1.2em;
+  }
+  .bm-cross {
+    width: 6px !important;
+    height: 24px !important;
+    background: black !important;
+  }
+  .bm-cross-button {
+    margin-right: 1.5em;
+    margin-top: 0.5em;
+  }
+
+  .ol-zoom {
+    top: 5em;
+    left: unset !important;
+    right: 0.8em !important;
+  }
+
+  .ol-control button {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  .ol-control button:hover {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .ol-zoom {
+      visibility: hidden;
     }
   }
 </style>

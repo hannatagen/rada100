@@ -1,6 +1,7 @@
 module.exports = {
     // Change build paths to make them Maven compatible
     // see https://cli.vuejs.org/config/
+    runtimeCompiler: true,
     devServer: {
         proxy: {
             '/api': {
@@ -12,4 +13,4 @@ module.exports = {
     },
     outputDir: 'target/dist',
     assetsDir: 'static'
-}
+};
