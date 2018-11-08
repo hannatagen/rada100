@@ -77,8 +77,6 @@
             },
         },
         created() {
-            this.map = new Map();
-            this.initTrailsPoints();
             AXIOS.get(`/trail`)
                 .then(response => {
                     // JSON responses are automatically parsed.
@@ -87,7 +85,9 @@
                 })
                 .catch(e => {
                     this.errors.push(e)
-                })
+                });
+            this.map = new Map();
+            this.initTrailsPoints();
         },
     };
 </script>
