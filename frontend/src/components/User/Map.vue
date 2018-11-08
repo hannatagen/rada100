@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import { AXIOS } from './.././http-common'
     import Map from '../../classes/Map';
     import Info from './Menu/Info';
     import Footer from './Menu/Footer';
@@ -58,24 +59,48 @@
                 }
                 return null;
             },
+            trailsList() {
+                return this.callRestService();
+            }
         },
         methods: {
             initTrailsPoints() {
+                console.log(this.trailsList);
                 this.map.initTrailPoints();
             },
             initLocation() {
                 this.map.toggleLocation();
             },
             arrive() {
-                if (this.map.pointNearFeature(this.geolocation)) {
-                    this.arrived = true;
-                    document.getElementById('taskContainer').style.visibility = 'unset';
+                if (this.$root.$data.playing) {
+                    if (this.map.pointNearFeature(this.geolocation)) {
+                        this.arrived = true;
+                        document.getElementById('taskContainer').style.visibility = 'unset';
+                    }
                 }
             },
             hideTaskContainer() {
                 document.getElementById('taskContainer').style.visibility = 'hidden';
             },
         },
+        // Fetches posts when the component is created.
+        callRestService () {
+            // AXIOS.get(`/points/2`, {
+            //     params: {
+            //         trail_id: 0
+            //     }
+            // })
+            AXIOS.get(`/trail`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    console.log(response.data);
+                    return response.data;
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+        }
+
     };
 </script>
 
