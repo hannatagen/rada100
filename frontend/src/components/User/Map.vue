@@ -35,10 +35,6 @@
                 trailsList: [],
             };
         },
-        mounted() {
-            this.map = new Map();
-            this.initTrailsPoints();
-        },
         watch: {
             geoLocation() {
                 if (this.geoLocation) {
@@ -81,6 +77,8 @@
             },
         },
         created() {
+            this.map = new Map();
+            this.initTrailsPoints();
             AXIOS.get(`/trail`)
                 .then(response => {
                     // JSON responses are automatically parsed.
