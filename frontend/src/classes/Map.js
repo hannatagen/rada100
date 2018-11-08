@@ -75,7 +75,8 @@ export default class Map {
         });
     }
 
-    initTrailPoints() {
+    initTrailPoints(trailsList) {
+        console.log(trailsList);
         for (let i = 0; i < pointsData.length; i += 1) {
             const trailID = JSON.parse(pointsData[i].trail_id);
             const lon = parseFloat(pointsData[i].lon);

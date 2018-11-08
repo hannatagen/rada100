@@ -32,6 +32,7 @@
                 map: null,
                 geolocation: null,
                 arrived: false,
+                trailsList: [],
             };
         },
         mounted() {
@@ -59,14 +60,10 @@
                 }
                 return null;
             },
-            trailsList() {
-                return this.callRestService();
-            }
         },
         methods: {
             initTrailsPoints() {
-                console.log(this.trailsList);
-                this.map.initTrailPoints();
+                this.map.initTrailPoints(this.trailsList);
             },
             initLocation() {
                 this.map.toggleLocation();
@@ -82,23 +79,17 @@
             hideTaskContainer() {
                 document.getElementById('taskContainer').style.visibility = 'hidden';
             },
-            // Fetches posts when the component is created.
-            callRestService() {
-                // AXIOS.get(`/points/2`, {
-                //     params: {
-                //         trail_id: 0
-                //     }
-                // })
-                AXIOS.get(`/trail`)
-                    .then(response => {
-                        // JSON responses are automatically parsed.
-                        console.log(response.data);
-                        return response.data;
-                    })
-                    .catch(e => {
-                        this.errors.push(e)
-                    })
-            }
+        },
+        created() {
+            AXIOS.get(`/trail`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    console.log(response.data);
+                    this.trailsList = response.data;
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
         },
     };
 </script>
