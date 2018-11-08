@@ -76,7 +76,7 @@
                 document.getElementById('taskContainer').style.visibility = 'hidden';
             },
         },
-        created() {
+        mounted() {
             this.map = new Map();
             AXIOS.get(`/trail`)
                 .then(response => {
