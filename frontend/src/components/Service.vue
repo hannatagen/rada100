@@ -26,6 +26,11 @@
             // Fetches posts when the component is created.
             callRestService () {
                 AXIOS.get(`/trail`)
+                // AXIOS.get(`/points/2`, {
+                //     params: {
+                //         trail_id: 0
+                //     }
+                // })
                     .then(response => {
                         // JSON responses are automatically parsed.
                         this.response = response.data

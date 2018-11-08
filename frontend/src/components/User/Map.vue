@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import { AXIOS } from './.././http-common'
     import Map from '../../classes/Map';
     import Info from './Menu/Info';
     import Footer from './Menu/Footer';
@@ -31,6 +32,7 @@
                 map: null,
                 geolocation: null,
                 arrived: false,
+                trails: [],
             };
         },
         mounted() {
@@ -67,15 +69,35 @@
                 this.map.toggleLocation();
             },
             arrive() {
-                if (this.map.pointNearFeature(this.geolocation) && $root.$data.playing) {
-                    this.arrived = true;
-                    document.getElementById('taskContainer').style.visibility = 'unset';
+                if (this.$root.$data.playing) {
+                    if (this.map.pointNearFeature(this.geolocation)) {
+                        this.arrived = true;
+                        document.getElementById('taskContainer').style.visibility = 'unset';
+                    }
                 }
             },
             hideTaskContainer() {
                 document.getElementById('taskContainer').style.visibility = 'hidden';
             },
         },
+        // Fetches posts when the component is created.
+        callRestService () {
+            AXIOS.get(`/trail`)
+            // AXIOS.get(`/points/2`, {
+            //     params: {
+            //         trail_id: 0
+            //     }
+            // })
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.trails = response.data;
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+        }
+
     };
 </script>
 
