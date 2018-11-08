@@ -77,16 +77,16 @@
             },
         },
         created() {
+            this.map = new Map();
             AXIOS.get(`/trail`)
                 .then(response => {
                     // JSON responses are automatically parsed.
-                    console.log(response.data);
+                    console.log('/trail response', response.data);
                     this.trailsList = response.data;
                 })
                 .catch(e => {
                     this.errors.push(e)
                 });
-            this.map = new Map();
             this.initTrailsPoints();
         },
     };
