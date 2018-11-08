@@ -32,7 +32,6 @@
                 map: null,
                 geolocation: null,
                 arrived: false,
-                trails: [],
             };
         },
         mounted() {
@@ -60,6 +59,9 @@
                 }
                 return null;
             },
+            trailsList() {
+                return this.callRestService();
+            }
         },
         methods: {
             initTrailsPoints() {
@@ -90,8 +92,8 @@
             // })
                 .then(response => {
                     // JSON responses are automatically parsed.
-                    this.trails = response.data;
-                    console.log(response.data)
+                    console.log(response.data);
+                    return response.data;
                 })
                 .catch(e => {
                     this.errors.push(e)
