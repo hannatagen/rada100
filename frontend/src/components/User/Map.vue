@@ -65,6 +65,7 @@
         },
         methods: {
             initTrailsPoints() {
+                console.log(this.trailsList);
                 this.map.initTrailPoints();
             },
             initLocation() {
@@ -84,12 +85,12 @@
         },
         // Fetches posts when the component is created.
         callRestService () {
-            AXIOS.get(`/trail`)
             // AXIOS.get(`/points/2`, {
             //     params: {
             //         trail_id: 0
             //     }
             // })
+            AXIOS.get(`/trail`)
                 .then(response => {
                     // JSON responses are automatically parsed.
                     console.log(response.data);
