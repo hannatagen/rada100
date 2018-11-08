@@ -28,9 +28,9 @@ public class BackendController {
         return HELLO_TEXT;
     }
 
-    @RequestMapping(path = "/trail", method = RequestMethod.POST)
+    @PostMapping("/trail")
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody long addNewUser (@RequestParam String name, @RequestParam String description) {
+    public @ResponseBody long addNewTrail(@RequestParam String name, @RequestParam String description) {
         Trail trail = new Trail(name, description);
         trailRepository.save(trail);
 
@@ -39,13 +39,15 @@ public class BackendController {
         return trail.getId();
     }
 
-    @RequestMapping(path = "/trail", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody List<Trail> getUser () {
-        List<Trail> trail = trailRepository.findAll();
+    @GetMapping("/trail")
+    public @ResponseBody List<Trail> getTrails() {
+        List<Trail> trails = trailRepository.findAll();
+        return trails;
+    }
 
-        LOG.info(trail.toString() + " successfully fetched from DB");
-
+    @GetMapping("/trail/{id}")
+    public @ResponseBody Trail getTrail(@PathVariable long id) {
+        Trail trail = trailRepository.findById(id).get();
         return trail;
     }
 
