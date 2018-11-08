@@ -67,7 +67,7 @@
                 this.map.toggleLocation();
             },
             arrive() {
-                if (this.map.pointNearFeature(this.geolocation)) {
+                if (this.map.pointNearFeature(this.geolocation) && $root.$data.playing) {
                     this.arrived = true;
                     document.getElementById('taskContainer').style.visibility = 'unset';
                 }
