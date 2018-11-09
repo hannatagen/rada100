@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav id="infoWindow" class="navbar infoWindow navbar-light bg-light">
-            <div v-if="!$root.$data.playing" class="infoTextContainer">
+            <div v-if="!$store.state.playing" class="infoTextContainer">
                 <div><strong>Valitud rada:</strong></div><span id="trailName"></span>
                 <div><strong>Punkte rajal:</strong></div><span id="totalPoints"></span>
             </div>
@@ -9,7 +9,7 @@
                 <div><strong>Valitud punkt:</strong></div><span id="pointName"></span>
                 <div><strong>Punkti kirjeldus:</strong></div><span id="pointDescription"></span>
             </div>
-            <div v-if="!$root.$data.playing" class="footerButtonDiv">
+            <div v-if="!$store.state.playing" class="footerButtonDiv">
                 <div id="closeInfo" class="closeInfo"
                      @click="closeFooter()">Kõik rajad <i class="fas fa-map"></i></div>
                 <div id="playButton" class="playButton"
@@ -36,13 +36,13 @@
                 this.map.closeFooter();
             },
             startPlaying() {
-                this.$root.$data.playing = true;
+                this.$store.commit('changePlaying', true);
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
                 this.map.startPlaying();
             },
             pausePlaying() {
-                this.$root.$data.playing = false;
+                this.$store.commit('changePlaying', false);
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
                 this.map.pausePlaying();

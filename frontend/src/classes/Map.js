@@ -351,6 +351,9 @@ export default class Map {
             // eslint-disable-next-line
             console.log('ristus kaardil oleva raja punktiga: ',intersected);
             if (intersected) {
+                //TODO jõudis sellesse punkti, saab punkti selle eest
+                console.log(pointsData[featureOnMap.getId()]);
+                // pärast return lauset avaneb taski tegemise võimalus.
                 return intersected;
             }
         }
