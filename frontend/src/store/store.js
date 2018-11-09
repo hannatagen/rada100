@@ -12,7 +12,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
     state: {
         playing: false,
-        playingTrail: null, // TODO remember what trail was the user palaying -- in what form?
+        playingTrail: null,
     },
     mutations: {
         changePlaying(state, boolean) {

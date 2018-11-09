@@ -70,7 +70,7 @@
                     if (this.map.pointNearFeature(this.geolocation)) {
                         this.arrived = true;
                         // Kui task tehtud ei tohi enam selle sama punkti kohta avada task containerit ehk
-                        // TODO andmebaasist kontrollima, kas hetkel sisse logitud kasutaja on teinud selle feature'i kohta millesse jõudis ülesande ära või mitte ja seejärel kas näitama et done ülesanne või üldse mitet midagi
+                        // TODO andmebaasist kontrollima, kas hetkel sisse logitud kasutaja on teinud selle feature'i kohta millesse jõudis ülesande ära või mitte ja seejärel kas näitama et done ülesanne või üldse mitte midagi
                         document.getElementById('taskContainer').style.visibility = 'unset';
                     }
                 }
@@ -81,13 +81,12 @@
         },
         mounted() {
             this.map = new Map();
-            this.initTrailsPoints(); // for localhost frontend testing only
+            // this.initTrailsPoints(); // for localhost frontend testing only
             AXIOS.get(`/trail`) //TODO get points and trails instead of just trails
                 .then(response => {
                     // JSON responses are automatically parsed.
                     console.log('/trail response', response.data);
                     this.trailsList = response.data;
-                    // TODO if playing var true, then method to display only the trail the user playing on
                     this.initTrailsPoints();
                 })
                 .catch(error => {
