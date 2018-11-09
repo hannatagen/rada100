@@ -24,6 +24,9 @@
                 this.$root.$data.playing = false;
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
+                console.log('siin1');
+                document.getElementById('taskContainer').style.visibility = 'hidden';
+                console.log('siin2');
                 this.map.pausePlaying();
             },
         },
