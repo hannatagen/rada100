@@ -1,6 +1,8 @@
 package com.example.ekm.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +11,17 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Trail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     String name;
     String description;
 
-    public Trail(String name, String description) {
+    /*public Trail(String name, String description) {
         this.name = name;
         this.description = description;
-    }
+    }*/
 }

@@ -22,8 +22,8 @@ public class TrailRepositoryTest {
     @Autowired
     private TrailRepository trails;
 
-    private Trail moisad = new Trail("Moisad", "Eesti koige ilusamad moisad");
-    private Trail surnuaiad = new Trail("Surnuaiad", "Eesti koige jubedamad surnuaiad");
+    private Trail moisad = new Trail();
+    private Trail surnuaiad = new Trail();
 
     @Before
     public void fillSomeDataIntoOurDb() {
