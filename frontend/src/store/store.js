@@ -18,6 +18,9 @@ export default new Vuex.Store({
         changePlaying(state, boolean) {
             state.playing = boolean;
         },
+        setPlayingId(state, trailID) {
+            state.playingTrail = trailID;
+        }
     },
     plugins: [vuexLocal.plugin]
 });

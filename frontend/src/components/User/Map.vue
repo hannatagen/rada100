@@ -60,7 +60,7 @@
         },
         methods: {
             initTrailsPoints() {
-                this.map.initTrailPoints(this.trailsList);
+                this.map.initTrailPoints(this.trailsList, this.$store.state.playing);
             },
             initLocation() {
                 this.map.toggleLocation();
@@ -81,7 +81,7 @@
         },
         mounted() {
             this.map = new Map();
-            //this.initTrailsPoints(); // for localhost frontend testing only
+            this.initTrailsPoints(); // for localhost frontend testing only
             AXIOS.get(`/trail`) //TODO get points and trails instead of just trails
                 .then(response => {
                     // JSON responses are automatically parsed.

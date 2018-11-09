@@ -19,6 +19,8 @@ import pointsData from '../data/pointsData';
 import trailsData from '../data/trailsData';
 import MapStyles from './MapStyles';
 import MapUtils from './MapUtils';
+import store from '../store/store';
+
 
 export default class Map {
     constructor() {
@@ -26,12 +28,14 @@ export default class Map {
         this.trackingOn = false;
         this.location = false;
 
+        this.playingTrailID = store.state.playingTrail;
+
         this.trailFeaturesObject = {};
         this.pointsAndTrails = {};
         this.trailFeaturesArray = [];
         this.format = new GeoJSON();
         this.extent = [2256311.733318761, 7860193.197535333, 3340960.9706381336, 8447281.118052645];
-        this.gameStarted = false;
+        this.gameStarted = store.state.playing;
         this.initVectorLayers();
         this.initMap();
         this.accuracyFeature = null;
@@ -69,9 +73,7 @@ export default class Map {
         });
     }
 
-    initTrailPoints(trailsList) {
-        console.log('andmebaasist trailstList', trailsList);
-        console.log('hardcoded failist pointsdata', pointsData);
+    initTrailPoints(trailsList, isPlaying) {
         for (let i = 0; i < pointsData.length; i += 1) {
             const trailID = JSON.parse(pointsData[i].trail_id);
             const lon = parseFloat(pointsData[i].lon);
@@ -91,11 +93,24 @@ export default class Map {
                 this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsData[i].point_id]];
             }
         }
-        this.vectorLayer.getSource()
-            .clear();
-        this.vectorLayer.getSource()
-            .addFeatures(this.trailFeaturesArray);
-        MapUtils.resetMapMarkers(this.vectorLayer);
+
+
+        console.log('raja ID, millel hetkel mängib: ', store.state.playingTrail);
+
+        this.gameStarted = isPlaying;
+        if (isPlaying) {
+            this.selectedTrailFeatures = this.trailFeaturesObject[this.playingTrailID];
+            this.startPlaying();
+        } else {
+            console.log('andmebaasist trailstList', trailsList);
+            console.log('hardcoded failist pointsdata', pointsData);
+
+            this.vectorLayer.getSource()
+                .clear();
+            this.vectorLayer.getSource()
+                .addFeatures(this.trailFeaturesArray);
+            MapUtils.resetMapMarkers(this.vectorLayer);
+        }
     }
 
     initMap() {
@@ -159,6 +174,7 @@ export default class Map {
                         this.vectorLayer.getSource()
                             .clear();
 
+                        store.commit('setPlayingId', feature.get('trail_id'));
                         this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trail_id')];
                         this.vectorLayer.getSource()
                             .addFeatures(this.selectedTrailFeatures);
