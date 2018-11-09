@@ -82,12 +82,14 @@
                 .then(response => {
                     // JSON responses are automatically parsed.
                     console.log('/trail response', response.data);
+                    console.log(this.trailsList);
                     this.trailsList = response.data;
+                    console.log(this.trailsList);
+                    this.initTrailsPoints();
                 })
                 .catch(e => {
                     this.errors.push(e)
                 });
-            this.initTrailsPoints();
         },
     };
 </script>
