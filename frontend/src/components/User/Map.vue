@@ -10,8 +10,9 @@
             <i class="fas fa-crosshairs"></i>
         </button>
         <!--<button v-if="arrived">ava ülesannne</button>-->
+        <!--TODO see eraldi componendiks, ja algul võibolla väike nupuke, mis teavitaks et saab ülesannet teha vms-->
         <div @click="hideTaskContainer()" id="taskContainer">
-            Hello
+            Jõudsid punkti kohale! Saad ühe punkti
         </div>
         <Info :map="map"></Info>
         <Footer :map=map></Footer>
@@ -69,6 +70,8 @@
                 if (this.$store.state.playing) {
                     if (this.map.pointNearFeature(this.geolocation)) {
                         this.arrived = true;
+                        // TODO millisesse punkti jõudis? et küsida õige punkti kohta info
+                        // TODO kasutaja saab punkti kohale jõudmise eest --> tuleb salvestada ka andmebaasi.
                         // Kui task tehtud ei tohi enam selle sama punkti kohta avada task containerit ehk
                         // TODO andmebaasist kontrollima, kas hetkel sisse logitud kasutaja on teinud selle feature'i kohta millesse jõudis ülesande ära või mitte ja seejärel kas näitama et done ülesanne või üldse mitte midagi
                         document.getElementById('taskContainer').style.visibility = 'unset';
