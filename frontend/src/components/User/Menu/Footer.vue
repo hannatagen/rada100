@@ -1,6 +1,6 @@
 <template>
     <nav class="footer navbar navbar-light bg-light">
-        <div v-if="$root.$data.playing">
+        <div v-if="$store.state.playing">
             <span class="slash leftSlash">0</span>
             <span class="slash">/</span>
             <span class="slash rightSlash">2</span>
@@ -21,9 +21,10 @@
                 console.log('selle info peab saama andmebaasist');
             },
             pausePlaying() {
-                this.$root.$data.playing = false;
+                this.$store.commit('changePlaying', false);
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
+                document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius
                 this.map.pausePlaying();
             },
         },

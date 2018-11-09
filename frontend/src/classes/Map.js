@@ -19,6 +19,8 @@ import pointsData from '../data/pointsData';
 import trailsData from '../data/trailsData';
 import MapStyles from './MapStyles';
 import MapUtils from './MapUtils';
+import store from '../store/store';
+
 
 export default class Map {
     constructor() {
@@ -26,17 +28,20 @@ export default class Map {
         this.trackingOn = false;
         this.location = false;
 
+        this.playingTrailID = store.state.playingTrail;
+
         this.trailFeaturesObject = {};
         this.pointsAndTrails = {};
         this.trailFeaturesArray = [];
         this.format = new GeoJSON();
         this.extent = [2256311.733318761, 7860193.197535333, 3340960.9706381336, 8447281.118052645];
-        this.gameStarted = false;
+        this.gameStarted = store.state.playing;
         this.initVectorLayers();
         this.initMap();
         this.accuracyFeature = null;
         this.positionFeature = null;
         this.selectedTrailFeatures = null;
+        this.locationcoordinates = null;
     }
 
     initVectorLayers() {
@@ -47,13 +52,6 @@ export default class Map {
                 wrapX: false,
             }),
             style: MapStyles.markerStyle,
-        });
-        this.bufferLayer = new VectorLayer({
-            map: this.map,
-            source: new VectorSource({
-                features: [],
-                wrapX: false,
-            }),
         });
         this.locationLayer = new VectorLayer({
             map: this.map,
@@ -75,7 +73,7 @@ export default class Map {
         });
     }
 
-    initTrailPoints() {
+    initTrailPoints(trailsList, isPlaying) {
         for (let i = 0; i < pointsData.length; i += 1) {
             const trailID = JSON.parse(pointsData[i].trail_id);
             const lon = parseFloat(pointsData[i].lon);
@@ -95,11 +93,24 @@ export default class Map {
                 this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsData[i].point_id]];
             }
         }
-        this.vectorLayer.getSource()
-            .clear();
-        this.vectorLayer.getSource()
-            .addFeatures(this.trailFeaturesArray);
-        MapUtils.resetMapMarkers(this.vectorLayer);
+
+
+        console.log('raja ID, millel hetkel mängib: ', store.state.playingTrail);
+
+        this.gameStarted = isPlaying;
+        if (isPlaying) {
+            this.selectedTrailFeatures = this.trailFeaturesObject[this.playingTrailID];
+            this.startPlaying();
+        } else {
+            console.log('andmebaasist trailstList', trailsList);
+            console.log('hardcoded failist pointsdata', pointsData);
+
+            this.vectorLayer.getSource()
+                .clear();
+            this.vectorLayer.getSource()
+                .addFeatures(this.trailFeaturesArray);
+            MapUtils.resetMapMarkers(this.vectorLayer);
+        }
     }
 
     initMap() {
@@ -114,7 +125,7 @@ export default class Map {
             source: new OSM(),
         });
         this.map = new OlMap({
-            layers: [raster, this.vectorLayer, this.bufferLayer, this.locationLayer, this.trackLayer],
+            layers: [raster, this.vectorLayer, this.locationLayer, this.trackLayer],
             target: document.getElementById('map'),
             controls: defaultControls({
                 attributionOptions: {
@@ -163,6 +174,7 @@ export default class Map {
                         this.vectorLayer.getSource()
                             .clear();
 
+                        store.commit('setPlayingId', feature.get('trail_id'));
                         this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trail_id')];
                         this.vectorLayer.getSource()
                             .addFeatures(this.selectedTrailFeatures);
@@ -243,9 +255,10 @@ export default class Map {
                 new Point(coordinates) : null);
             this.accuracyFeature.setGeometry(coordinates ?
                 new Circle(coordinates, accuracy) : null);
-            this.location = true;
+            this.locationcoordinates = coordinates;
         });
         this.geolocation.setTracking(true);
+        this.location = true;
     }
 
     centerLocation() {
@@ -292,7 +305,9 @@ export default class Map {
             .addFeatures(this.selectedTrailFeatures);
         MapUtils.resetMapMarkers(this.vectorLayer);
         this.overlay.setPosition(undefined);
-        this.initLocation();
+        if (!this.location) {
+            this.initLocation();
+        }
         const extent = this.vectorLayer.getSource()
             .getExtent();
         this.map.getView()
@@ -332,9 +347,9 @@ export default class Map {
         // eslint-disable-next-line
         console.log('kõik raja punktid', this.selectedTrailFeatures);
         // teeme nähtamatu ringi, mille abil vaadata kas koordinaadid lõikuvad
-        const bufferCircle = new Feature(new Circle(coordinates, 1200));
+        const bufferCircle = new Feature(new Circle(coordinates, 4000)); // TODO change distance
         bufferCircle.setStyle(MapStyles.circleStyle);
-        this.bufferLayer.getSource().addFeature(bufferCircle);
+        this.locationLayer.getSource().addFeature(bufferCircle);
         // Võrdleme geomeetriaid
         const circleGeometry = bufferCircle.getGeometry();
         let intersected = false;
@@ -345,6 +360,9 @@ export default class Map {
             // eslint-disable-next-line
             console.log('ristus kaardil oleva raja punktiga: ',intersected);
             if (intersected) {
+                //TODO jõudis sellesse punkti, saab punkti selle eest
+                console.log(pointsData[featureOnMap.getId()]);
+                // pärast return lauset avaneb taski tegemise võimalus.
                 return intersected;
             }
         }

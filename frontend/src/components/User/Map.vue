@@ -10,8 +10,9 @@
             <i class="fas fa-crosshairs"></i>
         </button>
         <!--<button v-if="arrived">ava ülesannne</button>-->
+        <!--TODO see eraldi componendiks, ja algul võibolla väike nupuke, mis teavitaks et saab ülesannet teha vms-->
         <div @click="hideTaskContainer()" id="taskContainer">
-            Hello
+            Jõudsid punkti kohale! Saad ühe punkti
         </div>
         <Info :map="map"></Info>
         <Footer :map=map></Footer>
@@ -32,11 +33,8 @@
                 map: null,
                 geolocation: null,
                 arrived: false,
+                trailsList: [],
             };
-        },
-        mounted() {
-            this.map = new Map();
-            this.initTrailsPoints();
         },
         watch: {
             geoLocation() {
@@ -55,26 +53,27 @@
             },
             geoLocation() {
                 if (this.map) {
-                    return this.map.location;
+                    // console.log(this.map.locationcoordinates);
+                    return this.map.locationcoordinates;
                 }
                 return null;
             },
-            trailsList() {
-                return this.callRestService();
-            }
         },
         methods: {
             initTrailsPoints() {
-                console.log(this.trailsList);
-                this.map.initTrailPoints();
+                this.map.initTrailPoints(this.trailsList, this.$store.state.playing);
             },
             initLocation() {
                 this.map.toggleLocation();
             },
             arrive() {
-                if (this.$root.$data.playing) {
+                if (this.$store.state.playing) {
                     if (this.map.pointNearFeature(this.geolocation)) {
                         this.arrived = true;
+                        // TODO millisesse punkti jõudis? et küsida õige punkti kohta info
+                        // TODO kasutaja saab punkti kohale jõudmise eest --> tuleb salvestada ka andmebaasi.
+                        // Kui task tehtud ei tohi enam selle sama punkti kohta avada task containerit ehk
+                        // TODO andmebaasist kontrollima, kas hetkel sisse logitud kasutaja on teinud selle feature'i kohta millesse jõudis ülesande ära või mitte ja seejärel kas näitama et done ülesanne või üldse mitte midagi
                         document.getElementById('taskContainer').style.visibility = 'unset';
                     }
                 }
@@ -83,24 +82,20 @@
                 document.getElementById('taskContainer').style.visibility = 'hidden';
             },
         },
-        // Fetches posts when the component is created.
-        callRestService () {
-            // AXIOS.get(`/points/2`, {
-            //     params: {
-            //         trail_id: 0
-            //     }
-            // })
-            AXIOS.get(`/trail`)
+        mounted() {
+            this.map = new Map();
+            // this.initTrailsPoints(); // for localhost frontend testing only
+            AXIOS.get(`/trail`) //TODO get points and trails instead of just trails
                 .then(response => {
                     // JSON responses are automatically parsed.
-                    console.log(response.data);
-                    return response.data;
+                    console.log('/trail response', response.data);
+                    this.trailsList = response.data;
+                    this.initTrailsPoints();
                 })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-        }
-
+                .catch(error => {
+                    console.log(error)
+                });
+        },
     };
 </script>
 
