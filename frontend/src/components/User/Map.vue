@@ -52,7 +52,8 @@
             },
             geoLocation() {
                 if (this.map) {
-                    return this.map.location;
+                    console.log(this.map.locationcoordinates);
+                    return this.map.locationcoordinates;
                 }
                 return null;
             },
@@ -78,7 +79,7 @@
         },
         mounted() {
             this.map = new Map();
-            // this.initTrailsPoints(); // for localhost frontend testing only
+            this.initTrailsPoints(); // for localhost frontend testing only
             AXIOS.get(`/trail`) //TODO get points and trails instead of just trails
                 .then(response => {
                     // JSON responses are automatically parsed.

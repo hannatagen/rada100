@@ -37,6 +37,7 @@ export default class Map {
         this.accuracyFeature = null;
         this.positionFeature = null;
         this.selectedTrailFeatures = null;
+        this.locationcoordinates = null;
     }
 
     initVectorLayers() {
@@ -245,9 +246,10 @@ export default class Map {
                 new Point(coordinates) : null);
             this.accuracyFeature.setGeometry(coordinates ?
                 new Circle(coordinates, accuracy) : null);
-            this.location = true;
+            this.locationcoordinates = coordinates;
         });
         this.geolocation.setTracking(true);
+        this.location = true;
     }
 
     centerLocation() {
@@ -294,7 +296,9 @@ export default class Map {
             .addFeatures(this.selectedTrailFeatures);
         MapUtils.resetMapMarkers(this.vectorLayer);
         this.overlay.setPosition(undefined);
-        this.initLocation();
+        if (!this.location) {
+            this.initLocation();
+        }
         const extent = this.vectorLayer.getSource()
             .getExtent();
         this.map.getView()
