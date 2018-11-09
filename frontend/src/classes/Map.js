@@ -49,13 +49,6 @@ export default class Map {
             }),
             style: MapStyles.markerStyle,
         });
-        this.bufferLayer = new VectorLayer({
-            map: this.map,
-            source: new VectorSource({
-                features: [],
-                wrapX: false,
-            }),
-        });
         this.locationLayer = new VectorLayer({
             map: this.map,
             source: new VectorSource({
@@ -77,8 +70,8 @@ export default class Map {
     }
 
     initTrailPoints(trailsList) {
-        console.log(trailsList);
-        console.log(pointsData);
+        console.log('andmebaasist trailstList', trailsList);
+        console.log('hardcoded failist pointsdata', pointsData);
         for (let i = 0; i < pointsData.length; i += 1) {
             const trailID = JSON.parse(pointsData[i].trail_id);
             const lon = parseFloat(pointsData[i].lon);
@@ -117,7 +110,7 @@ export default class Map {
             source: new OSM(),
         });
         this.map = new OlMap({
-            layers: [raster, this.vectorLayer, this.bufferLayer, this.locationLayer, this.trackLayer],
+            layers: [raster, this.vectorLayer, this.locationLayer, this.trackLayer],
             target: document.getElementById('map'),
             controls: defaultControls({
                 attributionOptions: {
@@ -340,7 +333,7 @@ export default class Map {
         // teeme nähtamatu ringi, mille abil vaadata kas koordinaadid lõikuvad
         const bufferCircle = new Feature(new Circle(coordinates, 120)); // TODO change distance
         bufferCircle.setStyle(MapStyles.circleStyle);
-        this.bufferLayer.getSource().addFeature(bufferCircle);
+        this.locationLayer.getSource().addFeature(bufferCircle);
         // Võrdleme geomeetriaid
         const circleGeometry = bufferCircle.getGeometry();
         let intersected = false;
