@@ -78,17 +78,16 @@
         },
         mounted() {
             this.map = new Map();
-            AXIOS.get(`/trail`)
+            // this.initTrailsPoints(); // for localhost frontend testing only
+            AXIOS.get(`/trail`) //TODO get points and trails instead of just trails
                 .then(response => {
                     // JSON responses are automatically parsed.
                     console.log('/trail response', response.data);
-                    console.log(this.trailsList);
                     this.trailsList = response.data;
-                    console.log(this.trailsList);
                     this.initTrailsPoints();
                 })
-                .catch(e => {
-                    this.errors.push(e)
+                .catch(error => {
+                    console.log(error)
                 });
         },
     };

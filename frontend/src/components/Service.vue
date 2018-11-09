@@ -33,7 +33,7 @@
                 // })
                     .then(response => {
                         // JSON responses are automatically parsed.
-                        this.response = response.data
+                        this.response = response.data;
                         console.log(response.data)
                     })
                     .catch(e => {
