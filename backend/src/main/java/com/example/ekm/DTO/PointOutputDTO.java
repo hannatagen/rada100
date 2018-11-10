@@ -1,13 +1,10 @@
 package com.example.ekm.DTO;
 
-import com.example.ekm.Model.Trail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;
-
-import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
