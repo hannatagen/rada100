@@ -20,6 +20,7 @@ public class PointAssembler extends ResourceAssemblerSupport<Point, PointOutputD
                 .description(point.getDescription())
                 .lon(point.getLon())
                 .lat(point.getLat())
+                .link(point.getLink())
                 .build();
     }
 }

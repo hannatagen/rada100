@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Point {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @JoinColumn(name = "trail")
     @ManyToOne
@@ -21,4 +21,5 @@ public class Point {
     String description;
     String lon;
     String lat;
+    String link;
 }

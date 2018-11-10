@@ -3,6 +3,7 @@ package com.example.ekm.Controller;
 import com.example.ekm.Assembler.PointAssembler;
 import com.example.ekm.Assembler.TrailAssembler;
 import com.example.ekm.DTO.PointOutputDTO;
+import com.example.ekm.DTO.TrailInputDTO;
 import com.example.ekm.DTO.TrailOutputDTO;
 import com.example.ekm.Model.Point;
 import com.example.ekm.Model.Trail;
@@ -31,6 +32,14 @@ public class TrailController {
     List<TrailOutputDTO> getTrails() {
         List<Trail> trails = trailRepository.findAll();
         return trailAssembler.toResources(trails);
+    }
+
+    @PostMapping("/")
+    public void addTrail(@RequestBody TrailInputDTO trailInputDTO) {
+        Trail trail = new Trail();
+        trail.setName(trailInputDTO.getName());
+        trail.setDescription(trailInputDTO.getDescription());
+        trailRepository.saveAndFlush(trail);
     }
 
     @GetMapping("/{id}")

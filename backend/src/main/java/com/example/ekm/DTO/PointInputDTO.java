@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.hateoas.ResourceSupport;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
-public class PointOutputDTO extends ResourceSupport {
-    Long point_id;
+public class PointInputDTO {
     Long trail_id;
     String name;
     String description;

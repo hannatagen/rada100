@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Trail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
     String description;
