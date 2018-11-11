@@ -106,6 +106,7 @@ export default class Map {
         }
 
         console.log('raja ID, millel hetkel mängib: ', store.state.playingTrail);
+        console.log(this.trailFeaturesArray);
 
         this.gameStarted = isPlaying;
         if (isPlaying) {
