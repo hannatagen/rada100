@@ -105,9 +105,9 @@ export default class Map {
                 object => object.getId() == pointsList[i].point_id);
             console.log(filteredFeature[0])
             if (trailID in this.trailFeaturesObject || i in this.pointsAndTrails) {
-                this.trailFeaturesObject[trailID].push(filteredFeature);
+                this.trailFeaturesObject[trailID].push(filteredFeature[0]);
             } else {
-                this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsList[i].point_id]];
+                this.trailFeaturesObject[trailID] = filteredFeature[0];
             }
         }
 
