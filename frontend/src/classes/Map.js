@@ -103,7 +103,7 @@ export default class Map {
             const filteredFeature = this.trailFeaturesArray.filter(
                 // eslint-disable-next-line eqeqeq
                 object => object.getId() == pointsList[i].point_id);
-            console.log(filteredFeature)
+            console.log(filteredFeature[0])
             if (trailID in this.trailFeaturesObject || i in this.pointsAndTrails) {
                 this.trailFeaturesObject[trailID].push(filteredFeature);
             } else {
