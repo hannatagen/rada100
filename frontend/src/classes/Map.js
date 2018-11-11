@@ -102,7 +102,7 @@ export default class Map {
             console.log('esimene', this.trailFeaturesArray);
             const filteredFeature = this.trailFeaturesArray.filter(
                 // eslint-disable-next-line eqeqeq
-                object => object.point_id == pointsList[i].point_id);
+                object => object.getId() == pointsList[i].point_id);
             console.log(filteredFeature)
             if (trailID in this.trailFeaturesObject || i in this.pointsAndTrails) {
                 this.trailFeaturesObject[trailID].push(filteredFeature);
