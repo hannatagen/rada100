@@ -75,23 +75,23 @@ export default class Map {
 
     initTrailPoints(pointsList, isPlaying) {
         console.log('pointsList', pointsList);
-        for (let i = 0; i < pointsData.length; i += 1) {
-            const trailID = JSON.parse(pointsData[i].trail_id);
-            const lon = parseFloat(pointsData[i].lon);
-            const lat = parseFloat(pointsData[i].lat);
+        for (let i = 0; i < pointsList.length; i += 1) {
+            const trailID = JSON.parse(pointsList[i].trail_id);
+            const lon = parseFloat(pointsList[i].lon);
+            const lat = parseFloat(pointsList[i].lat);
             const coords = [lon, lat];
             const coordinates = proj.fromLonLat(coords);
             const feature = new Feature({
                 geometry: new Point(coordinates),
                 trail_id: trailID,
-                name: pointsData[i].name,
+                name: pointsList[i].name,
             });
-            feature.setId(pointsData[i].point_id);
+            feature.setId(pointsList[i].point_id);
             this.trailFeaturesArray.push(feature);
             if (trailID in this.trailFeaturesObject || i in this.pointsAndTrails) {
-                this.trailFeaturesObject[trailID].push(this.trailFeaturesArray[pointsData[i].point_id]);
+                this.trailFeaturesObject[trailID].push(this.trailFeaturesArray[pointsList[i].point_id]);
             } else {
-                this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsData[i].point_id]];
+                this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsList[i].point_id]];
             }
         }
 
@@ -103,7 +103,7 @@ export default class Map {
             this.selectedTrailFeatures = this.trailFeaturesObject[this.playingTrailID];
             this.startPlaying();
         } else {
-            console.log('hardcoded failist pointsdata', pointsData);
+            console.log('hardcoded failist pointsdata', pointsList);
 
             this.vectorLayer.getSource()
                 .clear();
