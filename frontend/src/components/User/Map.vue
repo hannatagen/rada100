@@ -33,7 +33,7 @@
                 map: null,
                 geolocation: null,
                 arrived: false,
-                trailsList: [],
+                // trailsList: [],
             };
         },
         watch: {
@@ -60,8 +60,8 @@
             },
         },
         methods: {
-            initTrailsPoints() {
-                this.map.initTrailPoints(this.trailsList, this.$store.state.playing);
+            initTrailsPoints(pointsList) {
+                this.map.initTrailPoints(pointsList, this.$store.state.playing);
             },
             initLocation() {
                 this.map.toggleLocation();
@@ -85,12 +85,12 @@
         mounted() {
             this.map = new Map();
             // this.initTrailsPoints(); // for localhost frontend testing only
-            AXIOS.get(`/trails/`) //TODO get points and trails instead of just trails
+            AXIOS.get(`/points/`) //TODO get points and trails instead of just trails
                 .then(response => {
                     // JSON responses are automatically parsed.
-                    console.log('/trail response', response.data);
-                    this.trailsList = response.data;
-                    this.initTrailsPoints();
+                    console.log('/points/ response', response.data);
+                    // this.trailsList = response.data;
+                    this.initTrailsPoints(response.data);
                 })
                 .catch(error => {
                     console.log(error)

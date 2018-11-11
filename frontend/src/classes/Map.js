@@ -73,7 +73,8 @@ export default class Map {
         });
     }
 
-    initTrailPoints(trailsList, isPlaying) {
+    initTrailPoints(pointsList, isPlaying) {
+        console.log('pointsList', pointsList);
         for (let i = 0; i < pointsData.length; i += 1) {
             const trailID = JSON.parse(pointsData[i].trail_id);
             const lon = parseFloat(pointsData[i].lon);
@@ -347,7 +348,7 @@ export default class Map {
         // eslint-disable-next-line
         console.log('kõik raja punktid', this.selectedTrailFeatures);
         // teeme nähtamatu ringi, mille abil vaadata kas koordinaadid lõikuvad
-        const bufferCircle = new Feature(new Circle(coordinates, 4000)); // TODO change distance
+        const bufferCircle = new Feature(new Circle(coordinates, 120)); // TODO change distance
         bufferCircle.setStyle(MapStyles.circleStyle);
         this.locationLayer.getSource().addFeature(bufferCircle);
         // Võrdleme geomeetriaid
