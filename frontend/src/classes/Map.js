@@ -103,7 +103,6 @@ export default class Map {
             this.selectedTrailFeatures = this.trailFeaturesObject[this.playingTrailID];
             this.startPlaying();
         } else {
-            console.log('andmebaasist trailstList', trailsList);
             console.log('hardcoded failist pointsdata', pointsData);
 
             this.vectorLayer.getSource()
