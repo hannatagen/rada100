@@ -15,11 +15,11 @@ import Point from 'ol/geom/Point';
 // import { getLength } from 'ol/sphere';
 
 import { defaults as defaultControls } from 'ol/control';
-import pointsData from '../data/pointsData';
-import trailsData from '../data/trailsData';
 import MapStyles from './MapStyles';
 import MapUtils from './MapUtils';
 import store from '../store/store';
+import { AXIOS } from '../components/http-common'
+
 
 
 export default class Map {
@@ -27,7 +27,17 @@ export default class Map {
         this.geolocation = null;
         this.trackingOn = false;
         this.location = false;
-
+        this.pointsList = [];
+        this.trailsList = AXIOS.get(`/trails/`)
+            .then(response => {
+                // JSON responses are automatically parsed.
+                console.log('/points/ response', response.data);
+                // this.trailsList = response.data;
+                this.initTrailsPoints(response.data);
+            })
+            .catch(error => {
+                console.log(error)
+            });
         this.playingTrailID = store.state.playingTrail;
 
         this.trailFeaturesObject = {};
@@ -74,7 +84,7 @@ export default class Map {
     }
 
     initTrailPoints(pointsList, isPlaying) {
-        console.log('pointsList', pointsList);
+        this.pointsList = pointsList;
         for (let i = 0; i < pointsList.length; i += 1) {
             const trailID = JSON.parse(pointsList[i].trail_id);
             const lon = parseFloat(pointsList[i].lon);
@@ -95,7 +105,6 @@ export default class Map {
             }
         }
 
-
         console.log('raja ID, millel hetkel mängib: ', store.state.playingTrail);
 
         this.gameStarted = isPlaying;
@@ -103,7 +112,6 @@ export default class Map {
             this.selectedTrailFeatures = this.trailFeaturesObject[this.playingTrailID];
             this.startPlaying();
         } else {
-            console.log('hardcoded failist pointsdata', pointsList);
 
             this.vectorLayer.getSource()
                 .clear();
@@ -197,14 +205,15 @@ export default class Map {
 
                         const totalTrailPoints = this.vectorLayer.getSource()
                             .getFeatures().length;
-                        const trailName = trailsData[feature.get('trail_id')].name;
-                        const selectedPointName = pointsData[feature.getId()].name;
+                        // TODO get trail info from database
+                        const trailName = this.trailsList[feature.get('trail_id')].name;
+                        const selectedPointName = this.pointsList[feature.getId()].name;
                         const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
                         if (!this.gameStarted) {
                             MapUtils.openFooter(totalTrailPoints, trailName, false);
                             this.overlay.setPosition(coordinate);
                         } else {
-                            const pointDescription = pointsData[feature.getId()].description;
+                            const pointDescription = this.pointsList[feature.getId()].description;
                             MapUtils.openFooter(pointDescription, selectedPointName, true);
                         }
                     }
@@ -361,7 +370,7 @@ export default class Map {
             console.log('ristus kaardil oleva raja punktiga: ',intersected);
             if (intersected) {
                 //TODO jõudis sellesse punkti, saab punkti selle eest
-                console.log(pointsData[featureOnMap.getId()]);
+                console.log(this.pointsList[featureOnMap.getId()]);
                 // pärast return lauset avaneb taski tegemise võimalus.
                 return intersected;
             }

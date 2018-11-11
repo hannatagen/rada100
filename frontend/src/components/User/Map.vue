@@ -85,7 +85,7 @@
         mounted() {
             this.map = new Map();
             // this.initTrailsPoints(); // for localhost frontend testing only
-            AXIOS.get(`/points/`) //TODO get points and trails instead of just trails
+            AXIOS.get(`/points/`)
                 .then(response => {
                     // JSON responses are automatically parsed.
                     console.log('/points/ response', response.data);
