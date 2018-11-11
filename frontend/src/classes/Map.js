@@ -100,14 +100,14 @@ export default class Map {
             this.trailFeaturesArray.push(feature);
             console.log('esimene', this.trailFeaturesArray);
             console.log('esimene', this.trailFeaturesArray);
-
+            const filteredFeature = this.trailFeaturesArray.filter(
+                // eslint-disable-next-line eqeqeq
+                object => object.point_id == pointsList[i].point_id);
+            console.log(filteredFeature)
             if (trailID in this.trailFeaturesObject || i in this.pointsAndTrails) {
-                this.trailFeaturesObject[trailID].push(this.trailFeaturesArray[pointsList[i].point_id]);
-                console.log('if', this.trailFeaturesArray[pointsList[i].point_id])
+                this.trailFeaturesObject[trailID].push(filteredFeature);
             } else {
                 this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsList[i].point_id]];
-                console.log('else', this.trailFeaturesArray[pointsList[i].point_id])
-
             }
         }
 
