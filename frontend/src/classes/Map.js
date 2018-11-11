@@ -28,12 +28,12 @@ export default class Map {
         this.trackingOn = false;
         this.location = false;
         this.pointsList = [];
-        this.trailsList = AXIOS.get(`/trails/`)
+        this.trailsList = [];
+        AXIOS.get(`/trails/`)
             .then(response => {
                 // JSON responses are automatically parsed.
-                console.log('/points/ response', response.data);
-                // this.trailsList = response.data;
-                this.initTrailsPoints(response.data);
+                console.log('/trails/ response', response.data);
+                this.trailsList = response.data;
             })
             .catch(error => {
                 console.log(error)
