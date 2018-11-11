@@ -185,6 +185,7 @@ export default class Map {
 
                         store.commit('setPlayingId', feature.get('trail_id'));
                         this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trail_id')];
+                        console.log('siin',this.selectedTrailFeatures);
                         this.vectorLayer.getSource()
                             .addFeatures(this.selectedTrailFeatures);
 
