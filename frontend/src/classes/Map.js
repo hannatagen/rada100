@@ -98,10 +98,16 @@ export default class Map {
             });
             feature.setId(pointsList[i].point_id);
             this.trailFeaturesArray.push(feature);
+            console.log('esimene', this.trailFeaturesArray);
+            console.log('esimene', this.trailFeaturesArray);
+
             if (trailID in this.trailFeaturesObject || i in this.pointsAndTrails) {
                 this.trailFeaturesObject[trailID].push(this.trailFeaturesArray[pointsList[i].point_id]);
+                console.log('if', this.trailFeaturesArray[pointsList[i].point_id])
             } else {
                 this.trailFeaturesObject[trailID] = [this.trailFeaturesArray[pointsList[i].point_id]];
+                console.log('else', this.trailFeaturesArray[pointsList[i].point_id])
+
             }
         }
 
