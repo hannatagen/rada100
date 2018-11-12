@@ -32,7 +32,6 @@ export default class Map {
         AXIOS.get(`/trails/`)
             .then(response => {
                 // JSON responses are automatically parsed.
-                console.log('/trails/ response', response.data);
                 this.trailsList = response.data;
             })
             .catch(error => {

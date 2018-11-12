@@ -88,7 +88,6 @@
             AXIOS.get(`/points/`)
                 .then(response => {
                     // JSON responses are automatically parsed.
-                    console.log('/points/ response', response.data);
                     // this.trailsList = response.data;
                     this.initTrailsPoints(response.data);
                 })
