@@ -19,9 +19,4 @@ public class Trail {
     Long id;
     String name;
     String description;
-
-    /*public Trail(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }*/
 }
