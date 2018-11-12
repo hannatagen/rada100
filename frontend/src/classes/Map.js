@@ -212,7 +212,11 @@ export default class Map {
                         const totalTrailPoints = this.vectorLayer.getSource()
                             .getFeatures().length;
                         // TODO get trail info from database
-                        const trailName = this.trailsList[feature.get('trail_id')].name;
+                        const trail = this.trailsList.filter(
+                            // eslint-disable-next-line eqeqeq
+                            object => object.trail_id== feature.get('trail_id'));
+
+                        const trailName = trail[0].name;
                         const selectedPointName = this.pointsList[feature.getId()].name;
                         const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
                         if (!this.gameStarted) {
