@@ -216,17 +216,29 @@ export default class Map {
 
                         const trail = this.trailsList.filter(
                             // eslint-disable-next-line eqeqeq
-                            object => object.trail_id== feature.get('trail_id'));
-                        console.log(trail)
-
+                            object => {
+                                console.log('object');
+                                console.log(object);
+                                console.log(object.trail_id);
+                                return object.trail_id== feature.get('trail_id')});
+                        console.log(trail[0])
                         const trailName = trail[0].name;
-                        const selectedPointName = this.pointsList[feature.getId()].name;
+
+                        const point = this.pointsList.filter(
+                            // eslint-disable-next-line eqeqeq
+                            object => {
+                                console.log('object');
+                                console.log(object);
+                                console.log(object.trail_id);
+                                return object.point_id== feature.getId()});
+
+                        const selectedPointName = point[0].name;
                         const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
                         if (!this.gameStarted) {
                             MapUtils.openFooter(totalTrailPoints, trailName, false);
                             this.overlay.setPosition(coordinate);
                         } else {
-                            const pointDescription = this.pointsList[feature.getId()].description;
+                            const pointDescription = point[0].description;
                             MapUtils.openFooter(pointDescription, selectedPointName, true);
                         }
                     }
