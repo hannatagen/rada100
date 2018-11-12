@@ -99,26 +99,20 @@ export default class Map {
             feature.setId(pointsList[i].point_id);
             this.trailFeaturesArray.push(feature);
             console.log('esimene', this.trailFeaturesArray);
-            if (pointsList.length - 1 === i) {
-                const filteredFeatures = this.trailFeaturesArray.filter(
-                    // eslint-disable-next-line eqeqeq
-                    object => object.trail_id == trailID);
-                console.log(filteredFeatures);
-                this.trailFeaturesObject[trailID] = filteredFeatures;
-            }
+            console.log('trailId', trailID)
+            const filteredFeatures = this.trailFeaturesArray.filter(
+                // eslint-disable-next-line eqeqeq
+                object => object.trail_id == trailID);
+            console.log(filteredFeatures);
+            this.trailFeaturesObject[trailID] = filteredFeatures;
 
         }
-
-
-        console.log('raja ID, millel hetkel mängib: ', store.state.playingTrail);
-        console.log(this.trailFeaturesObject);
 
         this.gameStarted = isPlaying;
         if (isPlaying) {
             this.selectedTrailFeatures = this.trailFeaturesObject[this.playingTrailID];
             this.startPlaying();
         } else {
-
             this.vectorLayer.getSource()
                 .clear();
             this.vectorLayer.getSource()
