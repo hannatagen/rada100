@@ -87,6 +87,7 @@ export default class Map {
         this.pointsList = pointsList;
         for (let i = 0; i < pointsList.length; i += 1) {
             const trailID = JSON.parse(pointsList[i].trail_id);
+            console.log('trail', pointsList[i].trail_id);
             const lon = parseFloat(pointsList[i].lon);
             const lat = parseFloat(pointsList[i].lat);
             const coords = [lon, lat];
@@ -99,13 +100,13 @@ export default class Map {
             feature.setId(pointsList[i].point_id);
             this.trailFeaturesArray.push(feature);
             console.log(feature)
-            console.log(feature.trail_id)
+            console.log(feature.get('trail_id'))
             console.log(this.trailFeaturesObject)
             console.log(trailID in this.trailFeaturesObject)
             if (trailID in this.trailFeaturesObject) {
                 this.trailFeaturesObject[trailID].push(feature);
             } else {
-                this.trailFeaturesObject[trailID] = feature;
+                this.trailFeaturesObject[trailID] = [feature];
             }
         }
 
