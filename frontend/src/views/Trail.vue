@@ -45,7 +45,7 @@
                 params.append('name', this.trail.name)
                 params.append('description', this.trail.description)
 
-                AXIOS.post(`/trail`, params)
+                AXIOS.post(`/trails/`, params)
                     .then(response => {
                         // JSON responses are automatically parsed.
                         this.response = response.data
@@ -58,7 +58,7 @@
                     })
             },
             retrieveTrail () {
-                AXIOS.get(`/trail/` + this.trail.id)
+                AXIOS.get(`/trails/` + this.trail.id)
                     .then(response => {
                         // JSON responses are automatically parsed.
                         this.retrievedTrail = response.data
