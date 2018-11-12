@@ -212,9 +212,12 @@ export default class Map {
                         const totalTrailPoints = this.vectorLayer.getSource()
                             .getFeatures().length;
                         // TODO get trail info from database
+                        console.log('trailid feature', feature.get('trail_id'))
+
                         const trail = this.trailsList.filter(
                             // eslint-disable-next-line eqeqeq
                             object => object.trail_id== feature.get('trail_id'));
+                        console.log(trail)
 
                         const trailName = trail[0].name;
                         const selectedPointName = this.pointsList[feature.getId()].name;
