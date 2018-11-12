@@ -98,14 +98,15 @@ export default class Map {
             });
             feature.setId(pointsList[i].point_id);
             this.trailFeaturesArray.push(feature);
-            console.log('esimene', this.trailFeaturesArray);
-            console.log('trailId', trailID)
-            const filteredFeatures = this.trailFeaturesArray.filter(
-                // eslint-disable-next-line eqeqeq
-                object => object.trail_id == trailID);
-            console.log(filteredFeatures);
-            this.trailFeaturesObject[trailID] = filteredFeatures;
-
+            console.log(feature)
+            console.log(feature.trail_id)
+            console.log(this.trailFeaturesObject)
+            console.log(trailID in this.trailFeaturesObject)
+            if (trailID in this.trailFeaturesObject) {
+                this.trailFeaturesObject[trailID].push(feature);
+            } else {
+                this.trailFeaturesObject[trailID] = feature;
+            }
         }
 
         this.gameStarted = isPlaying;
