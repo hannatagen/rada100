@@ -27,7 +27,7 @@
 
 <script>
     import Register from '../User/Register';
-    import axios from 'axios';
+    import { AXIOS } from './.././http-common'
 
     export default {
         name: 'Login',
@@ -37,11 +37,6 @@
         data() {
             return {
                 register: false,
-                // User: {
-                //     name: '',
-                //     username: '',
-                //     age: '',
-                // },
                 email: '',
                 username: '',
                 password: '',
@@ -60,28 +55,23 @@
                     this.$router.push('/')
                 });
             },
-            addToAPI() {
-                const newUser = {
-                    name: this.User.name,
-                    username: this.User.username,
-                    age: this.User.age,
-                };
-                // eslint-disable-next-line no-console
-                console.log(newUser);
-                // new MongoClient().connect('mongodb://AdminEKM:SadaRadaProjekt2018@sadarada.ml', (err, db) => {
-                //   console.log(db);
-                //   console.log(err);
-                // });
-                //
-                axios.post('https://sadarada.ml:27017/test', newUser)
-                    .then((response) => {
-                        // eslint-disable-next-line no-console
-                        console.log(response);
+            loginUser() {
+                AXIOS.post('/login', { username: this.username, password: this.password })
+                    .then(request => {
+                        console.log(request)
                     })
-                    .catch((error) => {
-                        // eslint-disable-next-line no-console
-                        console.log(error);
-                    });
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+            registerUser() {
+                AXIOS.post('/register', { username: this.username, password: this.password, email: this.email})
+                    .then(request => {
+                        console.log(request)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             },
         },
     };

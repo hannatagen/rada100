@@ -68,8 +68,11 @@
             },
             arrive() {
                 if (this.$store.state.playing) {
-                    if (this.map.pointNearFeature(this.geolocation)) {
+                    const intersectedPointFeature = this.map.pointNearFeature(this.geolocation);
+                    if (intersectedPointFeature) {
                         this.arrived = true;
+                        console.log("siia punkti jõudis", intersectedPointFeature.point_id);
+                        //TODO post päring sellele punktile
                         // TODO millisesse punkti jõudis? et küsida õige punkti kohta info
                         // TODO kasutaja saab punkti kohale jõudmise eest --> tuleb salvestada ka andmebaasi.
                         // Kui task tehtud ei tohi enam selle sama punkti kohta avada task containerit ehk

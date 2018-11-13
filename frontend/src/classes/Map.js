@@ -374,16 +374,14 @@ export default class Map {
             console.log('ristus kaardil oleva raja punktiga: ',intersected);
             if (intersected) {
                 //TODO jõudis sellesse punkti, saab punkti selle eest
-                console.log(this.pointsList)
-                console.log(featureOnMap.getId());
-                const point = this.pointsList.filter(
+                const intersectedFeautre = this.pointsList.filter(
                     // eslint-disable-next-line eqeqeq
                     object => object.point_id == featureOnMap.getId());
-                console.log("ristuv", point);
+                console.log("jõudis punkti", intersectedFeautre[0]);
+                return intersectedFeautre;
                 // pärast return lauset avaneb taski tegemise võimalus.
-                return intersected;
             }
         }
-        return false;
+        return null;
     }
 }
