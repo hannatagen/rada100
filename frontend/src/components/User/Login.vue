@@ -60,7 +60,7 @@
                 console.log('login');
                 AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
-                        console.log('login user: ', {username: this.email, password: this.password});
+                        console.log('login user: ');
                         console.log(request);
                         const token = request.headers.authorization;
                         console.log('login bearer token', token);
