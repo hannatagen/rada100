@@ -65,7 +65,6 @@
                         const token = request.headers.authorization;
                         console.log('login bearer token', token);
                         this.$store.commit('setUserTokenID', token);
-                        this.$router.push('/')
                     })
                     .catch(error => {
                         console.log(error)
