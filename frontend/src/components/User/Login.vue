@@ -26,6 +26,7 @@
 </template>
 
 <script>
+    import Register from '../User/Register';
     import axios from 'axios';
 
     export default {
