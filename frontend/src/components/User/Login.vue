@@ -11,7 +11,7 @@
                 <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn btn-primary">Logi sisse</button>
+            <button v-if="!register" type="submit" @click="loginUser" class="btn btn-primary">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
