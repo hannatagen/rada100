@@ -15,13 +15,18 @@
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
-            <Register v-if="register"></Register>
+            <div v-else id="registerContainer">
+                <label for="exampleInputPassword2">Korda parooli</label>
+                <input required v-model="password"  type="password" class="form-control" id="exampleInputPassword2"
+                       placeholder="Sisesta parool...">
+                <button type="submit" class="btn btn-primary" @click="addToAPI">Registreeri</button>
+            </div>
         </form>
     </div>
 </template>
 
 <script>
-    import Register from '../User/Register';
+    import axios from 'axios';
 
     export default {
         name: 'Login',
@@ -31,6 +36,14 @@
         data() {
             return {
                 register: false,
+                // User: {
+                //     name: '',
+                //     username: '',
+                //     age: '',
+                // },
+                email: '',
+                username: '',
+                password: '',
             };
         },
         mounted: {
@@ -46,6 +59,29 @@
                     this.$router.push('/')
                 });
             },
+            addToAPI() {
+                const newUser = {
+                    name: this.User.name,
+                    username: this.User.username,
+                    age: this.User.age,
+                };
+                // eslint-disable-next-line no-console
+                console.log(newUser);
+                // new MongoClient().connect('mongodb://AdminEKM:SadaRadaProjekt2018@sadarada.ml', (err, db) => {
+                //   console.log(db);
+                //   console.log(err);
+                // });
+                //
+                axios.post('https://sadarada.ml:27017/test', newUser)
+                    .then((response) => {
+                        // eslint-disable-next-line no-console
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        // eslint-disable-next-line no-console
+                        console.log(error);
+                    });
+            },
         },
     };
 </script>
@@ -57,5 +93,8 @@
     #registerButton {
         cursor: pointer;
         /*color: royalblue;*/
+    }
+    #registerContainer {
+        margin-top: -3em;
     }
 </style>

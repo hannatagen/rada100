@@ -7,7 +7,6 @@ import Rules from '@/components/User/Rules';
 import Profile from '@/components/User/Profile';
 import ScoreBoard from '@/components/User/ScoreBoard';
 import Login from '@/components/User/Login';
-import Register from '@/components/User/Register';
 import TrailsList from '@/components/User/TrailsList';
 import AdminMain from '@/components/Admin/AdminMain';
 // import Admin from '@/components/Admin/Admin';
@@ -52,11 +51,6 @@ export default new Router({
             path: '/login',
             name: 'Login',
             component: Login,
-        },
-        {
-            path: '/register',
-            name: 'Register',
-            component: Register,
         },
         {
             path: '/admin/main',
