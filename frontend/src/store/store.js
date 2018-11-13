@@ -9,10 +9,12 @@ const vuexLocal = new VuexPersistence({
     storage: window.localStorage
 });
 
+// TODO kui välja logitakse nt, siis muuta playing false
 export default new Vuex.Store({
     state: {
-        playing: false,
+        playing: false, // TODO seda andmebaasist küsida, kas hetkel sisselogitud mängija mängib v mitte
         playingTrail: null,
+        loggedInToken: null //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
     },
     mutations: {
         changePlaying(state, boolean) {

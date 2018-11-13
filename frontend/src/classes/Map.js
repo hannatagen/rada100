@@ -309,7 +309,7 @@ export default class Map {
             .fit(this.extent, this.map.getSize());
     }
 
-    startPlaying() {
+    startPlaying() { //TODO visited markerid teist värvi (requestida andmebaasist hetkel sisse logitud kasutajaid järgi)
         this.gameStarted = true;
         this.map.updateSize();
         this.vectorLayer.getSource()
@@ -374,7 +374,12 @@ export default class Map {
             console.log('ristus kaardil oleva raja punktiga: ',intersected);
             if (intersected) {
                 //TODO jõudis sellesse punkti, saab punkti selle eest
-                console.log(this.pointsList[featureOnMap.getId()]);
+                console.log(this.pointsList)
+                console.log(featureOnMap.getId());
+                const point = this.pointsList.filter(
+                    // eslint-disable-next-line eqeqeq
+                    object => object.point_id == featureOnMap.getId());
+                console.log("ristuv", point);
                 // pärast return lauset avaneb taski tegemise võimalus.
                 return intersected;
             }

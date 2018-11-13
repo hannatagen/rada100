@@ -1,6 +1,7 @@
 <template>
     <nav class="footer navbar navbar-light bg-light">
         <div v-if="$store.state.playing">
+            <!--TODO 0 ja 2 asendada andmebaasi requestist tulenevalt kas on läbitud v mitte-->
             <span class="slash leftSlash">0</span>
             <span class="slash">/</span>
             <span class="slash rightSlash">2</span>
