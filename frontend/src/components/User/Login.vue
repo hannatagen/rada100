@@ -1,14 +1,14 @@
 <template>
     <div>
-        <form id="loginform">
+        <form id="loginform" @submit.prevent="login">
             <div class="form-group">
                 <label for="exampleInputEmail1">Kasutajanimi</label>
-                <input type="email" class="form-control" id="exampleInputEmail1"
+                <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
                        placeholder="Sisesta kasutajanimi...">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Parool</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"
+                <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
             <button v-if="!register" type="submit" class="btn btn-primary">Logi sisse</button>
@@ -37,6 +37,14 @@
             // eslint-disable-next-line
             beforeRouteLeave(to, from, next) {
                 this.register = false;
+            },
+        },
+        methods: {
+            login: function () {
+                const { email, password } = this;
+                this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
+                    this.$router.push('/')
+                });
             },
         },
     };

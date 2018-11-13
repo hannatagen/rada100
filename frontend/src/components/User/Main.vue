@@ -3,7 +3,6 @@
         <router-link class="routerLink" :to="{ name : 'TrailsList'}">Radade nimekiri</router-link>
         <router-link class="routerLink" :to="{ name : 'Profile'}">Profiil</router-link>
         <router-link class="routerLink" :to="{ name : 'Rules'}">Mängust ja reeglid</router-link>
-        <router-link class="routerLink" :to="{ name : 'ScoreBoard'}">Edetabel</router-link>
         <router-link class="routerLink" :to="{ name : 'Contact'}">Kontakt</router-link>
         <router-link class="routerLink" :to="{ name : 'KKK'}">KKK</router-link>
         <router-link class="routerLink" :to="{ name : 'Login'}">Logi sisse</router-link>
