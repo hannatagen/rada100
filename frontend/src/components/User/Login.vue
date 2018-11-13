@@ -57,6 +57,7 @@
                 });
             },
             loginUser() {
+                console.log('login');
                 AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
                         console.log('login user: ', {username: this.email, password: this.password});
@@ -72,6 +73,7 @@
             },
             registerUser() {
                 if (this.password === this.passwordRepeat) {
+                    console.log('register');
                     AXIOS.post('/api/register', {username: this.email, password: this.password, email: this.email}) // TODO username : email
                         .then(request => {
                             console.log('registered user: ', {
