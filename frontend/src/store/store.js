@@ -22,6 +22,9 @@ export default new Vuex.Store({
         },
         setPlayingId(state, trailID) {
             state.playingTrail = trailID;
+        },
+        setUserTokenID(state, token) {
+            state.loggedInToken = token;
         }
     },
     plugins: [vuexLocal.plugin]

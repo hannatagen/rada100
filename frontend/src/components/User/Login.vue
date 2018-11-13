@@ -17,7 +17,7 @@
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
             <div v-else id="registerContainer">
                 <label for="exampleInputPassword2">Korda parooli</label>
-                <input required v-model="password"  type="password" class="form-control" id="exampleInputPassword2"
+                <input required v-model="passwordRepeat"  type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
                 <button type="submit" class="btn btn-primary" @click="registerUser">Registreeri</button>
             </div>
@@ -40,6 +40,7 @@
                 email: '',
                 username: '',
                 password: '',
+                passwordRepeat: '',
             };
         },
         mounted: {
@@ -56,22 +57,34 @@
                 });
             },
             loginUser() {
-                AXIOS.post('/login', { username: this.email, password: this.password }) // TODO username : email
+                AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
-                        console.log(request)
+                        console.log('login user: ', {username: this.email, password: this.password});
+                        console.log(request);
+                        const token = request.headers.authorization;
+                        console.log('login bearer token', token);
+                        this.$store.commit('setUserTokenID', token);
                     })
                     .catch(error => {
                         console.log(error)
                     })
             },
             registerUser() {
-                AXIOS.post('/api/register', { username: this.email, password: this.password, email: this.email}) // TODO username : email
-                    .then(request => {
-                        console.log(request)
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
+                if (this.password === this.passwordRepeat) {
+                    AXIOS.post('/api/register', {username: this.email, password: this.password, email: this.email}) // TODO username : email
+                        .then(request => {
+                            console.log('registered user: ', {
+                                username: this.email,
+                                password: this.password,
+                                email: this.email
+                            });
+                            console.log(request);
+                            this.register = false;
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                }
             },
         },
     };
