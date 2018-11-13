@@ -25,7 +25,7 @@
         methods: {
             // Fetches posts when the component is created.
             callRestService () {
-                AXIOS.get(`/trails/`)
+                AXIOS.get('/api/trails/')
                 // AXIOS.get(`/points/2`, {
                 //     params: {
                 //         trail_id: 0

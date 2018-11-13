@@ -29,7 +29,7 @@ export default class Map {
         this.location = false;
         this.pointsList = [];
         this.trailsList = [];
-        AXIOS.get(`/trails/`)
+        AXIOS.get('/api/trails/')
             .then(response => {
                 // JSON responses are automatically parsed.
                 this.trailsList = response.data;

@@ -11,7 +11,7 @@
                 <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" type="submit" class="btn btn-primary">Logi sisse</button>
+            <button v-if="!register" type="submit" @click="loginUser" class="btn btn-primary">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -19,7 +19,7 @@
                 <label for="exampleInputPassword2">Korda parooli</label>
                 <input required v-model="password"  type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
-                <button type="submit" class="btn btn-primary" @click="addToAPI">Registreeri</button>
+                <button type="submit" class="btn btn-primary" @click="registerUser">Registreeri</button>
             </div>
         </form>
     </div>
@@ -65,7 +65,7 @@
                     })
             },
             registerUser() {
-                AXIOS.post('/register', { username: this.username, password: this.password, email: this.email})
+                AXIOS.post('/api/register', { username: this.username, password: this.password, email: this.email})
                     .then(request => {
                         console.log(request)
                     })
