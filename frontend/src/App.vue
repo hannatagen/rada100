@@ -38,17 +38,13 @@
     min-width: unset !important;
   }
 
-  .bm-menu {
+  #sidebar {
     background-image: url('./assets/sbg6.jpg') !important;
     background-position: bottom;
     background-size: cover;
+    max-width: 300px !important;
     /*background-color: #ffc107;*/
     z-index: 2000 !important;
-  }
-
-  .bm-item-list {
-    font-size: unset !important;
-    margin-left: unset !important;
   }
 
   .bm-burger-button {
@@ -57,15 +53,6 @@
     top: 0 !important;
     margin-left: 2em;
     margin-top: 1.2em;
-  }
-  .bm-cross {
-    width: 6px !important;
-    height: 24px !important;
-    background: black !important;
-  }
-  .bm-cross-button {
-    margin-right: 1.5em;
-    margin-top: 0.5em;
   }
 
   .ol-zoom {
@@ -88,5 +75,18 @@
     .ol-zoom {
       visibility: hidden;
     }
+  }
+
+  .routerLink {
+    text-decoration: none !important;
+    font-weight: bolder;
+    color: black;
+    padding-left: 1.5em;
+    margin-bottom: 0.4em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+  }
+  .routerLink:hover {
+    color: darkgreen;
   }
 </style>
