@@ -1,10 +1,10 @@
 <template>
     <div>
-        <form id="loginform" @submit.prevent="login">
+       <form id="loginform"> <!--@submit.prevent="login">-->
             <div class="form-group">
-                <label for="exampleInputEmail1">Kasutajanimi</label>
+                <label for="exampleInputEmail1">Email</label>
                 <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
-                       placeholder="Sisesta kasutajanimi...">
+                       placeholder="Sisesta email...">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Parool</label>
@@ -56,7 +56,7 @@
                 });
             },
             loginUser() {
-                AXIOS.post('/login', { username: this.username, password: this.password })
+                AXIOS.post('/login', { username: this.email, password: this.password }) // TODO username : email
                     .then(request => {
                         console.log(request)
                     })
@@ -65,7 +65,7 @@
                     })
             },
             registerUser() {
-                AXIOS.post('/api/register', { username: this.username, password: this.password, email: this.email})
+                AXIOS.post('/api/register', { username: this.email, password: this.password, email: this.email}) // TODO username : email
                     .then(request => {
                         console.log(request)
                     })
