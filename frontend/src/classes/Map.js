@@ -424,7 +424,11 @@ export default class Map {
         let intersected = false;
         for (let i = 0; i < this.vectorLayer.getSource().getFeatures().length; i += 1) {
             const featureOnMap = this.vectorLayer.getSource().getFeatures()[i];
+            console.log('featureOnMap', featureOnMap);
             if (this.visitedPointsObject.notVisited.indexOf(featureOnMap) > -1) {
+                console.log('this.visitedPointsObject.notVisited', this.visitedPointsObject.notVisited);
+                console.log('this.visitedPointsObject.notVisited.indexOf(featureOnMap) ', this.visitedPointsObject.notVisited.indexOf(featureOnMap) );
+
                 const coords = featureOnMap.getGeometry().getCoordinates();
                 intersected = circleGeometry.intersectsCoordinate(coords);
                 // eslint-disable-next-line
@@ -438,10 +442,11 @@ export default class Map {
                             'Conent-Type': 'application/json',
                         }
                     }).then(request => {
-                        console.log(request);
+                        console.log('visitedPointsObject',this.visitedPointsObject);
                         const feature = this.visitedPointsObject.notVisited.filter(
                             object => object.point_id == featureOnMap.getId());
                         const index = this.visitedPointsObject.notVisited.indexOf(feature[0]);
+                        console.log('(this.visitedPointsObject.notVisited.indexOf(feature[0]))', index)
                         if (index > -1) {
                             this.visitedPointsObject.notVisited.splice(index, 1)
                             this.visitedPointsObject.visited.push(featureOnMap);
@@ -449,6 +454,7 @@ export default class Map {
                                 this.endGame();
                             }
                         }
+                        console.log('visitedPointsObject',this.visitedPointsObject);
                         featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
                     }).catch(error => {
                         console.log(error)
@@ -474,7 +480,7 @@ export default class Map {
             }}).then(request => {
             const visitedPoints = request.data;
             const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            console.log("visited points features");
+            console.log("length");
             console.log(visitedPointsObject.visited.length);
             return visitedPointsObject.visited.length
 
