@@ -356,10 +356,6 @@ export default class Map {
             const visitedPoints = request.data;
             console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
             this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            console.log("visited points features");
-            console.log(this.visitedPointsObject.visited);
-            console.log("not visited points features");
-            console.log(this.visitedPointsObject.notVisited);
             this.gameStarted = true;
             this.map.updateSize();
             this.vectorLayer.getSource()
@@ -461,7 +457,7 @@ export default class Map {
     getUserCurrentPoints() {
         console.log('getläbitud punktid');
 
-        AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID, { headers: {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
             }}).then(request => {
