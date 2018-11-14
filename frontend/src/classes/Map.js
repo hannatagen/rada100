@@ -442,24 +442,17 @@ export default class Map {
                             'Conent-Type': 'application/json',
                         }
                     }).then(request => {
-                        console.log('visitedPointsObject',this.visitedPointsObject);
                         const feature = this.visitedPointsObject.notVisited.filter(
-                            object => {
-                                console.log(object.getId());
-                                console.log(featureOnMap.getId())
-                                return object.getId() == featureOnMap.getId()
-                            });
-                        console.log('feature',feature);
+                            object => object.getId() == featureOnMap.getId());
                         const index = this.visitedPointsObject.notVisited.indexOf(feature[0]);
-                        console.log('(this.visitedPointsObject.notVisited.indexOf(feature[0]))', index)
                         if (index > -1) {
-                            this.visitedPointsObject.notVisited.splice(index, 1)
+                            this.visitedPointsObject.notVisited.splice(index, 1);
                             this.visitedPointsObject.visited.push(featureOnMap);
-                            if (this.visitedPointsObject.notVisited.length == 0){
+                            if (this.visitedPointsObject.notVisited.length === 0){
+                                console.log('this.visitedPointsObject.notVisited.length ', this.visitedPointsObject.notVisited.length)
                                 this.endGame();
                             }
                         }
-                        console.log('visitedPointsObject',this.visitedPointsObject);
                         featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
                     }).catch(error => {
                         console.log(error)
@@ -497,6 +490,8 @@ export default class Map {
 
     endGame() {
         console.log('kõik raja punktid läbitud')
+        console.log('õnnitlus')
+        MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
         // TODO enam seda rada mängida ei saa?
         // TODO
     }

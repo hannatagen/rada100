@@ -17,6 +17,14 @@ export default {
             src: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_yellow.png',
         }),
     }),
+    finishedTrailMarkerStyle: new Style({
+        image: new Icon({
+            anchor: [0.5, 46],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            src: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png',
+        }),
+    }),
     selectedMarkerStyle: new Style({
         image: new Icon({
             anchor: [0.5, 46],
