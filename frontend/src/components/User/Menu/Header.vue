@@ -27,6 +27,7 @@
     #nameDiv {
         margin-top: 1em;
         margin-left: 4em;
+        border: none !important;
     }
     .fa-bars {
         font-size: 2.5em;

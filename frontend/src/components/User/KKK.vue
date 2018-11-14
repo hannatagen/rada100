@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebarContainer">
+    <div>
         <h3 class="sidebarHeadline">Korduma kippuvad küsimused</h3>
         <div class="card">
             <div class="card-body">

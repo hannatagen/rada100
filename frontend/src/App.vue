@@ -42,9 +42,11 @@
     background-image: url('./assets/sbg6.jpg') !important;
     background-position: bottom;
     background-size: cover;
+    min-width: 300px !important;
     max-width: 300px !important;
     /*background-color: #ffc107;*/
     z-index: 2000 !important;
+    overflow: scroll;
   }
 
   .bm-burger-button {
@@ -81,12 +83,35 @@
     text-decoration: none !important;
     font-weight: bolder;
     color: black;
-    padding-left: 1.5em;
+    padding-left: 0.5em;
     margin-bottom: 0.4em;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
+    border-left: rgba(0, 100, 0, 0) 4px solid;
+    margin-left: 4px;
   }
   .routerLink:hover {
     color: darkgreen;
+    border-left: darkgreen 4px solid;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(41, 41, 41, 0.2);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: darkgreen;
   }
 </style>
