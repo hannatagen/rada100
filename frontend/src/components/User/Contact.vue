@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebarContainer">
+    <div>
         <h3 class="sidebarHeadline">Kontakt</h3>
         <div class="contactDiv">Mari Sarv</div>
         <div class="contactDiv">EKM Eesti Rahvaluule Arhiiv</div>

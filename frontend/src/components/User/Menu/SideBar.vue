@@ -1,11 +1,13 @@
 <template>
     <nav id="sidebar">
+        <router-link id="menuBack" v-if="$route.name !== 'Main'" class="routerLink"
+                     :to="{ name : 'Main'}"><i class="fas fa-arrow-left"></i></router-link>
         <div id="dismiss" @click="closeSidebar">
             <i class="fas fa-times"></i>
         </div>
-        <router-link v-if="$route.name !== 'Main'" class="routerLink"
-                     :to="{ name : 'Main'}">Tagasi...</router-link>
-        <router-view/>
+        <div class="sidebarContainer">
+            <router-view/>
+        </div>
     </nav>
 </template>
 
@@ -27,7 +29,10 @@
 
     .sidebarContainer {
         display: grid !important;
-        color: black ;
+        color: black;
+        margin-top: 5em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
     }
 
     #sidebar {
@@ -47,12 +52,24 @@
         height: 35px;
         position: absolute;
         /* top right corner of the sidebar */
-        top: 10px;
-        right: 10px;
+        top: 1em;
+        right: 0.5em;
         cursor: pointer;
     }
 
-    .fa-times {
+    #dismiss:hover {
+        color: darkgreen;
+    }
+
+    .fa-times, .fa-arrow-left {
         font-size: 2em;
+    }
+
+    #menuBack {
+        position: absolute;
+        top: 1em;
+        left: 0.5em;
+        width: 0;
+        border: none !important;
     }
 </style>

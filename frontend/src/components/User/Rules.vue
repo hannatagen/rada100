@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebarContainer">
+    <div>
         <h3 class="sidebarHeadline">Tutvustus ja reeglid</h3>
         <div>
             Mobiilpositsioneerimisel põhinev veebirakendus pärimuskogude tutvustamiseks.<br><br>
