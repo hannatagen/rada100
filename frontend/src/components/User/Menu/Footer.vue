@@ -32,6 +32,7 @@
         watch: {
             scoredPoints() {
                 if (this.scoredPoints()) {
+                    console.log('siin1')
                     this.scoredPoints = this.map.getUserCurrentPoints();
                 }
             },
@@ -41,6 +42,7 @@
                 return this.map.getAllPossiblePoints();
             },
             scoredPoints() {
+                console.log('siin2')
                 return this.map.getUserCurrentPoints();
             }
         },
