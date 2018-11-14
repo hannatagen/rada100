@@ -11,5 +11,7 @@ import java.util.List;
 public interface GameRepository extends JpaRepository<Game, Long> {
     Game findByPointAndGameUser(Point point, GameUser gameUser);
 
+    List<Game> findByGameUser(GameUser gameUser);
+
     List<Game> findByTrailAndGameUser(Trail trail, GameUser gameUser);
 }
