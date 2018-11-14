@@ -15,8 +15,7 @@
 
     export default {
         name: 'TrailsList',
-        trailsDataList: [],
-        mounted {
+        computed: {
             trailsData() {
                 let trailsList;
                 AXIOS.get('/api/trails/')
