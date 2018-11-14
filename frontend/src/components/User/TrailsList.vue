@@ -11,26 +11,23 @@
 </template>
 
 <script>
-    import trailsData2 from '../../data/trailsData';
     import { AXIOS } from './.././http-common'
 
     export default {
         name: 'TrailsList',
-        trailsDataList: [],
         computed: {
             trailsData() {
-                console.log('halloo');
+                let trailsList;
                 AXIOS.get('/api/trails/')
                     .then(response => {
                         // JSON responses are automatically parsed.
                         console.log(response.data);
-                        this.trailsDataList =  response.data;
+                        trailsList = response.data;
                     })
                     .catch(error => {
                         console.log(error)
                     });
-
-                return this.trailsDataList;
+                return trailsList;
             },
         },
     };
