@@ -458,6 +458,7 @@ export default class Map {
                             this.visitedPointsObject.visited.push(featureOnMap);
                             if (this.visitedPointsObject.notVisited.length === 0) {
                                 this.endGame();
+                                return {arrive: true, finish:true};
                             }
                         }
                         featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
@@ -465,12 +466,12 @@ export default class Map {
                         console.log(error)
                     });
 
-                    return true;
+                    return {arrive: true, finish:false};
                     // pärast return lauset avaneb taski tegemise võimalus.
                 }
             }
         }
-        return false;
+        return {arrive: false, finish:false};
     }
 
     getAllPossiblePoints() {
