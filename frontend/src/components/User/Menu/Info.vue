@@ -42,6 +42,7 @@
             },
             pausePlaying() {
                 this.$store.commit('changePlaying', false);
+                this.$store.commit('setFinishTrail', false);
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
                 this.map.pausePlaying();

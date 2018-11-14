@@ -15,7 +15,8 @@ export default new Vuex.Store({
     state: {
         playing: false, // TODO seda andmebaasist küsida, kas hetkel sisselogitud mängija mängib v mitte
         playingTrail: null,
-        loggedInToken: null //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
+        loggedInToken: null, //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
+        finishedTrail: false
     },
     mutations: {
         changePlaying(state, boolean) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
         },
         setUserTokenID(state, token) {
             state.loggedInToken = token;
+        },
+        setFinishTrail(state, boolean) {
+            state.finishedTrail = boolean;
         }
     },
     plugins: [vuexLocal.plugin]

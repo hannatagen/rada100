@@ -19,29 +19,33 @@
             trailsData() {
                 let trailsList = [];
 
-                AXIOS.get('/api/trails/')
-                    .then(response => {
-                        // JSON responses are automatically parsed.
-                        console.log(response.data);
-                        trailsList = response.data;
 
-                        for (let i = 0; response.data.length; i++) {
-                            trailsList.push({
-                                id:     response.data[i].trail_id,
-                                name:   response.data[i].name,
-                                desc:   response.data[i].description,
-                            });
-                        }
-                        console.log(trailsList);
-                        console.log(trailsList.id);
-                        console.log(trailsList.name);
-                        console.log(trailsList.desc);
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    });
                 return trailsList;
             },
+        },
+        mounted() {
+            // this.initTrailsPoints(); // for localhost frontend testing only
+            AXIOS.get('/api/trails/')
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    console.log(response.data);
+                    const trails = response.data;
+                    console.log(trails)
+                    // for (let i = 0; response.data.length; i++) {
+                    //     trailsList.push({
+                    //         id:     response.data[i].trail_id,
+                    //         name:   response.data[i].name,
+                    //         desc:   response.data[i].description,
+                    //     });
+                    // }
+                    // console.log(trailsList);
+                    // console.log(trailsList.id);
+                    // console.log(trailsList.name);
+                    // console.log(trailsList.desc);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
         },
     };
 </script>

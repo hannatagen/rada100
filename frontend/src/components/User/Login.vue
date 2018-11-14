@@ -111,6 +111,7 @@
                 this.$store.commit('setUserTokenID', null);
                 this.$router.push('/');
                 this.$store.commit('changePlaying', false);
+                this.$store.commit('setFinishTrail', false);
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
                 document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius

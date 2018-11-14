@@ -458,7 +458,6 @@ export default class Map {
                             this.visitedPointsObject.visited.push(featureOnMap);
                             if (this.visitedPointsObject.notVisited.length === 0) {
                                 this.endGame();
-                                return {arrive: true, finish:true};
                             }
                         }
                         featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
@@ -466,13 +465,14 @@ export default class Map {
                         console.log(error)
                     });
 
-                    return {arrive: true, finish:false};
+                    return intersected;
                     // pärast return lauset avaneb taski tegemise võimalus.
                 }
             }
         }
-        return {arrive: false, finish:false};
+        return false;
     }
+
 
     getAllPossiblePoints() {
         return this.selectedTrailFeatures.length
@@ -503,6 +503,7 @@ export default class Map {
     }
 
     endGame() {
+        store.commit('setFinishTrail', true);
         AXIOS.get('/api/games/' + this.playingTrailID + '/ended', {}, {
             headers: {
                 Authorization: store.state.loggedInToken,

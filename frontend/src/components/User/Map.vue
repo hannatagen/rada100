@@ -12,8 +12,8 @@
         <!--<button v-if="arrived">ava ülesannne</button>-->
         <!--TODO see eraldi componendiks, ja algul võibolla väike nupuke, mis teavitaks et saab ülesannet teha vms-->
         <div @click="hideTaskContainer()" id="taskContainer">
-            <span v-if="!finish">Jõudsid punkti kohale! Saad ühe punkti</span>
-            <span v-if="finish">Said raja läbitud!</span>
+            <span v-if="!$store.state.finishedTrail">Jõudsid punkti kohale! Saad ühe punkti</span>
+            <span v-if="$store.state.finishedTrail">Said raja läbitud!</span>
         </div>
         <Info :map="map"></Info>
         <Footer :map=map></Footer>
@@ -34,7 +34,6 @@
                 map: null,
                 geolocation: null,
                 arrived: false,
-                finish: false,
                 // trailsList: [],
             };
         },
@@ -70,10 +69,7 @@
             },
             arrive() {
                 if (this.$store.state.playing) {
-                    const arrivedFinish = this.map.pointNearFeature(this.geolocation);
-                    console.log(arrivedFinish);
-                    this.arrived = arrivedFinish.arrive;
-                    this.finish = arrivedFinish.finish;
+                    this.arrived = this.map.pointNearFeature(this.geolocation);
                     if (this.arrived) {
                         document.getElementById('taskContainer').style.visibility = 'unset';
                     }
