@@ -25,18 +25,18 @@
                         console.log(response.data);
                         trailsList = response.data;
 
-                        for (let trail in response.data) {
-                            console.log(trail);
+                        for (var i = 0; response.data.length; i++) {
+                            console.log(response.data[i]);
+                            console.log(response.data[i].trail_id);
+                            console.log(response.data[i].name);
+                            console.log(response.data[i].description);
+
                         }
                         return response.data;
                     })
                     .catch(error => {
                         console.log(error)
                     });
-
-
-
-
             },
         },
     };
