@@ -26,9 +26,7 @@
                         trailsList = response.data;
 
                         for (let trail in response.data) {
-                            console.log(trail.trail_id);
-                            console.log(trail.name);
-                            console.log(trail.description);
+                            console.log(trail);
                         }
                         return response.data;
                     })
