@@ -322,10 +322,11 @@ export default class Map {
             console.log(error)
         });
          */
-        AXIOS.get('/api/games/' + this.playingTrailID + '/started', {}, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID + '/started', { headers: {
                 Authorization: store.state.loggedInToken,
                 'Conent-Type': 'application/json',
             }}).then(request => {
+                console.log('started')
                 console.log(request);
                 if (request) {
 
@@ -339,6 +340,7 @@ export default class Map {
                             console.log(request);
                         })
                         .catch(error => {
+                            console.log('pekkis')
                             console.log(error)
                         });
                 }
