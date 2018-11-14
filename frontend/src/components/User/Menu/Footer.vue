@@ -29,6 +29,13 @@
                 this.map.pausePlaying();
             },
         },
+        watch: {
+            scoredPoints() {
+                if (this.scoredPoints()) {
+                    this.scoredPoints = this.map.getUserCurrentPoints();
+                }
+            },
+        },
         computed: {
             totalScorePoints() {
                 return this.map.getAllPossiblePoints();

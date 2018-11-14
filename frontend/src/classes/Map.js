@@ -196,7 +196,7 @@ export default class Map {
                             .setZoom(this.map.getView()
                                 .getZoom() - 1);
                         MapUtils.resetMapMarkers(this.vectorLayer);
-
+                        MapUtils.setVisitedMarker(this.visitedPointsObject.visited)
                         const selectedFeature = this.vectorLayer.getSource()
                             .getFeatureById(
                                 feature.getId());
@@ -397,6 +397,7 @@ export default class Map {
         this.vectorLayer.getSource()
             .addFeatures(this.selectedTrailFeatures);
         MapUtils.resetMapMarkers(this.vectorLayer);
+        MapUtils.setVisitedMarker(this.visitedPointsObject.visited);
         this.overlay.setPosition(undefined);
         const extent = this.vectorLayer.getSource()
             .getExtent();

@@ -70,14 +70,14 @@
                 if (this.$store.state.playing) {
                     this.arrived = this.map.pointNearFeature(this.geolocation);
                     if (this.arrived) {
-                        console.log("siia punkti jõudis", intersectedPointFeature.point_id);
+                        console.log("punkti jõudis");
                         document.getElementById('taskContainer').style.visibility = 'unset';
-                        this.arrived = false;
                     }
                 }
             },
             hideTaskContainer() {
                 document.getElementById('taskContainer').style.visibility = 'hidden';
+                this.arrived = false;
             },
         },
         mounted() {
