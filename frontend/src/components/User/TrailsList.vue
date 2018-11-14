@@ -16,11 +16,9 @@
     export default {
         name: 'TrailsList',
         computed: {
-            trailsData() {
-                let trailsList = [];
-
-
-                return trailsList;
+            trailsData(trails) {
+                console.log(trails);
+                return trails;
             },
         },
         mounted() {
@@ -28,20 +26,8 @@
             AXIOS.get('/api/trails/')
                 .then(response => {
                     // JSON responses are automatically parsed.
-                    console.log(response.data);
                     const trails = response.data;
-                    console.log(trails)
-                    // for (let i = 0; response.data.length; i++) {
-                    //     trailsList.push({
-                    //         id:     response.data[i].trail_id,
-                    //         name:   response.data[i].name,
-                    //         desc:   response.data[i].description,
-                    //     });
-                    // }
-                    // console.log(trailsList);
-                    // console.log(trailsList.id);
-                    // console.log(trailsList.name);
-                    // console.log(trailsList.desc);
+                    this.trailsData(trails);
                 })
                 .catch(error => {
                     console.log(error)
