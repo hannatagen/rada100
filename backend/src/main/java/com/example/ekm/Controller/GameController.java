@@ -1,7 +1,9 @@
 package com.example.ekm.Controller;
 
 import com.example.ekm.Assembler.GameAssembler;
+import com.example.ekm.Assembler.TrailAssembler;
 import com.example.ekm.DTO.GameOutputDTO;
+import com.example.ekm.DTO.TrailOutputDTO;
 import com.example.ekm.Model.Game;
 import com.example.ekm.Model.GameUser;
 import com.example.ekm.Model.Point;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,6 +38,23 @@ public class GameController {
     @Autowired
     private GameAssembler gameAssembler;
 
+    @Autowired
+    private TrailAssembler trailAssembler;
+
+    @GetMapping("/")
+    public @ResponseBody
+    List<TrailOutputDTO> getStartedGames(Principal principal) {
+        GameUser gameUser = gameUserRepository.findByUsername(principal.getName());
+        List<Game> startedGames = gameRepository.findByGameUser(gameUser);
+        List<Trail> startedTrails = new ArrayList<>();
+        for (Game game : startedGames) {
+            if (!startedTrails.contains(game.getTrail())) {
+                startedTrails.add(game.getTrail());
+            }
+        }
+        return trailAssembler.toResources(startedTrails);
+    }
+
     @PostMapping("/point/{point_id}")
     public void addGamePoint(@PathVariable long point_id, Principal principal) {
         Point point = pointRepository.getOne(point_id);
@@ -42,6 +62,14 @@ public class GameController {
         Game game = gameRepository.findByPointAndGameUser(point, gameUser);
         game.setVisited(true);
         gameRepository.saveAndFlush(game);
+    }
+
+    @GetMapping("/point/{point_id}")
+    public Boolean getGamePoint(@PathVariable long point_id, Principal principal) {
+        Point point = pointRepository.getOne(point_id);
+        GameUser gameUser = gameUserRepository.findByUsername(principal.getName());
+        Game game = gameRepository.findByPointAndGameUser(point, gameUser);
+        return game.getVisited();
     }
 
     @PostMapping("/{trail_id}")
