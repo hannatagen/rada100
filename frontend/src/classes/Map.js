@@ -316,7 +316,7 @@ export default class Map {
         /** axios template
          AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
                 Authorization: store.state.loggedInToken,
-                'Conent-Type': 'application/json',
+                'Content-Type': 'application/json',
             }}).then(request => {
         }).catch(error => {
             console.log(error)
@@ -324,7 +324,7 @@ export default class Map {
          */
         AXIOS.get('/api/games/' + this.playingTrailID + '/started', { headers: {
                 Authorization: store.state.loggedInToken,
-                'Conent-Type': 'application/json',
+                'Content-Type': 'application/json',
             }}).then(request => {
                 console.log('started')
                 console.log(request);
@@ -333,7 +333,7 @@ export default class Map {
                 } else {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
-                            'Conent-Type': 'application/json',
+                            'Content-Type': 'application/json',
                         }})
                         .then(request => {
                             console.log('alustatud mänguga, raja id', this.playingTrailID);
@@ -347,7 +347,7 @@ export default class Map {
         }).then(() => {
             AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
                     Authorization: store.state.loggedInToken,
-                    'Conent-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 }}).then(request => {
                 const visitedPoints = request.data;
                 console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
