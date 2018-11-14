@@ -1,6 +1,6 @@
 <template>
     <div class="list-group">
-        <div class="list-group-item text-dark trailName" v-for="trail in trailsData" :key="trail.id">
+        <div class="list-group-item text-dark trailName" v-for="trail in trailsList" :key="trail.id">
             {{ trail.name }}
             <div class="list-group">
                 <div class="list-group-item"> {{trail.desc}}</div>
@@ -15,10 +15,15 @@
 
     export default {
         name: 'TrailsList',
-        computed: {
+        data() {
+            return {
+                trailsList: [],
+            };
+        },
+        methods: {
             trailsData(trails) {
                 console.log('tratestils',trails);
-                return trails;
+                this.trailsList = trails;
             },
         },
         mounted() {
