@@ -444,7 +444,12 @@ export default class Map {
                     }).then(request => {
                         console.log('visitedPointsObject',this.visitedPointsObject);
                         const feature = this.visitedPointsObject.notVisited.filter(
-                            object => object.point_id == featureOnMap.getId());
+                            object => {
+                                console.log(object.point_id);
+                                console.log(featureOnMap.getId())
+                                return object.point_id == featureOnMap.getId()
+                            });
+                        console.log(feature);
                         const index = this.visitedPointsObject.notVisited.indexOf(feature[0]);
                         console.log('(this.visitedPointsObject.notVisited.indexOf(feature[0]))', index)
                         if (index > -1) {
