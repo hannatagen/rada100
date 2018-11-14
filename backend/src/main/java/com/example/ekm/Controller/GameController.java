@@ -110,6 +110,7 @@ public class GameController {
         Trail trail = trailRepository.getOne(trail_id);
         GameUser gameUser = gameUserRepository.findByUsername(principal.getName());
         List<Game> games = gameRepository.findByTrailAndGameUser(trail, gameUser);
+        if(!isStarted(trail_id, principal)) return false;
         for (Game game : games) {
             if (!game.getVisited()) {
                 return false;
