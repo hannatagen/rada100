@@ -75,25 +75,18 @@
                 }
             },
             loginUser() {
-                AXIOS.post('/login', { username: this.email, password: this.password }) // TODO username : email
+                console.log('login');
+                AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
-                        console.log(request)
+                        console.log('login user: ');
+                        console.log(request);
+                        this.loginSuccessful(request)
+                        const token = request.headers.authorization;
+                        console.log('login bearer token', token);
                     })
                     .catch(error => {
                         console.log(error)
                     })
-                // console.log('login');
-                // AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
-                //     .then(request => {
-                //         console.log('login user: ');
-                //         console.log(request);
-                //         this.loginSuccessful(request)
-                //         //const token = request.headers.authorization;
-                //         //console.log('login bearer token', token);
-                //     })
-                //     .catch(error => {
-                //         console.log(error)
-                //     })
             },
             loginSuccessful(req) {
                 console.log('loginsuccessful', req);

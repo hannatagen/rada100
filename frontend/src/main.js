@@ -23,3 +23,4 @@ new Vue({
 }).$mount('#app');
 
 console.log(store.state.playing);
+console.log(store.state.loggedInToken);
