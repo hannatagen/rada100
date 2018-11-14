@@ -51,6 +51,8 @@ export default class Map {
         this.positionFeature = null;
         this.selectedTrailFeatures = null;
         this.locationcoordinates = null;
+
+        this.visitedPointsObject = {};
     }
 
     initVectorLayers() {
@@ -347,11 +349,11 @@ export default class Map {
                 }}).then(request => {
                 const visitedPoints = request.data;
                 console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
-                const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
+                this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
                 console.log("visited points features");
-                console.log(visitedPointsObject.visited);
+                console.log(this.visitedPointsObject.visited);
                 console.log("not visited points features");
-                console.log(visitedPointsObject.notVisited);
+                console.log(this.visitedPointsObject.notVisited);
                 this.gameStarted = true;
                 this.map.updateSize();
                 this.vectorLayer.getSource()
@@ -359,6 +361,7 @@ export default class Map {
                 this.vectorLayer.getSource()
                     .addFeatures(this.selectedTrailFeatures);
                 MapUtils.resetMapMarkers(this.vectorLayer);
+                MapUtils.setVisitedMarker(this.visitedPointsObject.visited);
 
                 this.overlay.setPosition(undefined);
                 if (!this.location) {
@@ -420,11 +423,26 @@ export default class Map {
             const coords = featureOnMap.getGeometry().getCoordinates();
             intersected = circleGeometry.intersectsCoordinate(coords);
             // eslint-disable-next-line
-            console.log('ristus kaardil oleva raja punktiga: ',intersected);
+            console.log('ristus kaardil oleva raja punktiga: ', intersected);
             if (intersected) {
-                //TODO jõudis sellesse punkti, saab punkti selle eest
+                //TODO jõudis sellesse punkti, saab punkti selle eest ehk pmtselt vaadata this.visitedPointsObject mitu visited ja mitu notvisited
                 const arrivedPointID = featureOnMap.getId();
-
+                AXIOS.post('/api/games/point/' + arrivedPointID, {}, { headers: {
+                        Authorization: store.state.loggedInToken,
+                        'Conent-Type': 'application/json',
+                    }}).then(request => {
+                        console.log(request);
+                        const feature = this.visitedPointsObject.notVisited.filter(
+                            object => object.point_id == featureOnMap.getId());
+                        const index = this.visitedPointsObject.notVisited.indexOf(feature[0]);
+                        if (index > -1) {
+                            this.visitedPointsObject.notVisited.splice(index, 1)
+                            this.visitedPointsObject.visited.push(featureOnMap);
+                        }
+                    featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
+                }).catch(error => {
+                    console.log(error)
+                });
 
 
                 const intersectedFeautre = this.pointsList.filter(
