@@ -43,7 +43,10 @@
             },
             scoredPoints() {
                 console.log('siin2')
-                return this.map.getUserCurrentPoints();
+                if (this.map) {
+                    return this.map.getUserCurrentPoints();
+                }
+                return null;
             }
         },
     };
