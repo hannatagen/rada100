@@ -326,8 +326,8 @@ export default class Map {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
             }}).then(request => {
-                console.log(request);
-                if (request == 'false') {
+                console.log('mäng alustatud:', request.data);
+                if (request.data == 'false') {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
                             'Content-Type': 'application/json',
