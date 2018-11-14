@@ -13,6 +13,11 @@ export default class MapUtils {
             (features[feature]).setStyle(MapStyles.visitedMarkerStyle);
         }
     }
+    static setFinishedTrailMarkerStyle(features) {
+        for (const feature in features) {
+            (features[feature]).setStyle(MapStyles.finishedTrailMarkerStyle);
+        }
+    }
 
     static openFooter(totalTrailPoints, trailNameString, isPlaying) {
         if (isPlaying) {
