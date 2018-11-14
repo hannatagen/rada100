@@ -467,12 +467,23 @@ export default class Map {
     }
     getUserCurrentPoints() {
         console.log('getläbitud punktid');
-        console.log(this.visitedPointsObject);
-        if (this.visitedPointsObject) {
-            return this.visitedPointsObject.length
-        }
-        return ' ';
+
+        AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
+                Authorization: store.state.loggedInToken,
+                'Content-Type': 'application/json',
+            }}).then(request => {
+            const visitedPoints = request.data;
+            const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
+            console.log("visited points features");
+            console.log(visitedPointsObject.visited.length);
+            return visitedPointsObject.visited.length
+
+
+        }).catch(error => {
+            console.log(error)
+        });
     }
+
     endGame() {
         console.log('kõik raja punktid läbitud')
         // TODO enam seda rada mängida ei saa?
