@@ -16,6 +16,7 @@
 
     export default {
         name: 'TrailsList',
+        trailsDataList: [],
         computed: {
             trailsData() {
                 console.log('halloo');
@@ -23,11 +24,13 @@
                     .then(response => {
                         // JSON responses are automatically parsed.
                         console.log(response.data);
-                        return response.data;
+                        this.trailsDataList =  response.data;
                     })
                     .catch(error => {
                         console.log(error)
                     });
+
+                return this.trailsDataList;
             },
         },
     };
