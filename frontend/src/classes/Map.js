@@ -326,14 +326,12 @@ export default class Map {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
             }}).then(request => {
-                console.log('mäng alustatud:', request.data);
                 if (request.data == false) {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
                             'Content-Type': 'application/json',
                         }})
                         .then(request => {
-                            console.log('alustatud mänguga, raja id', this.playingTrailID);
                             console.log(request);
                             this.visitPointsPlaying();
                         })
@@ -354,7 +352,6 @@ export default class Map {
                 'Content-Type': 'application/json',
             }}).then(request => {
             const visitedPoints = request.data;
-            console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
             this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
             this.gameStarted = true;
             this.map.updateSize();

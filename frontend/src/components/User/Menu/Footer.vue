@@ -31,10 +31,12 @@
         },
         watch: {
             scoredPoints() {
-                if (this.scoredPoints()) {
+                if (this.scoredPoints) {
                     console.log('siin1')
                     this.scoredPoints = this.map.getUserCurrentPoints();
+                    console.log(this.scoredPoints);
                 }
+                this.scoredPoints = this.map.getUserCurrentPoints();
             },
         },
         computed: {
