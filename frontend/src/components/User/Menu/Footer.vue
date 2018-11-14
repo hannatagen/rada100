@@ -2,9 +2,9 @@
     <nav class="footer navbar navbar-light bg-light">
         <div v-if="$store.state.playing">
             <!--TODO 0 ja 2 asendada andmebaasi requestist tulenevalt kas on läbitud v mitte-->
-            <span v-model="scoredPoints" class="slash leftSlash"></span>
+            <span class="slash leftSlash">{{scoredPoints}}</span>
             <span class="slash">/</span>
-            <span v-model="totalScorePoints" class="slash rightSlash"></span>
+            <span class="slash rightSlash">{{totalScorePoints}}</span>
             <div id="pauseButton"
                  @click="pausePlaying()">Paus <i class="fas fa-pause"></i></div>
         </div>
