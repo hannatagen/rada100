@@ -26,7 +26,8 @@
                         trailsList = response.data;
 
                         for (var i = 0; response.data.length; i++) {
-                            trailsList.add([response.data[i].trail_id,response.data[i].name,response.data[i].description])
+                            trailsList.append([response.data[i].trail_id,response.data[i].name,response.data[i].description]);
+                            trailsList[i] = [response.data[i].trail_id,response.data[i].name,response.data[i].description];
                         }
 
                         return trailsList;
