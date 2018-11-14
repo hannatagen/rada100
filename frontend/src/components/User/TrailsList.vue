@@ -1,9 +1,9 @@
 <template>
     <div class="list-group">
-        <div class="list-group-item text-dark trailName" v-for="trail in trailsData" :key="trail.trail_id">
-            {{ trail.name }}
+        <div class="list-group-item text-dark trailName" v-for="trail in trailsData" :key="trail[0]">
+            {{ trail[1] }}
             <div class="list-group">
-                <div class="list-group-item"> {{trail.description}}</div>
+                <div class="list-group-item"> {{trail[2]}}</div>
                 <div class="playButton">Mängima <i class="fas fa-play"></i></div>
             </div>
         </div>
@@ -17,7 +17,7 @@
         name: 'TrailsList',
         computed: {
             trailsData() {
-                let trailsList;
+                let trailsList = [];
 
                 AXIOS.get('/api/trails/')
                     .then(response => {
@@ -26,13 +26,10 @@
                         trailsList = response.data;
 
                         for (var i = 0; response.data.length; i++) {
-                            console.log(response.data[i]);
-                            console.log(response.data[i].trail_id);
-                            console.log(response.data[i].name);
-                            console.log(response.data[i].description);
-
+                            trailsList.add([response.data[i].trail_id,response.data[i].name,response.data[i].description])
                         }
-                        return response.data;
+
+                        return trailsList;
                     })
                     .catch(error => {
                         console.log(error)
