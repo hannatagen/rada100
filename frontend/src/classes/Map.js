@@ -449,7 +449,7 @@ export default class Map {
                                 console.log(featureOnMap.getId())
                                 return object.point_id == featureOnMap.getId()
                             });
-                        console.log(feature);
+                        console.log('feature',feature);
                         const index = this.visitedPointsObject.notVisited.indexOf(feature[0]);
                         console.log('(this.visitedPointsObject.notVisited.indexOf(feature[0]))', index)
                         if (index > -1) {
