@@ -79,23 +79,22 @@
                 AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
                         console.log('login user: ');
-                        console.log(request);
-                        this.loginSuccessful(request)
-                        const token = request.headers.authorization;
-                        console.log('login bearer token', token);
+                        this.loginSuccessful(request);
                     })
                     .catch(error => {
                         console.log(error)
                     })
             },
             loginSuccessful(req) {
-                console.log('loginsuccessful', req);
-                if (!req.data.token) {
+                if (!req.headers.authorization) {
                     this.loginFailed();
                     return
                 }
                 console.log('store commit');
-                this.$store.commit('setUserTokenID', req.data.token);
+                this.$store.commit('setUserTokenID', req.headers.authorization);
+                this.$router.push('/')
+                // this.$router.replace(this.$route.query.redirect || '/authors')
+
             },
             loginFailed () {
                 console.log('Login failed!')
