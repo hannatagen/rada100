@@ -467,7 +467,10 @@ export default class Map {
     getUserCurrentPoints() {
         console.log('getläbitud punktid');
         console.log(this.visitedPointsObject);
-        return 2;
+        if (this.visitedPointsObject) {
+            return this.visitedPointsObject.length
+        }
+        return ' ';
     }
     endGame() {
         console.log('kõik raja punktid läbitud')
