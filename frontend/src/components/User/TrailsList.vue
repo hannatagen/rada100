@@ -17,7 +17,7 @@
         name: 'TrailsList',
         computed: {
             trailsData(trails) {
-                console.log(trails);
+                console.log('trails',trails);
                 return trails;
             },
         },
@@ -27,6 +27,7 @@
                 .then(response => {
                     // JSON responses are automatically parsed.
                     const trails = response.data;
+                    console.log('trailssin',trails);
                     this.trailsData(trails);
                 })
                 .catch(error => {
