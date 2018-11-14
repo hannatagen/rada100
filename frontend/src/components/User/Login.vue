@@ -1,6 +1,6 @@
 <template>
     <div>
-       <form id="loginform"> <!--@submit.prevent="login">-->
+       <!--<form id="loginform"> &lt;!&ndash;@submit.prevent="login">&ndash;&gt;-->
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
@@ -11,7 +11,7 @@
                 <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" type="submit" @click="loginUser" class="btn btn-primary">Logi sisse</button>
+            <button v-if="!register" @click="loginUser" class="btn btn-primary">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -21,7 +21,7 @@
                        placeholder="Sisesta parool...">
                 <button type="submit" class="btn btn-primary" @click="registerUser">Registreeri</button>
             </div>
-        </form>
+        <!--</form>-->
     </div>
 </template>
 
