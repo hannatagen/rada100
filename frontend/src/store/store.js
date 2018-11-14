@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist'
+import { Map } from '../classes/Map';
 
 
 Vue.use(Vuex);

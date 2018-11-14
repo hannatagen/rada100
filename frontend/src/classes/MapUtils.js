@@ -13,6 +13,11 @@ export default class MapUtils {
             (features[feature]).setStyle(MapStyles.visitedMarkerStyle);
         }
     }
+    static setFinishedTrailMarkerStyle(features) {
+        for (const feature in features) {
+            (features[feature]).setStyle(MapStyles.finishedTrailMarkerStyle);
+        }
+    }
 
     static openFooter(totalTrailPoints, trailNameString, isPlaying) {
         if (isPlaying) {
@@ -48,7 +53,6 @@ export default class MapUtils {
         const notVisitedPoints = [];
         for (let i = 0; i < allpointsData.length; i += 1) {
             const visited = this.getIfPointVisited(userPointsData, allpointsData[i].getId());
-            console.log(visited);
             if (visited) {
                 visitedPoints.push(allpointsData[i]);
             } else {

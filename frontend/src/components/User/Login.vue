@@ -1,6 +1,6 @@
 <template>
     <div>
-       <div id="loginform" v-if="!$store.state.loggedInToken"> <!--@submit.prevent="login">-->
+       <div id="loginform" v-if="!$store.state.loggedInToken">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
@@ -11,15 +11,15 @@
                 <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn btn-primary">Logi sisse</button>
+            <button v-if="!register" @click="loginUser" class="btn btn-primary loginRegButton">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
             <div v-else id="registerContainer">
                 <label for="exampleInputPassword2">Korda parooli</label>
-                <input required v-model="passwordRepeat"  type="password" class="form-control" id="exampleInputPassword2"
+                <input required v-model="passwordRepeat" type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
-                <button class="btn btn-primary" @click="registerUser">Registreeri</button>
+                <button class="btn btn-primary loginRegButton" @click="registerUser">Registreeri</button>
             </div>
        </div>
         <div id="logoutForm" v-if="$store.state.loggedInToken">
@@ -76,6 +76,9 @@
                         .catch(error => {
                             console.log(error)
                         })
+                } else {
+                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid'
+                    document.getElementById('exampleInputPassword2').style.border = 'red 2px solid'
                 }
             },
             loginUser() {
@@ -106,8 +109,12 @@
             },
             logout() {
                 this.$store.commit('setUserTokenID', null);
-                this.$router.push('/')
-            }
+                this.$router.push('/');
+                this.$store.commit('changePlaying', false);
+                document.getElementById('map').style.bottom = '45px';
+                document.getElementById('infoWindow').style.visibility = 'hidden';
+                document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius
+            },
         },
     };
 </script>
@@ -118,9 +125,12 @@
     }
     #registerButton {
         cursor: pointer;
-        /*color: royalblue;*/
     }
     #registerContainer {
         margin-top: -3em;
+    }
+
+    .loginRegButton {
+        margin-top: 2em;
     }
 </style>
