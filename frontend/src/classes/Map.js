@@ -326,11 +326,8 @@ export default class Map {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
             }}).then(request => {
-                console.log('started')
                 console.log(request);
-                if (request) {
-
-                } else {
+                if (request == 'false') {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
                             'Content-Type': 'application/json',
@@ -340,7 +337,6 @@ export default class Map {
                             console.log(request);
                         })
                         .catch(error => {
-                            console.log('pekkis')
                             console.log(error)
                         });
                 }
@@ -422,17 +418,20 @@ export default class Map {
         let intersected = false;
         for (let i = 0; i < this.vectorLayer.getSource().getFeatures().length; i += 1) {
             const featureOnMap = this.vectorLayer.getSource().getFeatures()[i];
-            const coords = featureOnMap.getGeometry().getCoordinates();
-            intersected = circleGeometry.intersectsCoordinate(coords);
-            // eslint-disable-next-line
-            console.log('ristus kaardil oleva raja punktiga: ', intersected);
-            if (intersected) {
-                //TODO jõudis sellesse punkti, saab punkti selle eest ehk pmtselt vaadata this.visitedPointsObject mitu visited ja mitu notvisited
-                const arrivedPointID = featureOnMap.getId();
-                AXIOS.post('/api/games/point/' + arrivedPointID, {}, { headers: {
-                        Authorization: store.state.loggedInToken,
-                        'Conent-Type': 'application/json',
-                    }}).then(request => {
+            if (this.visitedPointsObject.notVisited.indexOf(featureOnMap) > -1) {
+                const coords = featureOnMap.getGeometry().getCoordinates();
+                intersected = circleGeometry.intersectsCoordinate(coords);
+                // eslint-disable-next-line
+                console.log('ristus kaardil oleva raja punktiga: ', intersected);
+                if (intersected) {
+                    //TODO jõudis sellesse punkti, saab punkti selle eest ehk pmtselt vaadata this.visitedPointsObject mitu visited ja mitu notvisited
+                    const arrivedPointID = featureOnMap.getId();
+                    AXIOS.post('/api/games/point/' + arrivedPointID, {}, {
+                        headers: {
+                            Authorization: store.state.loggedInToken,
+                            'Conent-Type': 'application/json',
+                        }
+                    }).then(request => {
                         console.log(request);
                         const feature = this.visitedPointsObject.notVisited.filter(
                             object => object.point_id == featureOnMap.getId());
@@ -441,20 +440,21 @@ export default class Map {
                             this.visitedPointsObject.notVisited.splice(index, 1)
                             this.visitedPointsObject.visited.push(featureOnMap);
                         }
-                    featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
-                }).catch(error => {
-                    console.log(error)
-                });
+                        featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
+                    }).catch(error => {
+                        console.log(error)
+                    });
 
 
-                const intersectedFeautre = this.pointsList.filter(
-                    // eslint-disable-next-line eqeqeq
-                    object => object.point_id == featureOnMap.getId());
-                console.log("jõudis punkti", intersectedFeautre[0]);
-                return intersectedFeautre;
-                // pärast return lauset avaneb taski tegemise võimalus.
+                    const intersectedFeautre = this.pointsList.filter(
+                        // eslint-disable-next-line eqeqeq
+                        object => object.point_id == featureOnMap.getId());
+                    console.log("jõudis punkti", intersectedFeautre[0]);
+                    return intersectedFeautre;
+                    // pärast return lauset avaneb taski tegemise võimalus.
+                }
             }
         }
-        return null;
+            return null;
     }
 }
