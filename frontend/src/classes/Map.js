@@ -450,16 +450,18 @@ export default class Map {
                         console.log(error)
                     });
 
-
-                    const intersectedFeautre = this.pointsList.filter(
-                        // eslint-disable-next-line eqeqeq
-                        object => object.point_id == featureOnMap.getId());
-                    console.log("jõudis punkti", intersectedFeautre[0]);
-                    return intersectedFeautre;
+                    return true;
                     // pärast return lauset avaneb taski tegemise võimalus.
                 }
             }
         }
-            return null;
+        return false;
+    }
+
+    getAllPossiblePoints() {
+        return this.selectedTrailFeatures.length
+    }
+    getUserCurrentPoints() {
+        return this.visitedPointsObject.visited.length
     }
 }
