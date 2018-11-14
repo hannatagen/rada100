@@ -1,6 +1,6 @@
 <template>
     <div>
-       <!--<form id="loginform"> &lt;!&ndash;@submit.prevent="login">&ndash;&gt;-->
+       <div id="loginform" v-if="!$store.state.loggedInToken"> <!--@submit.prevent="login">-->
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
@@ -19,9 +19,12 @@
                 <label for="exampleInputPassword2">Korda parooli</label>
                 <input required v-model="passwordRepeat"  type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
-                <button type="submit" class="btn btn-primary" @click="registerUser">Registreeri</button>
+                <button class="btn btn-primary" @click="registerUser">Registreeri</button>
             </div>
-        <!--</form>-->
+       </div>
+        <div id="logoutForm" v-if="$store.state.loggedInToken">
+            <button class="btn btn-primary" @click="logout">Logi välja</button>
+        </div>
     </div>
 </template>
 
@@ -100,6 +103,9 @@
                 console.log('Login failed!')
                 //delete localStorage.token
             },
+            logout() {
+                this.$store.commit('setUserTokenID', null);
+            }
         },
     };
 </script>
