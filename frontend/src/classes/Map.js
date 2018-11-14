@@ -327,7 +327,7 @@ export default class Map {
                 'Content-Type': 'application/json',
             }}).then(request => {
                 console.log('mäng alustatud:', request.data);
-                if (request.data == 'false') {
+                if (request.data == false) {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
                             'Content-Type': 'application/json',
@@ -335,46 +335,51 @@ export default class Map {
                         .then(request => {
                             console.log('alustatud mänguga, raja id', this.playingTrailID);
                             console.log(request);
+                            this.visitPointsPlaying();
                         })
                         .catch(error => {
                             console.log(error)
                         });
+                } else {
+                    this.visitPointsPlaying();
                 }
-        }).then(() => {
-            AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
-                    Authorization: store.state.loggedInToken,
-                    'Content-Type': 'application/json',
-                }}).then(request => {
-                const visitedPoints = request.data;
-                console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
-                this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-                console.log("visited points features");
-                console.log(this.visitedPointsObject.visited);
-                console.log("not visited points features");
-                console.log(this.visitedPointsObject.notVisited);
-                this.gameStarted = true;
-                this.map.updateSize();
-                this.vectorLayer.getSource()
-                    .clear();
-                this.vectorLayer.getSource()
-                    .addFeatures(this.selectedTrailFeatures);
-                MapUtils.resetMapMarkers(this.vectorLayer);
-                MapUtils.setVisitedMarker(this.visitedPointsObject.visited);
+        }).catch(error => {
+            console.log(error)
+        });
+    }
 
-                this.overlay.setPosition(undefined);
-                if (!this.location) {
-                    this.initLocation();
-                }
-                const extent = this.vectorLayer.getSource()
-                    .getExtent();
-                this.map.getView()
-                    .fit(extent, this.map.getSize());
-                this.map.getView()
-                    .setZoom(this.map.getView()
-                        .getZoom() - 1);
-            }).catch(error => {
-                console.log(error)
-            });
+    visitPointsPlaying() {
+        AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
+                Authorization: store.state.loggedInToken,
+                'Content-Type': 'application/json',
+            }}).then(request => {
+            const visitedPoints = request.data;
+            console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
+            this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
+            console.log("visited points features");
+            console.log(this.visitedPointsObject.visited);
+            console.log("not visited points features");
+            console.log(this.visitedPointsObject.notVisited);
+            this.gameStarted = true;
+            this.map.updateSize();
+            this.vectorLayer.getSource()
+                .clear();
+            this.vectorLayer.getSource()
+                .addFeatures(this.selectedTrailFeatures);
+            MapUtils.resetMapMarkers(this.vectorLayer);
+            MapUtils.setVisitedMarker(this.visitedPointsObject.visited);
+
+            this.overlay.setPosition(undefined);
+            if (!this.location) {
+                this.initLocation();
+            }
+            const extent = this.vectorLayer.getSource()
+                .getExtent();
+            this.map.getView()
+                .fit(extent, this.map.getSize());
+            this.map.getView()
+                .setZoom(this.map.getView()
+                    .getZoom() - 1);
         }).catch(error => {
             console.log(error)
         });
@@ -439,22 +444,34 @@ export default class Map {
                         if (index > -1) {
                             this.visitedPointsObject.notVisited.splice(index, 1)
                             this.visitedPointsObject.visited.push(featureOnMap);
+                            if (this.visitedPointsObject.notVisited.length == 0){
+                                this.endGame();
+                            }
                         }
                         featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
                     }).catch(error => {
                         console.log(error)
                     });
 
-
-                    const intersectedFeautre = this.pointsList.filter(
-                        // eslint-disable-next-line eqeqeq
-                        object => object.point_id == featureOnMap.getId());
-                    console.log("jõudis punkti", intersectedFeautre[0]);
-                    return intersectedFeautre;
+                    return true;
                     // pärast return lauset avaneb taski tegemise võimalus.
                 }
             }
         }
-            return null;
+        return false;
+    }
+
+    getAllPossiblePoints() {
+        return this.selectedTrailFeatures.length
+    }
+    getUserCurrentPoints() {
+        console.log('getläbitud punktid');
+        console.log(this.visitedPointsObject);
+        return 2;
+    }
+    endGame() {
+        console.log('kõik raja punktid läbitud')
+        // TODO enam seda rada mängida ei saa?
+        // TODO
     }
 }

@@ -2,9 +2,9 @@
     <nav class="footer navbar navbar-light bg-light">
         <div v-if="$store.state.playing">
             <!--TODO 0 ja 2 asendada andmebaasi requestist tulenevalt kas on läbitud v mitte-->
-            <span class="slash leftSlash">0</span>
+            <span v-model="scoredPoints" class="slash leftSlash"></span>
             <span class="slash">/</span>
-            <span class="slash rightSlash">2</span>
+            <span v-model="totalScorePoints" class="slash rightSlash"></span>
             <div id="pauseButton"
                  @click="pausePlaying()">Paus <i class="fas fa-pause"></i></div>
         </div>
@@ -28,6 +28,14 @@
                 document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius
                 this.map.pausePlaying();
             },
+        },
+        computed: {
+            totalScorePoints() {
+                return this.map.getAllPossiblePoints();
+            },
+            scoredPoints() {
+                return this.map.getUserCurrentPoints();
+            }
         },
     };
 </script>

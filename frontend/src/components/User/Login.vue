@@ -109,7 +109,11 @@
             },
             logout() {
                 this.$store.commit('setUserTokenID', null);
-                this.$router.push('/')
+                this.$router.push('/');
+                this.$store.commit('changePlaying', false);
+                document.getElementById('map').style.bottom = '45px';
+                document.getElementById('infoWindow').style.visibility = 'hidden';
+                document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius
             },
         },
     };
