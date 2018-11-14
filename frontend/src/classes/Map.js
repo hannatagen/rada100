@@ -312,6 +312,7 @@ export default class Map {
 
     startPlaying() { //TODO visited markerid teist värvi (requestida andmebaasist hetkel sisse logitud kasutajaid järgi)
 
+        // TODO enne küsida 'api/games' + trail.playingTrailID + 'started' järgi, kas on alustatud juba eelnevalt seda rada.
         AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                 Authorization: store.state.loggedInToken,
                 'Conent-Type': 'application/json',

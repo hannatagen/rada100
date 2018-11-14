@@ -35,7 +35,7 @@ export default class MapUtils {
         const visited = pointsData.filter(
             // eslint-disable-next-line eqeqeq
             object => object.point_id == pointID);
-        return visited[0]
+        return visited[0].visited
     }
 
     static getVisitedAndNotVisitedPoints(allpointsData, userPointsData) {
@@ -43,6 +43,7 @@ export default class MapUtils {
         const notVisitedPoints = [];
         for (let i = 0; i < allpointsData.length; i += 1) {
             const visited = this.getIfPointVisited(userPointsData, allpointsData[i].getId());
+            console.log(visited);
             if (visited) {
                 visitedPoints.push(allpointsData[i]);
             } else {
