@@ -326,14 +326,12 @@ export default class Map {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
             }}).then(request => {
-                console.log('mäng alustatud:', request.data);
                 if (request.data == false) {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
                             'Content-Type': 'application/json',
                         }})
                         .then(request => {
-                            console.log('alustatud mänguga, raja id', this.playingTrailID);
                             console.log(request);
                             this.visitPointsPlaying();
                         })
@@ -354,12 +352,7 @@ export default class Map {
                 'Content-Type': 'application/json',
             }}).then(request => {
             const visitedPoints = request.data;
-            console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
             this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            console.log("visited points features");
-            console.log(this.visitedPointsObject.visited);
-            console.log("not visited points features");
-            console.log(this.visitedPointsObject.notVisited);
             this.gameStarted = true;
             this.map.updateSize();
             this.vectorLayer.getSource()
@@ -411,10 +404,6 @@ export default class Map {
 
     pointNearFeature(point1) {
         const coordinates = point1.getPosition();
-        // eslint-disable-next-line
-        console.log('sa asud praegu siin: ', coordinates);
-        // eslint-disable-next-line
-        console.log('kõik raja punktid', this.selectedTrailFeatures);
         // teeme nähtamatu ringi, mille abil vaadata kas koordinaadid lõikuvad
         const bufferCircle = new Feature(new Circle(coordinates, 120)); // TODO change distance
         bufferCircle.setStyle(MapStyles.circleStyle);
@@ -424,17 +413,11 @@ export default class Map {
         let intersected = false;
         for (let i = 0; i < this.vectorLayer.getSource().getFeatures().length; i += 1) {
             const featureOnMap = this.vectorLayer.getSource().getFeatures()[i];
-            console.log('featureOnMap', featureOnMap);
             if (this.visitedPointsObject.notVisited.indexOf(featureOnMap) > -1) {
-                console.log('this.visitedPointsObject.notVisited', this.visitedPointsObject.notVisited);
-                console.log('this.visitedPointsObject.notVisited.indexOf(featureOnMap) ', this.visitedPointsObject.notVisited.indexOf(featureOnMap) );
-
                 const coords = featureOnMap.getGeometry().getCoordinates();
                 intersected = circleGeometry.intersectsCoordinate(coords);
                 // eslint-disable-next-line
-                console.log('ristus kaardil oleva raja punktiga: ', intersected);
                 if (intersected) {
-                    //TODO jõudis sellesse punkti, saab punkti selle eest ehk pmtselt vaadata this.visitedPointsObject mitu visited ja mitu notvisited
                     const arrivedPointID = featureOnMap.getId();
                     AXIOS.post('/api/games/point/' + arrivedPointID, {}, {
                         headers: {
@@ -449,7 +432,6 @@ export default class Map {
                             this.visitedPointsObject.notVisited.splice(index, 1);
                             this.visitedPointsObject.visited.push(featureOnMap);
                             if (this.visitedPointsObject.notVisited.length === 0){
-                                console.log('this.visitedPointsObject.notVisited.length ', this.visitedPointsObject.notVisited.length)
                                 this.endGame();
                             }
                         }
@@ -472,14 +454,12 @@ export default class Map {
     getUserCurrentPoints() {
         console.log('getläbitud punktid');
 
-        AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID, { headers: {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
             }}).then(request => {
             const visitedPoints = request.data;
             const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            console.log("length");
-            console.log(visitedPointsObject.visited.length);
             return visitedPointsObject.visited.length
 
 
@@ -489,10 +469,15 @@ export default class Map {
     }
 
     endGame() {
-        console.log('kõik raja punktid läbitud')
-        console.log('õnnitlus')
-        MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
+        AXIOS.get('/api/games/' + this.playingTrailID + '/ended', {}, { headers: {
+                Authorization: store.state.loggedInToken,
+                'Content-Type': 'application/json',
+            }}).then(request => {
+                console.log('kas rada läbitud? ',request);
+                MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
+        }).catch(error => {
+            console.log(error)
+        });
         // TODO enam seda rada mängida ei saa?
-        // TODO
     }
 }

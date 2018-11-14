@@ -70,7 +70,6 @@
                 if (this.$store.state.playing) {
                     this.arrived = this.map.pointNearFeature(this.geolocation);
                     if (this.arrived) {
-                        console.log("punkti jõudis");
                         document.getElementById('taskContainer').style.visibility = 'unset';
                     }
                 }
