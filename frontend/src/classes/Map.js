@@ -465,7 +465,9 @@ export default class Map {
         return this.selectedTrailFeatures.length
     }
     getUserCurrentPoints() {
-        return this.visitedPointsObject.visited.length
+        console.log('getläbitud punktid')
+        console.log(this.visitedPointsObject)
+        return (this.visitedPointsObject.visited.length) ? this.visitedPointsObject.visited.length : ' '
     }
     endGame() {
         console.log('kõik raja punktid läbitud')
