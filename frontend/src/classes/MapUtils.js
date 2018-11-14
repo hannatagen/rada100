@@ -5,7 +5,7 @@ export default class MapUtils {
         const features = vectorLayer.getSource().getFeatures();
         // eslint-disable-next-line
         for (const feature in features) {
-            (features[feature]).setStyle(MapStyles.markerStyle);
+            (feature).setStyle(MapStyles.markerStyle);
         }
     }
 

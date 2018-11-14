@@ -320,7 +320,7 @@ export default class Map {
             console.log(error)
         });
          */
-        AXIOS.get('/api/games/' + this.playingTrailID + 'started', {}, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID + '/started', {}, { headers: {
                 Authorization: store.state.loggedInToken,
                 'Conent-Type': 'application/json',
             }}).then(request => {
@@ -359,6 +359,7 @@ export default class Map {
                 this.vectorLayer.getSource()
                     .addFeatures(this.selectedTrailFeatures);
                 MapUtils.resetMapMarkers(this.vectorLayer);
+
                 this.overlay.setPosition(undefined);
                 if (!this.location) {
                     this.initLocation();
