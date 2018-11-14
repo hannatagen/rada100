@@ -71,6 +71,7 @@
                             });
                             console.log(request);
                             this.register = false;
+                            this.$router.push('/login')
                         })
                         .catch(error => {
                             console.log(error)
@@ -101,10 +102,12 @@
             },
             loginFailed () {
                 console.log('Login failed!')
+                // this.error = 'Login failed!'
                 //delete localStorage.token
             },
             logout() {
                 this.$store.commit('setUserTokenID', null);
+                this.$router.push('/')
             }
         },
     };
