@@ -28,6 +28,15 @@
                     .catch(error => {
                         console.log(error)
                     });
+
+                console.log(trailsList);
+
+                for (let trail in trailsList) {
+                    console.log(trail.trail_id);
+                    console.log(trail.name);
+                    console.log(trail.description);
+                }
+
                 return trailsList;
             },
         },
