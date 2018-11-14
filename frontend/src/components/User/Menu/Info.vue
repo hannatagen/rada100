@@ -12,7 +12,7 @@
             <div v-if="!$store.state.playing" class="footerButtonDiv">
                 <div id="closeInfo" class="closeInfo"
                      @click="closeFooter()">Kõik rajad <i class="fas fa-map"></i></div>
-                <div id="playButton" class="playButton"
+                <div v-if="$store.state.loggedInToken" id="playButton" class="playButton"
                      @click="startPlaying()">Mängima <i class="fas fa-play"></i></div>
             </div>
             <div v-else class="footerButtonDiv">

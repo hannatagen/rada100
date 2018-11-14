@@ -3,8 +3,8 @@
         <div class="list-group-item text-dark trailName" v-for="trail in trailsList" :key="trail.id">
             {{ trail.name }}
             <div class="list-group">
-                <div class="list-group-item"> {{trail.desc}}</div>
-                <div class="playButton">Mängima <i class="fas fa-play"></i></div>
+                <div class="list-group-item"> {{trail.description}}</div>
+                <div v-if="$store.state.loggedInToken" class="playButton">Mängima <i class="fas fa-play"></i></div>
             </div>
         </div>
     </div>
