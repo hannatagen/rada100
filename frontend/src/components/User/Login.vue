@@ -1,6 +1,6 @@
 <template>
     <div>
-       <div id="loginform" v-if="!$store.state.loggedInToken"> <!--@submit.prevent="login">-->
+       <div id="loginform" v-if="!$store.state.loggedInToken">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
