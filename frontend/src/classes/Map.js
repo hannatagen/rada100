@@ -327,6 +327,8 @@ export default class Map {
                 'Content-Type': 'application/json',
             }
         }).then(request => {
+            console.log('kas rada läbitud? ', request);
+            console.log(request.data)
             if (request.data == false) {
 
                 AXIOS.get('/api/games/' + this.playingTrailID + '/started', {
@@ -480,7 +482,9 @@ export default class Map {
             }
         }).then(request => {
             const visitedPoints = request.data;
+            console.log('visitedPoints', visitedPoints);
             const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
+            console.log('visitedPointsObject', visitedPointsObject);
             if (visitedPointsObject.visited != null) {
                 return visitedPointsObject.visited.length
             }
