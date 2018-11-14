@@ -30,4 +30,25 @@ export default class MapUtils {
         popupContent.innerHTML = `<p class="font-weight-bold">Raja punkt:</p>${selectedPointName}`;
         return coordinate;
     }
+
+    static getIfPointVisited(pointsData, pointID) {
+        const visited = pointsData.filter(
+            // eslint-disable-next-line eqeqeq
+            object => object.point_id == pointID);
+        return visited[0]
+    }
+
+    static getVisitedAndNotVisitedPoints(allpointsData, userPointsData) {
+        const visitedPoints = [];
+        const notVisitedPoints = [];
+        for (let i = 0; i < allpointsData.length; i += 1) {
+            const visited = this.getIfPointVisited(userPointsData, allpointsData[i].getId());
+            if (visited) {
+                visitedPoints.push(allpointsData[i]);
+            } else {
+                notVisitedPoints.push(allpointsData[i]);
+            }
+        }
+        return {visited: visitedPoints, notVisited: notVisitedPoints}
+    }
 }

@@ -6,7 +6,7 @@
         <router-link class="routerLink" :to="{ name : 'Contact'}">Kontakt</router-link>
         <router-link class="routerLink" :to="{ name : 'KKK'}">KKK</router-link>
         <router-link class="routerLink" :to="{ name : 'Login'}">
-            <template v-if="$store.state.loggedInToken">Logi sisse</template>
+            <template v-if="!$store.state.loggedInToken">Logi sisse</template>
             <template v-else>Logi välja</template>
         </router-link>
     </div>

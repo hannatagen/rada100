@@ -323,8 +323,14 @@ export default class Map {
                         Authorization: store.state.loggedInToken,
                         'Conent-Type': 'application/json',
                     }}).then(request => {
-                        console.log('läbitud ja läbimata punktid mängitava raja peal',request);
-                        this.gameStarted = true;
+                        const visitedPoints = request.data;
+                    console.log('läbitud ja läbimata punktid mängitava raja peal', visitedPoints);
+                    const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
+                    console.log("visited points features");
+                    console.log(visitedPointsObject.visited);
+                    console.log("not visited points features");
+                    console.log(visitedPointsObject.notVisited);
+                    this.gameStarted = true;
                         this.map.updateSize();
                         this.vectorLayer.getSource()
                             .clear();
