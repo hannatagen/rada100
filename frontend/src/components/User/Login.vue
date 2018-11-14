@@ -17,7 +17,7 @@
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
             <div v-else id="registerContainer">
                 <label for="exampleInputPassword2">Korda parooli</label>
-                <input required v-model="passwordRepeat"  type="password" class="form-control" id="exampleInputPassword2"
+                <input required v-model="passwordRepeat" type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
                 <button class="btn btn-primary" @click="registerUser">Registreeri</button>
             </div>
@@ -76,6 +76,9 @@
                         .catch(error => {
                             console.log(error)
                         })
+                } else {
+                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid'
+                    document.getElementById('exampleInputPassword2').style.border = 'red 2px solid'
                 }
             },
             loginUser() {
@@ -107,7 +110,7 @@
             logout() {
                 this.$store.commit('setUserTokenID', null);
                 this.$router.push('/')
-            }
+            },
         },
     };
 </script>
