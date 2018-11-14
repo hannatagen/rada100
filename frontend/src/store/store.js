@@ -15,7 +15,7 @@ export default new Vuex.Store({
     state: {
         playing: false, // TODO seda andmebaasist küsida, kas hetkel sisselogitud mängija mängib v mitte
         playingTrail: null,
-        loggedInToken: null, //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
+        loggedInToken: false, //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
         finishedTrail: false
     },
     mutations: {
