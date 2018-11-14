@@ -79,7 +79,6 @@
                 }
             },
             loginUser() {
-                console.log('login');
                 AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
                         console.log('login user: ');

@@ -179,6 +179,7 @@ export default class Map {
                             .clear();
 
                         store.commit('setPlayingId', feature.get('trail_id'));
+                        this.playingTrailID = feature.get('trail_id');
                         this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trail_id')];
                         this.vectorLayer.getSource()
                             .addFeatures(this.selectedTrailFeatures);
@@ -310,24 +311,44 @@ export default class Map {
     }
 
     startPlaying() { //TODO visited markerid teist värvi (requestida andmebaasist hetkel sisse logitud kasutajaid järgi)
-        this.gameStarted = true;
-        this.map.updateSize();
-        this.vectorLayer.getSource()
-            .clear();
-        this.vectorLayer.getSource()
-            .addFeatures(this.selectedTrailFeatures);
-        MapUtils.resetMapMarkers(this.vectorLayer);
-        this.overlay.setPosition(undefined);
-        if (!this.location) {
-            this.initLocation();
-        }
-        const extent = this.vectorLayer.getSource()
-            .getExtent();
-        this.map.getView()
-            .fit(extent, this.map.getSize());
-        this.map.getView()
-            .setZoom(this.map.getView()
-                .getZoom() - 1);
+
+        AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
+                Authorization: store.state.loggedInToken,
+                'Conent-Type': 'application/json',
+            }})
+            .then(request => {
+                console.log('alustatud mänguga, raja id', this.playingTrailID);
+                console.log(request);
+                AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
+                        Authorization: store.state.loggedInToken,
+                        'Conent-Type': 'application/json',
+                    }}).then(request => {
+                        console.log('läbitud ja läbimata punktid mängitava raja peal',request);
+                        this.gameStarted = true;
+                        this.map.updateSize();
+                        this.vectorLayer.getSource()
+                            .clear();
+                        this.vectorLayer.getSource()
+                            .addFeatures(this.selectedTrailFeatures);
+                        MapUtils.resetMapMarkers(this.vectorLayer);
+                        this.overlay.setPosition(undefined);
+                        if (!this.location) {
+                            this.initLocation();
+                        }
+                        const extent = this.vectorLayer.getSource()
+                            .getExtent();
+                        this.map.getView()
+                            .fit(extent, this.map.getSize());
+                        this.map.getView()
+                            .setZoom(this.map.getView()
+                                .getZoom() - 1);
+                }).catch(error => {
+                    console.log(error)
+                });
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     pausePlaying() {
@@ -374,6 +395,10 @@ export default class Map {
             console.log('ristus kaardil oleva raja punktiga: ',intersected);
             if (intersected) {
                 //TODO jõudis sellesse punkti, saab punkti selle eest
+                const arrivedPointID = featureOnMap.getId();
+
+
+
                 const intersectedFeautre = this.pointsList.filter(
                     // eslint-disable-next-line eqeqeq
                     object => object.point_id == featureOnMap.getId());
