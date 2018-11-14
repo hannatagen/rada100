@@ -1,9 +1,9 @@
 <template>
     <div class="list-group">
-        <div class="list-group-item text-dark trailName" v-for="trail in trailsData" :key="trail[0]">
-            {{ trail[1] }}
+        <div class="list-group-item text-dark trailName" v-for="trail in trailsData" :key="trail.trail_id">
+            {{ trail.name }}
             <div class="list-group">
-                <div class="list-group-item"> {{trail[2]}}</div>
+                <div class="list-group-item"> {{trail.description}}</div>
                 <div class="playButton">Mängima <i class="fas fa-play"></i></div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                         console.log(response.data);
                         trailsList = response.data;
 
-                        for (var i = 0; response.data.length; i++) {
+                        for (let i = 0; response.data.length; i++) {
                             trailsList.push([response.data[i].trail_id,response.data[i].name,response.data[i].description]);
                         }
 
