@@ -181,6 +181,7 @@ export default class Map {
 
                         store.commit('setPlayingId', feature.get('trail_id'));
                         this.playingTrailID = feature.get('trail_id');
+                        console.log('playingTrailID clickmeetodis',this.playingTrailID);
                         this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trail_id')];
                         this.vectorLayer.getSource()
                             .addFeatures(this.selectedTrailFeatures);
@@ -321,6 +322,8 @@ export default class Map {
             console.log(error)
         });
          */
+        console.log('playingTrailID startplayingmeetodis' ,this.playingTrailID);
+
         AXIOS.get('/api/games/' + this.playingTrailID + '/ended', {
             headers: {
                 Authorization: store.state.loggedInToken,
