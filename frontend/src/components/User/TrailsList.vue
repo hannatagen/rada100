@@ -17,7 +17,7 @@
         name: 'TrailsList',
         computed: {
             trailsData(trails) {
-                console.log('trails',trails);
+                console.log('tratestils',trails);
                 return trails;
             },
         },
