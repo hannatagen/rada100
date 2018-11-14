@@ -36,7 +36,6 @@
                 this.map.closeFooter();
             },
             startPlaying() {
-                this.$store.commit('changePlaying', true);
                 document.getElementById('map').style.bottom = '45px';
                 document.getElementById('infoWindow').style.visibility = 'hidden';
                 this.map.startPlaying();
