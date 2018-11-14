@@ -11,7 +11,7 @@
                 <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn btn-primary">Logi sisse</button>
+            <button v-if="!register" @click="loginUser" class="btn btn-primary loginRegButton">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -19,7 +19,7 @@
                 <label for="exampleInputPassword2">Korda parooli</label>
                 <input required v-model="passwordRepeat" type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
-                <button class="btn btn-primary" @click="registerUser">Registreeri</button>
+                <button class="btn btn-primary loginRegButton" @click="registerUser">Registreeri</button>
             </div>
        </div>
         <div id="logoutForm" v-if="$store.state.loggedInToken">
@@ -121,9 +121,12 @@
     }
     #registerButton {
         cursor: pointer;
-        /*color: royalblue;*/
     }
     #registerContainer {
         margin-top: -3em;
+    }
+
+    .loginRegButton {
+        margin-top: 2em;
     }
 </style>
