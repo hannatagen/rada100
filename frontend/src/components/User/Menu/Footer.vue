@@ -45,9 +45,11 @@
                 return this.map.getAllPossiblePoints();
             },
             scoredPoints() {
-                console.log('siin2')
-                if (this.map) {
-                    return this.map.getUserCurrentPoints();
+                if (this.$store.state.playing) {
+                    console.log('siin2')
+                    if (this.map) {
+                        return this.map.getUserCurrentPoints();
+                    }
                 }
                 return null;
             }

@@ -1,4 +1,4 @@
-import { Map as OlMap, View } from 'ol';
+import {Map as OlMap, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import VectorLayer from 'ol/layer/Vector';
@@ -14,12 +14,11 @@ import Circle from 'ol/geom/Circle';
 import Point from 'ol/geom/Point';
 // import { getLength } from 'ol/sphere';
 
-import { defaults as defaultControls } from 'ol/control';
+import {defaults as defaultControls} from 'ol/control';
 import MapStyles from './MapStyles';
 import MapUtils from './MapUtils';
 import store from '../store/store';
-import { AXIOS } from '../components/http-common'
-
+import {AXIOS} from '../components/http-common'
 
 
 export default class Map {
@@ -207,12 +206,12 @@ export default class Map {
 
                         const trail = this.trailsList.filter(
                             // eslint-disable-next-line eqeqeq
-                            object => object.trail_id== feature.get('trail_id'));
+                            object => object.trail_id == feature.get('trail_id'));
                         const trailName = trail[0].name;
 
                         const point = this.pointsList.filter(
                             // eslint-disable-next-line eqeqeq
-                            object => object.point_id== feature.getId());
+                            object => object.point_id == feature.getId());
 
                         const selectedPointName = point[0].name;
                         const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
@@ -322,35 +321,54 @@ export default class Map {
             console.log(error)
         });
          */
-        AXIOS.get('/api/games/' + this.playingTrailID + '/started', { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID + '/ended', {
+            headers: {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
-            }}).then(request => {
-                if (request.data == false) {
-                    AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
-                            Authorization: store.state.loggedInToken,
-                            'Content-Type': 'application/json',
-                        }})
-                        .then(request => {
-                            console.log(request);
-                            this.visitPointsPlaying();
+            }
+        }).then(request => {
+            if (request.data == false) {
+
+                AXIOS.get('/api/games/' + this.playingTrailID + '/started', {
+                    headers: {
+                        Authorization: store.state.loggedInToken,
+                        'Content-Type': 'application/json',
+                    }
+                }).then(request => {
+                    if (request.data == false) {
+                        AXIOS.post('/api/games/' + this.playingTrailID, {}, {
+                            headers: {
+                                Authorization: store.state.loggedInToken,
+                                'Content-Type': 'application/json',
+                            }
                         })
-                        .catch(error => {
-                            console.log(error)
-                        });
-                } else {
-                    this.visitPointsPlaying();
-                }
-        }).catch(error => {
+                            .then(request => {
+                                console.log(request);
+                                this.visitPointsPlaying();
+                            })
+                            .catch(error => {
+                                console.log(error)
+                            });
+                    } else {
+                        this.visitPointsPlaying();
+                    }
+                }).catch(error => {
+                    console.log(error)
+                });
+
+            }}).catch(error => {
             console.log(error)
         });
     }
 
+
     visitPointsPlaying() {
-        AXIOS.get('/api/games/' + this.playingTrailID, {}, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID, {}, {
+            headers: {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
-            }}).then(request => {
+            }
+        }).then(request => {
             const visitedPoints = request.data;
             this.visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
             this.gameStarted = true;
@@ -431,7 +449,7 @@ export default class Map {
                         if (index > -1) {
                             this.visitedPointsObject.notVisited.splice(index, 1);
                             this.visitedPointsObject.visited.push(featureOnMap);
-                            if (this.visitedPointsObject.notVisited.length === 0){
+                            if (this.visitedPointsObject.notVisited.length === 0) {
                                 this.endGame();
                             }
                         }
@@ -451,16 +469,22 @@ export default class Map {
     getAllPossiblePoints() {
         return this.selectedTrailFeatures.length
     }
+
     getUserCurrentPoints() {
         console.log('getläbitud punktid');
 
-        AXIOS.get('/api/games/' + this.playingTrailID, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID, {
+            headers: {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
-            }}).then(request => {
+            }
+        }).then(request => {
             const visitedPoints = request.data;
             const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            return visitedPointsObject.visited.length
+            if (visitedPointsObject.visited != null) {
+                return visitedPointsObject.visited.length
+            }
+            else return 0;
 
 
         }).catch(error => {
@@ -469,12 +493,14 @@ export default class Map {
     }
 
     endGame() {
-        AXIOS.get('/api/games/' + this.playingTrailID + '/ended', {}, { headers: {
+        AXIOS.get('/api/games/' + this.playingTrailID + '/ended', {}, {
+            headers: {
                 Authorization: store.state.loggedInToken,
                 'Content-Type': 'application/json',
-            }}).then(request => {
-                console.log('kas rada läbitud? ',request);
-                MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
+            }
+        }).then(request => {
+            console.log('kas rada läbitud? ', request);
+            MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
         }).catch(error => {
             console.log(error)
         });
