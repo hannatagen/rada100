@@ -333,7 +333,7 @@ export default class Map {
             console.log('kas rada läbitud??? ', request);
             console.log(request.data)
             if (request.data == false) {
-                this.$store.commit('changePlaying', true);
+                store.commit('changePlaying', true);
                 AXIOS.get('/api/games/' + this.playingTrailID + '/started', {
                     headers: {
                         Authorization: store.state.loggedInToken,
@@ -361,6 +361,8 @@ export default class Map {
                     console.log(error)
                 });
 
+            } else {
+                this.closeFooter();
             }}).catch(error => {
             console.log(error)
         });
