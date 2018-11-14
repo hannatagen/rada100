@@ -18,9 +18,11 @@
         name: 'TrailsList',
         computed: {
             trailsData() {
+                console.log('halloo');
                 AXIOS.get('/api/trails/')
                     .then(response => {
                         // JSON responses are automatically parsed.
+                        console.log(response.data);
                         return response.data;
                     })
                     .catch(error => {
