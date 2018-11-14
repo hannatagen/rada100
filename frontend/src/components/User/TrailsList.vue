@@ -24,20 +24,21 @@
                         // JSON responses are automatically parsed.
                         console.log(response.data);
                         trailsList = response.data;
+
+                        for (let trail in response.data) {
+                            console.log(trail.trail_id);
+                            console.log(trail.name);
+                            console.log(trail.description);
+                        }
+                        return response.data;
                     })
                     .catch(error => {
                         console.log(error)
                     });
 
-                console.log(trailsList);
 
-                for (let trail in trailsList) {
-                    console.log(trail.trail_id);
-                    console.log(trail.name);
-                    console.log(trail.description);
-                }
 
-                return trailsList;
+
             },
         },
     };
