@@ -71,6 +71,7 @@
             arrive() {
                 if (this.$store.state.playing) {
                     const arrivedFinish = this.map.pointNearFeature(this.geolocation);
+                    console.log(arrivedFinish);
                     this.arrived = arrivedFinish.arrive;
                     this.finish = arrivedFinish.finish;
                     if (this.arrived) {
