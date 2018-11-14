@@ -18,6 +18,7 @@
         computed: {
             trailsData() {
                 let trailsList;
+
                 AXIOS.get('/api/trails/')
                     .then(response => {
                         // JSON responses are automatically parsed.
