@@ -327,15 +327,7 @@ export default class Map {
                 'Content-Type': 'application/json',
             }}).then(request => {
                 console.log('mäng alustatud:', request.data);
-                console.log(request.data == 'false')
-                console.log(request.data == false)
-                console.log(request.data === 'false')
-                console.log(request.data)
-            if (request.data){
-                console.log('töötab')
-            } else console.log('pekkis')
-
-                if (request.data == 'false') {
+                if (request.data == false) {
                     AXIOS.post('/api/games/' + this.playingTrailID, {}, { headers: {
                             Authorization: store.state.loggedInToken,
                             'Content-Type': 'application/json',
