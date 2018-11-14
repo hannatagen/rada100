@@ -444,6 +444,9 @@ export default class Map {
                         if (index > -1) {
                             this.visitedPointsObject.notVisited.splice(index, 1)
                             this.visitedPointsObject.visited.push(featureOnMap);
+                            if (this.visitedPointsObject.notVisited.length == 0){
+                                this.endGame();
+                            }
                         }
                         featureOnMap.setStyle(MapStyles.visitedMarkerStyle);
                     }).catch(error => {
@@ -463,5 +466,10 @@ export default class Map {
     }
     getUserCurrentPoints() {
         return this.visitedPointsObject.visited.length
+    }
+    endGame() {
+        console.log('kõik raja punktid läbitud')
+        // TODO enam seda rada mängida ei saa?
+        // TODO
     }
 }

@@ -20,7 +20,6 @@ export default new Vuex.Store({
     mutations: {
         changePlaying(state, boolean) {
             state.playing = boolean;
-            Map.pausePlaying();
         },
         setPlayingId(state, trailID) {
             state.playingTrail = trailID;
