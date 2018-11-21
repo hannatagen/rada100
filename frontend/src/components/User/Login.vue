@@ -22,9 +22,6 @@
                 <button class="btn btn-primary loginRegButton" @click="registerUser">Registreeri</button>
             </div>
        </div>
-        <div id="logoutForm" v-if="$store.state.loggedInToken">
-            <button class="btn btn-primary" @click="logout">Logi välja</button>
-        </div>
     </div>
 </template>
 
@@ -108,15 +105,6 @@
                 console.log('Login failed!')
                 // this.error = 'Login failed!'
                 //delete localStorage.token
-            },
-            logout() {
-                this.$store.commit('setUserTokenID', null);
-                this.$router.push('/');
-                this.$store.commit('changePlaying', false);
-                this.$store.commit('setFinishTrail', false);
-                document.getElementById('map').style.bottom = '45px';
-                document.getElementById('infoWindow').style.visibility = 'hidden';
-                document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius
             },
         },
     };

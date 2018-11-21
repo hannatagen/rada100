@@ -7,7 +7,7 @@
         <router-link class="routerLink" :to="{ name : 'KKK'}">KKK</router-link>
         <router-link class="routerLink" :to="{ name : 'Login'}">
             <template v-if="!$store.state.loggedInToken">Logi sisse</template>
-            <template v-else>Logi välja</template>
+            <template v-else @click="logout">Logi välja</template>
         </router-link>
     </div>
 </template>
@@ -21,6 +21,17 @@
         data() {
             return {
             };
+        },
+        methods: {
+            logout() {
+                this.$store.commit('setUserTokenID', null);
+                this.$router.push('/');
+                this.$store.commit('changePlaying', false);
+                this.$store.commit('setFinishTrail', false);
+                document.getElementById('map').style.bottom = '45px';
+                document.getElementById('infoWindow').style.visibility = 'hidden';
+                document.getElementById('taskContainer').style.visibility = 'hidden'; // closes the task icon if in point radius
+            },
         },
     };
 </script>
