@@ -42,7 +42,8 @@
 </script>
 
 <style scoped>
-    .trailName {
+    .card {
         cursor: pointer;
+        margin-bottom: 1em;
     }
 </style>
