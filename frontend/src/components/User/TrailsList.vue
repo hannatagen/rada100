@@ -1,13 +1,13 @@
 <template>
     <div class="card" v-for="trail in trailsList" :key="trail.trail_id">
-        <div class="card-header">
+        <!--<div class="card-header">-->
             {{ trail.name }}
-            <!--<h5 class="list-group-item card-title">-->
-            <!--</h5>-->
-        </div>
-        <ul class="list-group">
-            <li class="list-group-item"> {{ trail.description }}</li>
-        </ul>
+            <!--&lt;!&ndash;<h5 class="list-group-item card-title">&ndash;&gt;-->
+            <!--&lt;!&ndash;</h5>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<ul class="list-group">-->
+            <!--<li class="list-group-item"> {{ trail.description }}</li>-->
+        <!--</ul>-->
     </div>
 </template>
 
