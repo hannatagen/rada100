@@ -1,24 +1,26 @@
 <template>
-    <div v-if="$store.state.loggedInToken" class="card">
-        <div class="card-body">
-            <img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">
-            <h5 class="card-title">Kasutajanimi</h5>
+    <div>
+        <div v-if="$store.state.loggedInToken" class="card">
+            <div class="card-body">
+                <img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">
+                <h5 class="card-title">Kasutajanimi</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Tase:</strong>
+                    <span id="level">3</span>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-title">Pooleliolevad mängud:</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-title">Lõpetatud mängud:</h6>
+                </li>
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <strong>Tase:</strong>
-                <span id="level">3</span>
-            </li>
-            <li class="list-group-item">
-                <h6 class="card-title">Pooleliolevad mängud:</h6>
-            </li>
-            <li class="list-group-item">
-                <h6 class="card-title">Lõpetatud mängud:</h6>
-            </li>
-        </ul>
-    </div>
-    <div v-else class="container">
-        See lehekülg on ainult sisselogitud kasutajatele.
+        <div v-else class="container">
+            See lehekülg on ainult sisselogitud kasutajatele.
+        </div>
     </div>
 </template>
 
