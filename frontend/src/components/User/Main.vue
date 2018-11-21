@@ -39,6 +39,5 @@
     #routerContainer {
         display: grid;
         margin-left: -0.7em;
-        width: 120% !important;
     }
 </style>
