@@ -7,14 +7,14 @@ This web application using a mobile positioning is being developed to make folkl
 working Node.js installation https://nodejs.org/en/
 
 ## run local server
-cd frontend
-npm install
+cd frontend <br>
+npm install <br>
 npm run dev
 
 # Build locally
 
 ## prequisites
-java 8
+java 8 <br>
 maven https://maven.apache.org/download.cgi
 
 ## on first run
@@ -24,6 +24,6 @@ mvn clean install
 mvn install
 
 ## Starting local server
-mvn --projects backend spring-boot:run
+mvn --projects backend spring-boot:run<br>
 
 Navigate to http://localhost:8080
