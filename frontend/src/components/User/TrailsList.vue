@@ -1,11 +1,11 @@
 <template>
     <div class="card" v-for="trail in trailsList" :key="trail.trail_id">
         <div class="card-header">
-            <h5 class="list-group-item card-title">
             {{ trail.name }}
-            </h5>
+            <!--<h5 class="list-group-item card-title">-->
+            <!--</h5>-->
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group">
             <li class="list-group-item"> {{ trail.description }}</li>
         </ul>
     </div>
