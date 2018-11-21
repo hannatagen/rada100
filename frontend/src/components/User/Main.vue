@@ -7,7 +7,7 @@
         <router-link class="routerLink" :to="{ name : 'KKK'}">KKK</router-link>
         <router-link v-if="!$store.state.loggedInToken" class="routerLink" :to="{ name : 'Login'}">
             Logi sisse</router-link>
-        <a v-else @click="logout">Logi välja</a>
+        <a class="routerLink" v-else @click="logout">Logi välja</a>
     </div>
 </template>
 
