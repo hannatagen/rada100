@@ -89,6 +89,7 @@
     padding-bottom: 0.2em;
     border-left: rgba(0, 100, 0, 0) 4px solid;
     margin-left: 4px;
+    cursor: pointer;
   }
   .routerLink:hover {
     color: darkgreen;
