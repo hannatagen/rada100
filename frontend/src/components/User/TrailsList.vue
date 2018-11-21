@@ -1,7 +1,7 @@
 <template>
-    <div class="card">
+    <div class="card" v-for="trail in trailsList" :key="trail.trail_id">
         <div class="card-header">
-            <h5 class="list-group-item card-title" v-for="trail in trailsList" :key="trail.trail_id">
+            <h5 class="list-group-item card-title">
             {{ trail.name }}
             </h5>
         </div>
