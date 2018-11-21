@@ -77,7 +77,7 @@
                             console.log(error)
                         })
                 } else {
-                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid'
+                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';
                     document.getElementById('exampleInputPassword2').style.border = 'red 2px solid'
                 }
             },
@@ -88,7 +88,9 @@
                         this.loginSuccessful(request);
                     })
                     .catch(error => {
-                        console.log(error)
+                        console.log(error);
+                        document.getElementById('exampleInputEmail1').style.border = 'red 2px solid';
+                        document.getElementById('exampleInputPassword1').style.border = 'red 2px solid'
                     })
             },
             loginSuccessful(req) {
