@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div v-if="!$store.state.loggedInToken" class="card">
         <div class="card-body">
             <img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">
             <h5 class="card-title">Kasutajanimi</h5>
@@ -16,6 +16,9 @@
                 <h6 class="card-title">Lõpetatud mängud:</h6>
             </li>
         </ul>
+    </div>
+    <div v-else class="container">
+        See lehekülg on ainult sisselogitud kasutajatele.
     </div>
 </template>
 
