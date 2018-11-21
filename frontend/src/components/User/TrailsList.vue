@@ -21,7 +21,6 @@
         },
         methods: {
             trailsData(trails) {
-                console.log('tratestils',trails);
                 this.trailsList = trails;
             },
         },
@@ -31,7 +30,6 @@
                 .then(response => {
                     // JSON responses are automatically parsed.
                     const trails = response.data;
-                    console.log('trailssin',trails);
                     this.trailsData(trails);
                 })
                 .catch(error => {
