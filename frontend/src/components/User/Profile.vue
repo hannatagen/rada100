@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="$store.state.loggedInToken" class="card">
+        <div v-if="!$store.state.loggedInToken" class="card">
             <div class="card-body">
                 <img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">
                 <h5 class="card-title">Kasutajanimi</h5>
