@@ -9,7 +9,7 @@ working Node.js installation https://nodejs.org/en/
 ## run local server
 cd frontend <br>
 npm install <br>
-npm run dev
+npm run serve
 
 # Build locally
 
