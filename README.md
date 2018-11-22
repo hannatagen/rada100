@@ -26,4 +26,4 @@ mvn install
 ## Starting local server
 mvn --projects backend spring-boot:run<br>
 
-Navigate to http://localhost:8080
+Navigate to http://localhost:8088
