@@ -1,22 +1,14 @@
 <template>
-    <div class="list-group">
-        <div class="list-group-item text-dark trailName" v-for="trail in trailsList" :key="trail.trail_id">
-            {{ trail.name }}
-            <div class="list-group">
-                <div class="list-group-item"> {{ trail.description }}</div>
+    <div>
+        <div class="card" v-for="trail in trailsList" :key="trail.trail_id">
+            <div class="card-header">
+                {{ trail.name }}
             </div>
+            <ul class="list-group">
+                <li class="list-group-item"> {{ trail.description }}</li>
+            </ul>
         </div>
     </div>
-    <!--<div class="card" v-for="trail in trailsList" :key="trail.trail_id">-->
-        <!--&lt;!&ndash;<div class="card-header">&ndash;&gt;-->
-            <!--{{ trail.name }}-->
-            <!--&lt;!&ndash;&lt;!&ndash;<h5 class="list-group-item card-title">&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;</h5>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;<ul class="list-group">&ndash;&gt;-->
-            <!--&lt;!&ndash;<li class="list-group-item"> {{ trail.description }}</li>&ndash;&gt;-->
-        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-    <!--</div>-->
 </template>
 
 <script>
@@ -53,5 +45,9 @@
     .card {
         cursor: pointer;
         margin-bottom: 1em;
+    }
+
+    .card-header {
+        font-weight: bolder;
     }
 </style>
