@@ -9,7 +9,7 @@ working Node.js installation https://nodejs.org/en/
 ## run local server
 cd frontend <br>
 npm install <br>
-npm run dev
+npm run serve
 
 # Build locally
 
@@ -26,4 +26,4 @@ mvn install
 ## Starting local server
 mvn --projects backend spring-boot:run<br>
 
-Navigate to http://localhost:8080
+Navigate to http://localhost:8088
