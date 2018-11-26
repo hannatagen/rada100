@@ -27,7 +27,6 @@
             },
         },
         mounted() {
-            // this.initTrailsPoints(); // for localhost frontend testing only
             AXIOS.get('/api/trails/')
                 .then(response => {
                     // JSON responses are automatically parsed.
