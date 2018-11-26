@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -27,5 +28,12 @@ public class GameUserController {
     List<GameUserOutputDTO> getUsers() {
         List<GameUser> gameUsers = gameUserRepository.findAll();
         return gameUserAssembler.toResources(gameUsers);
+    }
+
+    @GetMapping("/information")
+    public @ResponseBody
+    GameUserOutputDTO getUser(Principal principal) {
+        GameUser gameUser = gameUserRepository.findByUsername(principal.getName());
+        return gameUserAssembler.toResource(gameUser);
     }
 }
