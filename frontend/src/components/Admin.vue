@@ -1,13 +1,17 @@
 <template>
-    <AdminHeader></AdminHeader>
+    <div>
+        <!--<AdminHeader></AdminHeader>-->
+        <AdminMain></AdminMain>
+    </div>
 </template>
 
 <script>
     import AdminHeader from './Admin/Menu/AdminHeader';
+    import AdminMain from "./Admin/AdminMain";
 
     export default {
         name: 'Admin',
-        components: { AdminHeader },
+        components: {AdminMain, AdminHeader },
     };
 </script>
 

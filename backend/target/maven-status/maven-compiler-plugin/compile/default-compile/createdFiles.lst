@@ -20,6 +20,7 @@ com\example\ekm\Repository\TrailRepository.class
 com\example\ekm\DTO\GameUserOutputDTO.class
 com\example\ekm\EkmApplication.class
 com\example\ekm\Security\JWTAuthenticationFilter.class
+com\example\ekm\Controller\AdminController.class
 com\example\ekm\DTO\PointOutputDTO$PointOutputDTOBuilder.class
 com\example\ekm\Model\UserRole.class
 com\example\ekm\Security\SecurityConstants.class
