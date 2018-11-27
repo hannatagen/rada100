@@ -30,17 +30,11 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-               /* .antMatchers(HttpMethod.GET, "/api/games/").hasAnyAuthority("PLAYER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/games/point/{point_id}").hasAnyAuthority("PLAYER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/games/point/{point_id}").hasAnyAuthority("PLAYER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/games/{trail_id}").hasAnyAuthority("PLAYER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/games/{trail_id}").hasAnyAuthority("PLAYER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/games/{trail_id}/started").hasAnyAuthority("PLAYER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/games/{trail_id}/ended").hasAnyAuthority("PLAYER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/games/**").hasAnyAuthority("PLAYER", "ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/users/").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/users/information").hasAnyAuthority("PLAYER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/points/").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/trails/").hasAnyAuthority("ADMIN")*/
+                .antMatchers(HttpMethod.POST, "/api/trails/").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), gameUserRepository))
