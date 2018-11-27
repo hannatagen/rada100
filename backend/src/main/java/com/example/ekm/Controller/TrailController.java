@@ -35,11 +35,12 @@ public class TrailController {
     }
 
     @PostMapping("/")
-    public void addTrail(@RequestBody TrailInputDTO trailInputDTO) {
+    public long addTrail(@RequestBody TrailInputDTO trailInputDTO) {
         Trail trail = new Trail();
         trail.setName(trailInputDTO.getName());
         trail.setDescription(trailInputDTO.getDescription());
         trailRepository.saveAndFlush(trail);
+        return trail.getId();
     }
 
     @GetMapping("/{id}")
