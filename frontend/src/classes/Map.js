@@ -86,17 +86,17 @@ export default class Map {
     initTrailPoints(pointsList, isPlaying) {
         this.pointsList = pointsList;
         for (let i = 0; i < pointsList.length; i += 1) {
-            const trailID = JSON.parse(pointsList[i].trail_id);
-            const lon = parseFloat(pointsList[i].lon);
-            const lat = parseFloat(pointsList[i].lat);
+            const trailID = JSON.parse(pointsList[i].trailId);
+            const lon = parseFloat(pointsList[i].longitude);
+            const lat = parseFloat(pointsList[i].latitude);
             const coords = [lon, lat];
             const coordinates = proj.fromLonLat(coords);
             const feature = new Feature({
                 geometry: new Point(coordinates),
-                trail_id: trailID,
+                trailId: trailID,
                 name: pointsList[i].name,
             });
-            feature.setId(pointsList[i].point_id);
+            feature.setId(pointsList[i].pointId);
             this.trailFeaturesArray.push(feature);
             if (trailID in this.trailFeaturesObject) {
                 this.trailFeaturesObject[trailID].push(feature);
@@ -179,10 +179,10 @@ export default class Map {
                         this.vectorLayer.getSource()
                             .clear();
 
-                        store.commit('setPlayingId', feature.get('trail_id'));
-                        this.playingTrailID = feature.get('trail_id');
+                        store.commit('setPlayingId', feature.get('trailId'));
+                        this.playingTrailID = feature.get('trailId');
                         console.log('playingTrailID clickmeetodis',this.playingTrailID);
-                        this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trail_id')];
+                        this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trailId')];
                         this.vectorLayer.getSource()
                             .addFeatures(this.selectedTrailFeatures);
 
@@ -207,7 +207,7 @@ export default class Map {
 
                         const trail = this.trailsList.filter(
                             // eslint-disable-next-line eqeqeq
-                            object => object.trail_id == feature.get('trail_id'));
+                            object => object.trailId == feature.get('trailId'));
                         const trailName = trail[0].name;
 
                         const point = this.pointsList.filter(

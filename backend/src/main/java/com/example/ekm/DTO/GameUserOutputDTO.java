@@ -11,7 +11,7 @@ import org.springframework.hateoas.ResourceSupport;
 @Builder
 @Data
 public class GameUserOutputDTO extends ResourceSupport {
-    private Long user_id;
+    private Long userId;
     private String username;
     private String email;
 }

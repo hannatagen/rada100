@@ -15,7 +15,7 @@ public class TrailAssembler extends ResourceAssemblerSupport<Trail, TrailOutputD
 
     public TrailOutputDTO toResource(Trail trail) {
         return TrailOutputDTO.builder()
-                .trail_id(trail.getId())
+                .trailId(trail.getId())
                 .name(trail.getName())
                 .description(trail.getDescription())
                 .build();

@@ -11,11 +11,11 @@ import org.springframework.hateoas.ResourceSupport;
 @Builder
 @Data
 public class PointOutputDTO extends ResourceSupport {
-    Long point_id;
-    Long trail_id;
+    Long pointId;
+    Long trailId;
     String name;
     String description;
-    String lon;
-    String lat;
+    String longitude;
+    String latitude;
     String link;
 }

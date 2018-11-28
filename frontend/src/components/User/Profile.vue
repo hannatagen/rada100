@@ -18,7 +18,7 @@
                 <li class="list-group-item">
                     <h6 class="card-title">Lõpetatud mängud:</h6>
                     <div v-if="completedTrailsList.length > 0">
-                        <div v-for="trail in completedTrailsList" :key="trail.trail_id">
+                        <div v-for="trail in completedTrailsList" :key="trail.trailId">
                             {{ trail.name }}
                         </div>
                     </div>
@@ -53,7 +53,7 @@
             },
             completedTrails() {
                 for (const trail in this.trailsList) {
-                    AXIOS.get('/api/games/' + trail.trail_id + '/ended')
+                    AXIOS.get('/api/games/' + trail.trailId + '/ended')
                         .then(response => {
                             // JSON responses are automatically parsed.
                             const isCompleted = response.data;

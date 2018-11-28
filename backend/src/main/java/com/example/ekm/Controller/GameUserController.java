@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class GameUserController {
+public class  GameUserController {
 
     @Autowired
     private GameUserRepository gameUserRepository;

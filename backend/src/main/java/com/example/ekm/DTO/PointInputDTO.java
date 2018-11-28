@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class PointInputDTO {
-    Long trail_id;
+    Long trailId;
     String name;
     String description;
-    String lon;
-    String lat;
+    String longitude;
+    String latitude;
     String link;
 }

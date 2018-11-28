@@ -14,7 +14,7 @@ public class GameUserAssembler extends ResourceAssemblerSupport<GameUser, GameUs
 
     public GameUserOutputDTO toResource(GameUser gameUser) {
         return GameUserOutputDTO.builder()
-                .user_id(gameUser.getId())
+                .userId(gameUser.getId())
                 .email(gameUser.getEmail())
                 .username(gameUser.getUsername())
                 .build();

@@ -19,7 +19,7 @@ public class Point {
     Trail trail;
     String name;
     String description;
-    String lon;
-    String lat;
+    String longitude;
+    String latitude;
     String link;
 }

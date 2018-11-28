@@ -11,7 +11,7 @@ import org.springframework.hateoas.ResourceSupport;
 @Builder
 @Data
 public class TrailOutputDTO extends ResourceSupport {
-    Long trail_id;
+    Long trailId;
     String name;
     String description;
 }

@@ -28,7 +28,7 @@
                 AXIOS.get('/api/trails/')
                 // AXIOS.get(`/points/2`, {
                 //     params: {
-                //         trail_id: 0
+                //         trailId: 0
                 //     }
                 // })
                     .then(response => {

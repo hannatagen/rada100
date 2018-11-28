@@ -15,6 +15,7 @@ import com.example.ekm.Repository.TrailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +108,7 @@ public class GameController {
 
     @GetMapping("/{trail_id}/ended")
     public boolean isEnded(@PathVariable long trail_id, Principal principal) {
-        Trail trail = trailRepository.getOne(trail_id);
+        Trail trail = trailRepository.findById(trail_id).orElseThrow(() -> new EntityNotFoundException("Didn't find the trail specified."));
         GameUser gameUser = gameUserRepository.findByUsername(principal.getName());
         List<Game> games = gameRepository.findByTrailAndGameUser(trail, gameUser);
         if(!isStarted(trail_id, principal)) return false;
