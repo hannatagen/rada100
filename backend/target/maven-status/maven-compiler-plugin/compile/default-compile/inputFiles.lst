@@ -15,6 +15,7 @@ C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Security\SpringSecurityWebAppConfig.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\PointInputDTO.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\PointOutputDTO.java
+C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Exception\ErrorDetails.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Assembler\GameAssembler.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\EkmApplication.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\GameUser.java
@@ -31,3 +32,4 @@ C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\UserRole.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\GameUserController.java
 C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Repository\GameUserRepository.java
+C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Exception\CustomizedResponseExceptionHandler.java

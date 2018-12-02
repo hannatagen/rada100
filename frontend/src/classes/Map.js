@@ -208,12 +208,11 @@ export default class Map {
                         const trail = this.trailsList.filter(
                             // eslint-disable-next-line eqeqeq
                             object => object.trailId == feature.get('trailId'));
-                        const trailName = trail[0].name;
-
                         const point = this.pointsList.filter(
                             // eslint-disable-next-line eqeqeq
-                            object => object.point_id == feature.getId());
+                            object => object.pointId == feature.getId());
 
+                        const trailName = trail[0].name;
                         const selectedPointName = point[0].name;
                         const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
                         if (!this.gameStarted) {

@@ -34,7 +34,9 @@ com\example\ekm\Controller\GameUserController.class
 com\example\ekm\Model\Trail.class
 com\example\ekm\Model\GameUser.class
 com\example\ekm\DTO\GameUserInputDTO$GameUserInputDTOBuilder.class
+com\example\ekm\Exception\CustomizedResponseExceptionHandler.class
 com\example\ekm\Model\Point.class
 com\example\ekm\Assembler\GameUserAssembler.class
 com\example\ekm\DTO\TrailInputDTO.class
+com\example\ekm\Exception\ErrorDetails.class
 com\example\ekm\Repository\PointRepository.class
