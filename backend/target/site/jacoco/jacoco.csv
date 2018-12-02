@@ -18,7 +18,7 @@ backend,com.example.ekm.DTO,GameUserInputDTO.GameUserInputDTOBuilder,50,0,0,0,1,
 backend,com.example.ekm.DTO,GameUserOutputDTO.GameUserOutputDTOBuilder,50,0,0,0,1,0,6,0,6,0
 backend,com.example.ekm.DTO,PointOutputDTO.PointOutputDTOBuilder,98,0,0,0,1,0,10,0,10,0
 backend,com.example.ekm,EkmApplication,5,3,0,0,2,1,1,1,1,1
-backend,com.example.ekm.Security,SpringSecurityWebAppConfig,0,46,0,0,0,12,0,3,0,3
+backend,com.example.ekm.Security,SpringSecurityWebAppConfig,0,134,0,0,0,17,0,3,0,3
 backend,com.example.ekm.Security,SecurityConstants,3,0,0,0,1,0,1,0,1,0
 backend,com.example.ekm.Security,JWTAuthenticationFilter,93,9,2,0,21,4,3,1,2,1
 backend,com.example.ekm.Security,JWTAuthorizationFilter,80,7,10,0,24,3,7,1,2,1
@@ -28,7 +28,7 @@ backend,com.example.ekm.Model,UserRole,0,34,0,0,0,2,0,1,0,1
 backend,com.example.ekm.Model,Point,362,3,62,0,9,1,50,1,19,1
 backend,com.example.ekm.Model,Trail,178,3,30,0,5,1,26,1,11,1
 backend,com.example.ekm.Model,Game,270,3,46,0,7,1,38,1,15,1
-backend,com.example.ekm.Controller,TrailController,56,3,0,0,11,1,4,1,4,1
+backend,com.example.ekm.Controller,TrailController,59,3,0,0,11,1,4,1,4,1
 backend,com.example.ekm.Controller,GameUserController,20,3,0,0,4,1,2,1,2,1
 backend,com.example.ekm.Controller,AdminController,28,9,0,0,7,4,1,1,1,1
 backend,com.example.ekm.Controller,GameController,239,3,14,0,47,1,14,1,7,1

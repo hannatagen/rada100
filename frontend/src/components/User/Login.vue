@@ -44,18 +44,12 @@
             };
         },
         mounted: {
-            // eslint-disable-next-line
             beforeRouteLeave(to, from, next) {
                 this.register = false;
+                next()
             },
         },
         methods: {
-            login: function () {
-                const { email, password } = this;
-                this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
-                    this.$router.push('/')
-                });
-            },
             registerUser() {
                 if (this.password === this.passwordRepeat) {
                     console.log('register');
@@ -99,7 +93,6 @@
                 this.$store.commit('setUserTokenID', req.headers.authorization);
                 this.$router.push('/')
                 // this.$router.replace(this.$route.query.redirect || '/authors')
-
             },
             loginFailed () {
                 console.log('Login failed!')
