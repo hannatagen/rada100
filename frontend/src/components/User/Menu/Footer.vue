@@ -40,6 +40,9 @@
                 if (this.scoredPoints) {
                     this.map.getUserCurrentPoints();
                     this.userScore = this.map.visitedPointsObject.visited.length;
+                    if (this.totalScorePoints == this.userScore) {
+                        this.pausePlaying();
+                    }
                 }
             },
         },

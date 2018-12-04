@@ -505,8 +505,7 @@ export default class Map {
                 'Content-Type': 'application/json',
             }
         }).then(request => {
-//            MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
-            this.pausePlaying();
+            MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
         }).catch(error => {
             console.log(error)
         });
