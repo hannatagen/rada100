@@ -69,6 +69,7 @@
 </template>
 
 <script>
+    import { AXIOS } from './.././http-common'
     import AdminHeader from './Menu/AdminHeader';
 
     export default {
@@ -113,8 +114,28 @@
                 this.points.splice(pointId, 1);
             },
             addToDatabase() {
-                // TODO add to db
-                // todo get trail id from db
+                console.log(this.points)
+                // TODO check if actually works in server
+                AXIOS.post('/api/trails', {name: this.trail.name, description: this.trail.description})
+                    .then(request => {
+                        const trailID = request;
+                        console.log('trailID', trailID);
+                        console.log(this.points);
+                        for (let point in this.points) {
+                            console.log(point);
+                            AXIOS.post('/api/points', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}) // TODO username : email
+                                .then(request => {
+                                    console.log('pointspost', request);
+
+                                })
+                                .catch(error => {
+                                    console.log(error)
+                                })
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             },
             cancel() {
                 this.addPointArea = !this.addPointArea;
