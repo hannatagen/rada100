@@ -2,7 +2,7 @@
     <nav class="footer navbar navbar-light bg-light">
         <div v-if="$store.state.playing">
             <!--TODO 0 ja 2 asendada andmebaasi requestist tulenevalt kas on läbitud v mitte-->
-            <span class="slash leftSlash">{{scoredPoints}}</span>
+            <span class="slash leftSlash">{{ userScore }}</span>
             <span class="slash">/</span>
             <span class="slash rightSlash">{{totalScorePoints}}</span>
             <div id="pauseButton"
@@ -16,8 +16,14 @@
     export default {
         name: 'Footer',
         props: ['map'],
+        data() {
+            return {
+                userScore: 0,
+            };
+        },
         methods: {
             openGoogleMapsLink() {
+                // TODO
                 // eslint-disable-next-line no-console
                 console.log('selle info peab saama andmebaasist');
             },
@@ -31,13 +37,13 @@
         },
         watch: {
             scoredPoints() {
-                console.log('siin1')
                 if (this.scoredPoints) {
-                    console.log('siin1')
-                    this.scoredPoints = this.map.getUserCurrentPoints();
-                    console.log(this.scoredPoints)
+                    this.map.getUserCurrentPoints();
+                    this.userScore = this.map.visitedPointsObject.visited.length;
+                    if (this.totalScorePoints == this.userScore) {
+                        this.pausePlaying();
+                    }
                 }
-                this.scoredPoints = this.map.getUserCurrentPoints();
             },
         },
         computed: {
@@ -46,9 +52,8 @@
             },
             scoredPoints() {
                 if (this.$store.state.playing) {
-                    console.log('siin2')
                     if (this.map) {
-                        return this.map.getUserCurrentPoints();
+                        return this.map.visitedPointsObject.visited;
                     }
                 }
                 return null;

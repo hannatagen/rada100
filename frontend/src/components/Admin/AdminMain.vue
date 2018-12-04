@@ -69,6 +69,7 @@
 </template>
 
 <script>
+    import { AXIOS } from './.././http-common'
     import AdminHeader from './Menu/AdminHeader';
 
     export default {
@@ -98,7 +99,6 @@
                 const sliced = this.point.link.split('@')[1].split(',');
                 this.point.lat = sliced[0];
                 this.point.lon = sliced[1];
-                console.log(this.point);
                 this.points.push(this.point);
                 this.point = {
                     trail_id:'',
@@ -113,8 +113,29 @@
                 this.points.splice(pointId, 1);
             },
             addToDatabase() {
-                // TODO add to db
-                // todo get trail id from db
+                AXIOS.post('/api/trails/', {name: this.trail.name, description: this.trail.description}, {
+                    headers: {
+                        Authorization: this.$store.state.loggedInToken,
+                        'Conent-Type': 'application/json',
+                    }
+                })
+                    .then(request => {
+                        const trailID = request.data;
+                        for (let i in this.points) {
+                            const point = this.points[i];
+                            AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}, {
+                                headers: {
+                                    Authorization: this.$store.state.loggedInToken,
+                                    'Conent-Type': 'application/json',
+                                }
+                            }).catch(error => {
+                                    console.log(error)
+                                })
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             },
             cancel() {
                 this.addPointArea = !this.addPointArea;
