@@ -53,7 +53,7 @@
                 if (this.$store.state.playing) {
                     console.log('computed ScoredPoints siin2')
                     if (this.map) {
-                        return this.map.visitedPointsObject;
+                        return this.map.visitedPointsObject.visited;
                     }
                 }
                 return null;
