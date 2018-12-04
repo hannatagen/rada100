@@ -23,6 +23,7 @@
         },
         methods: {
             openGoogleMapsLink() {
+                // TODO
                 // eslint-disable-next-line no-console
                 console.log('selle info peab saama andmebaasist');
             },
@@ -36,12 +37,9 @@
         },
         watch: {
             scoredPoints() {
-                console.log('siin1')
                 if (this.scoredPoints) {
-                    console.log('siin111')
                     this.map.getUserCurrentPoints();
                     this.userScore = this.map.visitedPointsObject.visited.length;
-                    console.log(this.userScore)
                 }
             },
         },
@@ -51,7 +49,6 @@
             },
             scoredPoints() {
                 if (this.$store.state.playing) {
-                    console.log('computed ScoredPoints siin2')
                     if (this.map) {
                         return this.map.visitedPointsObject.visited;
                     }

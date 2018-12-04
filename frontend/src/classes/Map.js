@@ -478,8 +478,6 @@ export default class Map {
     }
 
     getUserCurrentPoints() {
-        console.log('getläbitud punktid');
-
         AXIOS.get('/api/games/' + this.playingTrailID, {
             headers: {
                 Authorization: store.state.loggedInToken,
@@ -487,11 +485,8 @@ export default class Map {
             }
         }).then(request => {
             const visitedPoints = request.data;
-            console.log('visitedPoints', visitedPoints);
             const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            console.log('visitedPointsObject', visitedPointsObject.visited);
             if (visitedPointsObject.visited != null) {
-                console.log('visitedPointsObject.visited.length', visitedPointsObject.visited.length)
                 return visitedPointsObject.visited.length
             }
             else return 0;
@@ -510,11 +505,11 @@ export default class Map {
                 'Content-Type': 'application/json',
             }
         }).then(request => {
-            console.log('kas rada läbitud? ', request);
-            MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
+//            MapUtils.setFinishedTrailMarkerStyle(this.visitedPointsObject.visited);
+            this.pausePlaying();
         }).catch(error => {
             console.log(error)
         });
-        // TODO enam seda rada mängida ei saa?
+        // TODO enam seda rada mängida ei saa? -> hetkel on nii, et ei saa
     }
 }
