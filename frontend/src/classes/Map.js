@@ -489,8 +489,9 @@ export default class Map {
             const visitedPoints = request.data;
             console.log('visitedPoints', visitedPoints);
             const visitedPointsObject = MapUtils.getVisitedAndNotVisitedPoints(this.selectedTrailFeatures, visitedPoints);
-            console.log('visitedPointsObject', visitedPointsObject.visited.length);
+            console.log('visitedPointsObject', visitedPointsObject.visited);
             if (visitedPointsObject.visited != null) {
+                console.log('visitedPointsObject.visited.length', visitedPointsObject.visited.length)
                 return visitedPointsObject.visited.length
             }
             else return 0;
