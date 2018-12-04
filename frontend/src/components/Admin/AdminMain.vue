@@ -101,7 +101,6 @@
                 this.point.lon = sliced[1];
                 this.points.push(this.point);
                 this.point = {
-                    trail_id:'',
                     name: '',
                     description: '',
                     lat: '',
@@ -123,7 +122,8 @@
                         const trailID = request.data;
                         for (let i in this.points) {
                             const point = this.points[i];
-                            AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}, {
+                            console.log('point',point);
+                            AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.lat, longitude: point.lon, link: point.link}, {
                                 headers: {
                                     Authorization: this.$store.state.loggedInToken,
                                     'Conent-Type': 'application/json',
@@ -140,7 +140,6 @@
             cancel() {
                 this.addPointArea = !this.addPointArea;
                 this.point = {
-                    trail_id:'',
                     name: '',
                     description: '',
                     lat: '',
