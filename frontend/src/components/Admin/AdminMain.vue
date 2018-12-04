@@ -123,8 +123,8 @@
                     }
                 })
                     .then(request => {
-                        const trailID = request;
-                        console.log('trailID', trailID);
+                        const trailID = request.data;
+                        console.log('trailID', trailID.data);
                         console.log(this.points);
                         for (let point in this.points) {
                             console.log(point);
