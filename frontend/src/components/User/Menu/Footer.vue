@@ -39,7 +39,8 @@
                 console.log('siin1')
                 if (this.scoredPoints) {
                     console.log('siin111')
-                    this.userScore = this.map.getUserCurrentPoints();
+                    this.map.getUserCurrentPoints();
+                    this.userScore = this.map.visitedPointsObject.visited.length;
                     console.log(this.userScore)
                 }
             },
@@ -52,7 +53,7 @@
                 if (this.$store.state.playing) {
                     console.log('computed ScoredPoints siin2')
                     if (this.map) {
-                        return this.map.locationcoordinates;
+                        return this.map.visitedPointsObject;
                     }
                 }
                 return null;
