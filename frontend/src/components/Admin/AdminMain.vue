@@ -99,7 +99,6 @@
                 const sliced = this.point.link.split('@')[1].split(',');
                 this.point.lat = sliced[0];
                 this.point.lon = sliced[1];
-                console.log(this.point);
                 this.points.push(this.point);
                 this.point = {
                     trail_id:'',
@@ -114,8 +113,6 @@
                 this.points.splice(pointId, 1);
             },
             addToDatabase() {
-                console.log(this.points)
-                // TODO check if actually works in server
                 AXIOS.post('/api/trails/', {name: this.trail.name, description: this.trail.description}, {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
@@ -124,22 +121,14 @@
                 })
                     .then(request => {
                         const trailID = request.data;
-                        console.log('trailID', trailID.data);
-                        console.log(this.points);
                         for (let i in this.points) {
                             const point = this.points[i];
-                            console.log(point);
                             AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}, {
                                 headers: {
                                     Authorization: this.$store.state.loggedInToken,
                                     'Conent-Type': 'application/json',
                                 }
-                            })
-                                .then(request => {
-                                    console.log('pointspost', request);
-
-                                })
-                                .catch(error => {
+                            }).catch(error => {
                                     console.log(error)
                                 })
                         }
