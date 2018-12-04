@@ -18,9 +18,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.ObjectStreamException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.example.ekm.Security.SecurityConstants.*;
@@ -55,7 +54,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                             authorities)
             );
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new MissingResourceException(e.getMessage(), "HttpServletRequest", "req");
         }
     }
 
