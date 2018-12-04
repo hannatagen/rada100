@@ -50,7 +50,7 @@
             },
             scoredPoints() {
                 if (this.$store.state.playing) {
-                    console.log('siin2')
+                    console.log('computed ScoredPoints siin2')
                     if (this.map) {
                         return this.map.locationcoordinates;
                     }
