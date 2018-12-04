@@ -126,7 +126,8 @@
                         const trailID = request.data;
                         console.log('trailID', trailID.data);
                         console.log(this.points);
-                        for (let point in this.points) {
+                        for (let i in this.points) {
+                            const point = this.points[i];
                             console.log(point);
                             AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}, {
                                 headers: {
