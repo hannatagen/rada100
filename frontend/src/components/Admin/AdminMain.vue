@@ -116,14 +116,24 @@
             addToDatabase() {
                 console.log(this.points)
                 // TODO check if actually works in server
-                AXIOS.post('/api/trails/', {name: this.trail.name, description: this.trail.description})
+                AXIOS.post('/api/trails/', {name: this.trail.name, description: this.trail.description}, {
+                    headers: {
+                        Authorization: this.$store.state.loggedInToken,
+                        'Conent-Type': 'application/json',
+                    }
+                })
                     .then(request => {
                         const trailID = request;
                         console.log('trailID', trailID);
                         console.log(this.points);
                         for (let point in this.points) {
                             console.log(point);
-                            AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}) // TODO username : email
+                            AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.latitude, longitude: point.longitude, link: point.link}, {
+                                headers: {
+                                    Authorization: this.$store.state.loggedInToken,
+                                    'Conent-Type': 'application/json',
+                                }
+                            })
                                 .then(request => {
                                     console.log('pointspost', request);
 
