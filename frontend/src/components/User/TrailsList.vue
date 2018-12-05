@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card" v-for="trail in trailsList" :key="trail.trail_id">
+        <div class="card" v-for="trail in trailsList" :key="trail.trailId">
             <div class="card-header">
                 {{ trail.name }}
             </div>

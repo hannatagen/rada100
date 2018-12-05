@@ -9,6 +9,7 @@ import com.example.ekm.Repository.TrailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -41,10 +42,10 @@ public class PointController {
         Point point = new Point();
         point.setName(pointInputDTO.getName());
         point.setDescription(pointInputDTO.getDescription());
-        point.setLat(pointInputDTO.getLat());
-        point.setLon(pointInputDTO.getLon());
+        point.setLatitude(pointInputDTO.getLatitude());
+        point.setLongitude(pointInputDTO.getLongitude());
         point.setLink(pointInputDTO.getLink());
-        point.setTrail(trailRepository.findById(pointInputDTO.getTrail_id()).get());
+        point.setTrail(trailRepository.findById(pointInputDTO.getTrailId()).orElseThrow(() -> new EntityNotFoundException("Didn't find trail specified.")));
         pointRepository.saveAndFlush(point);
     }
 }

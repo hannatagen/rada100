@@ -44,7 +44,7 @@ export default class MapUtils {
     static getIfPointVisited(pointsData, pointID) {
         const visited = pointsData.filter(
             // eslint-disable-next-line eqeqeq
-            object => object.point_id == pointID);
+            object => object.pointId == pointID);
         return visited[0].visited
     }
 

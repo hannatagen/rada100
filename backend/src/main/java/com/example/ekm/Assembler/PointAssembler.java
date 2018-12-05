@@ -14,12 +14,12 @@ public class PointAssembler extends ResourceAssemblerSupport<Point, PointOutputD
 
     public PointOutputDTO toResource(Point point) {
         return PointOutputDTO.builder()
-                .point_id(point.getId())
-                .trail_id(point.getTrail().getId())
+                .pointId(point.getId())
+                .trailId(point.getTrail().getId())
                 .name(point.getName())
                 .description(point.getDescription())
-                .lon(point.getLon())
-                .lat(point.getLat())
+                .longitude(point.getLongitude())
+                .latitude(point.getLatitude())
                 .link(point.getLink())
                 .build();
     }

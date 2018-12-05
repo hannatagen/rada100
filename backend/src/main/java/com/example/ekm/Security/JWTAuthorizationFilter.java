@@ -63,7 +63,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, authorities);
             }
-            return null;
         }
         return null;
     }

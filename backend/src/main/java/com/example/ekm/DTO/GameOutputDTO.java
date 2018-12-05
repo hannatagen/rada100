@@ -11,8 +11,8 @@ import org.springframework.hateoas.ResourceSupport;
 @Builder
 @Data
 public class GameOutputDTO extends ResourceSupport {
-    Long game_id;
-    Long trail_id;
-    Long point_id;
+    Long gameId;
+    Long trailId;
+    Long pointId;
     Boolean visited;
 }

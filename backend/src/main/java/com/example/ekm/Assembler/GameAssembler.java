@@ -14,9 +14,9 @@ public class GameAssembler extends ResourceAssemblerSupport<Game, GameOutputDTO>
 
     public GameOutputDTO toResource(Game game) {
         return GameOutputDTO.builder()
-                .game_id(game.getId())
-                .point_id(game.getPoint().getId())
-                .trail_id(game.getTrail().getId())
+                .gameId(game.getId())
+                .pointId(game.getPoint().getId())
+                .trailId(game.getTrail().getId())
                 .visited(game.getVisited())
                 .build();
     }
