@@ -10,6 +10,15 @@
             <input type="email" class="form-control" id="exampleInputEmail1"
                    placeholder="Sisesta email...">
         </div>
+        <div class="form-group input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="form-control"> Registreerudes annad Eesti Kirjandusmuuseumile loa enda andmete ning läbitud mängudes kogutud info
+                kasutamiseks ja arhiveerimiseks. </div>
+        </div>
         <button type="submit" class="btn btn-primary" @click="addToAPI">Registreeri</button>
     </div>
 </template>

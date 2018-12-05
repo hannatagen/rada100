@@ -447,9 +447,9 @@ export default class Map {
                     AXIOS.post('/api/games/point/' + arrivedPointID, {}, {
                         headers: {
                             Authorization: store.state.loggedInToken,
-                            'Conent-Type': 'application/json',
+                            'Content-Type': 'application/json',
                         }
-                    }).then(request => {
+                    }).then(response => {
                         const feature = this.visitedPointsObject.notVisited.filter(
                             object => object.getId() == featureOnMap.getId());
                         const index = this.visitedPointsObject.notVisited.indexOf(feature[0]);
