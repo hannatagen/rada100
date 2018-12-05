@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <form>
        <div id="loginform" v-if="!$store.state.loggedInToken">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
@@ -11,7 +11,7 @@
                 <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn btn-primary loginRegButton">Logi sisse</button>
+            <button v-if="!register" @click="loginUser" class="btn btn-primary loginRegButton" type="submit">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -19,10 +19,19 @@
                 <label for="exampleInputPassword2">Korda parooli</label>
                 <input required v-model="passwordRepeat" type="password" class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
-                <button class="btn btn-primary loginRegButton" @click="registerUser">Registreeri</button>
+                <div class="form-group input-group mb-3 acceptDiv">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input class="acceptCheckBox" required type="checkbox">
+                        </div>
+                    </div>
+                    <div class="acceptText form-control"> Olen teadlik, et registreerudes annan Eesti Kirjandusmuuseumile loa enda andmete ning läbitud mängudes kogutud info
+                        kasutamiseks ja arhiveerimiseks. </div>
+                </div>
+                <button class="btn btn-primary loginRegButton" @click="registerUser" type="submit">Registreeri</button>
             </div>
        </div>
-    </div>
+    </form>
 </template>
 
 <script>
@@ -68,8 +77,9 @@
                             console.log(error)
                         })
                 } else {
-                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';
-                    document.getElementById('exampleInputPassword2').style.border = 'red 2px solid'
+                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';
+                    document.getElementById('exampleInputPassword2').style.border = 'red 2px solid';
+                    document.getElementById('acceptCheckBox').style.border = 'red 2px solid';
                 }
             },
             loginUser() {
@@ -116,5 +126,13 @@
 
     .loginRegButton {
         margin-top: 2em;
+    }
+
+    .acceptText {
+        height: auto !important;
+    }
+
+    .acceptDiv {
+        margin-top: 1em;
     }
 </style>
