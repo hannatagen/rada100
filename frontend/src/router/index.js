@@ -54,11 +54,6 @@ export default new Router({
             component: Login,
         },
         {
-            path: '/register',
-            name: 'Register',
-            component: Register,
-        },
-        {
             path: '/admin/main',
             name: 'AdminMain',
             component: AdminMain,

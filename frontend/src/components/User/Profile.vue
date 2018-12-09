@@ -3,7 +3,7 @@
         <!--<div v-if="$store.state.loggedInToken" class="card">-->
         <div class="card">
             <div class="card-body">
-                <img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">
+                <!--<img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">-->
                 <h5 class="card-title">{{ username }}</h5>
             </div>
             <ul class="list-group list-group-flush">

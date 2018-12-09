@@ -35,14 +35,10 @@
 </template>
 
 <script>
-    import Register from '../User/Register';
     import { AXIOS } from './.././http-common'
 
     export default {
         name: 'Login',
-        components: {
-            Register,
-        },
         data() {
             return {
                 register: false,
