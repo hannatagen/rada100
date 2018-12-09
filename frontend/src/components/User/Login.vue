@@ -19,7 +19,7 @@
             <div v-else id="registerContainer">
                 <label for="exampleInputPassword2">Korda parooli</label>
                 <input v-model="passwordRepeat" type="password"
-                       :class="{ pwdMatchError: 'password !== passwordRepeat' }"
+                       :class="{pwdMatchError: password !== passwordRepeat}"
                        class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
                 <div class="form-group input-group mb-3 acceptDiv">
