@@ -28,7 +28,8 @@
                     <div class="acceptText form-control"> Olen teadlik, et registreerudes annan Eesti Kirjandusmuuseumile loa enda andmete ning läbitud mängudes kogutud info
                         kasutamiseks ja arhiveerimiseks. </div>
                 </div>
-                <button class="btn btn-primary loginRegButton" @click="registerUser" type="submit">Registreeri</button>
+                <button :disabled="password !== passwordRepeat"
+                        class="btn btn-primary loginRegButton" @click="registerUser" type="submit">Registreeri</button>
                 <div id="registerSuccess">Registreerimine õnnestus!</div>
             </div>
        </div>
@@ -137,4 +138,5 @@
         margin-top: 1em;
         visibility: hidden;
     }
+
 </style>
