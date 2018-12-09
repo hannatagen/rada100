@@ -1,2 +1,4 @@
-com\example\ekm\EkmApplicationTests.class
 com\example\ekm\Repository\TrailRepositoryTest.class
+com\example\ekm\Repository\GameUserRepositoryTest.class
+com\example\ekm\Repository\PointRepositoryTest.class
+com\example\ekm\Repository\GameRepositoryTest.class

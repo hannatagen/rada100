@@ -1,7 +1,8 @@
 <template>
     <form onsubmit="return false;">
        <div id="loginform" v-if="!$store.state.loggedInToken">
-            <div class="form-group">
+           <div id="registerSuccess">Registreerimine õnnestus!</div>
+           <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
                        placeholder="Sisesta email...">
@@ -25,12 +26,11 @@
                             <input class="acceptCheckBox" required type="checkbox">
                         </div>
                     </div>
-                    <div class="acceptText form-control"> Olen teadlik, et registreerudes annan Eesti Kirjandusmuuseumile loa enda andmete ning läbitud mängudes kogutud info
+                    <div class="acceptText form-control"> Olen teadlik, et registreerudes annan Eesti Kirjandusmuuseumile loa enda andmete ning läbitud mängudest kogutud info
                         kasutamiseks ja arhiveerimiseks. </div>
                 </div>
                 <button :disabled="password !== passwordRepeat"
                         class="btn btn-primary loginRegButton" @click="registerUser" type="submit">Registreeri</button>
-                <div id="registerSuccess">Registreerimine õnnestus!</div>
             </div>
        </div>
     </form>
