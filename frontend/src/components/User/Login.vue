@@ -1,15 +1,15 @@
 <template>
-    <form onsubmit="return false;">
+    <div>
        <div id="loginform" v-if="!$store.state.loggedInToken">
            <div id="registerSuccess">Registreerimine õnnestus!</div>
            <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input required v-model="email" type="email" class="form-control" id="exampleInputEmail1"
+                <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
                        placeholder="Sisesta email...">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Parool</label>
-                <input required v-model="password" type="password" class="form-control" id="exampleInputPassword1"
+                <input v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
             <button v-if="!register" @click="loginUser" class="btn btn-primary loginRegButton" type="submit">Logi sisse</button>
@@ -18,24 +18,24 @@
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
             <div v-else id="registerContainer">
                 <label for="exampleInputPassword2">Korda parooli</label>
-                <input required v-model="passwordRepeat" type="password"
+                <input v-model="passwordRepeat" type="password"
                        :class="{ 'password !== passwordRepeat' : pwdMatchError }"
                        class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
                 <div class="form-group input-group mb-3 acceptDiv">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input class="acceptCheckBox" required type="checkbox">
+                            <input class="acceptCheckBox" v-model="checkBox" type="checkbox">
                         </div>
                     </div>
                     <div class="acceptText form-control"> Olen teadlik, et registreerudes annan Eesti Kirjandusmuuseumile loa enda andmete ning läbitud mängudest kogutud info
                         kasutamiseks ja arhiveerimiseks. </div>
                 </div>
-                <button :disabled="password !== passwordRepeat"
-                        class="btn btn-primary loginRegButton" @click="registerUser" type="submit">Registreeri</button>
+                <button :disabled="password !== passwordRepeat || checkBox || email.length === 0"
+                        class="btn btn-primary loginRegButton" @click="registerUser">Registreeri</button>
             </div>
        </div>
-    </form>
+    </div>
 </template>
 
 <script>
@@ -50,6 +50,7 @@
                 username: '',
                 password: '',
                 passwordRepeat: '',
+                checkBox: '',
             };
         },
         mounted: {
