@@ -1,6 +1,7 @@
 package com.example.ekm.Repository;
 
-import com.example.ekm.Model.Trail;
+import com.example.ekm.Model.GameUser;
+import com.example.ekm.Model.Point;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,31 +12,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class TrailRepositoryTest {
+public class GameUserRepositoryTest {
+
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private TrailRepository trails;
+    private GameUserRepository users;
 
-    private Trail moisad = new Trail();
-    private Trail surnuaiad = new Trail();
+    private GameUser gameUser = new GameUser();
 
     @Before
     public void fillSomeDataIntoOurDb() {
-        // Add new Trails to Database
-        entityManager.persist(moisad);
-        entityManager.persist(surnuaiad);
+        gameUser.setUsername("mari");
+
+        // Add new User to Database
+        entityManager.persist(gameUser);
     }
 
     @Test
-    public void testFindAll() {
-        List<Trail> allTrails = trails.findAll();
+    public void testFindByUsername() {
+        GameUser gameUser = users.findByUsername("mari");
 
-        assertEquals(2, allTrails.size());
+        assertEquals("mari", gameUser.getUsername());
     }
 }
