@@ -10,7 +10,6 @@
             <i class="fas fa-crosshairs"></i>
         </button>
         <!--<button v-if="arrived">ava ülesannne</button>-->
-        <!--TODO see eraldi componendiks, ja algul võibolla väike nupuke, mis teavitaks et saab ülesannet teha vms-->
         <div @click="hideTaskContainer()">
             <Task></Task>
         </div>
