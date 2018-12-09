@@ -72,7 +72,6 @@
                         });
                         console.log(request);
                         this.register = false;
-                        // this.$router.push('/login')
                         this.registerSuccess = true;
                     })
                     .catch(error => {
