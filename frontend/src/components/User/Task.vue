@@ -23,7 +23,7 @@
         width: 100% !important;
         z-index: 1010;
         position: fixed;
-        /*visibility: hidden;*/
+        visibility: hidden;
     }
 
     .container {
