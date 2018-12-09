@@ -2,6 +2,7 @@
     <div>
         <h3 class="sidebarHeadline">Tutvustus ja reeglid</h3>
         <div>
+            <p>
             Mobiilpositsioneerimisel põhinev veebirakendus pärimuskogude tutvustamiseks.<br><br>
             EKM Eesti Rahvaluule Arhiivi on läbi aegade kogutud mitmesugust kohasidusat
             pärimusainest, rahvaluulearhiivi tegevuse üheks eesmärgiks on seda ainest vahendada Eesti
@@ -14,7 +15,7 @@
             mingile asjakohasele küsimusele.<br><br>
             Kui kõik mängus olevad punktid läbitud, on üks mäng sooritatud ja läbimiseks
             võib valida mõne teise raja. Samal ajal võib osaleda mitmes mängus korraga.
-
+            </p>
         </div>
     </div>
 </template>

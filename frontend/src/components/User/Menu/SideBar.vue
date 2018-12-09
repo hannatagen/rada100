@@ -23,9 +23,6 @@
 </script>
 
 <style scoped>
-    .sidebarHeadline{
-        padding-bottom: 1em;
-    }
 
     .sidebarContainer {
         display: grid !important;
