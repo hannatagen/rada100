@@ -1,7 +1,7 @@
 <template>
     <div>
        <div id="loginform" v-if="!$store.state.loggedInToken">
-           <div id="registerSuccess">Registreerimine õnnestus!</div>
+           <div v-if="registerSuccess" id="registerSuccess">Registreerimine õnnestus!</div>
            <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
@@ -51,6 +51,7 @@
                 password: '',
                 passwordRepeat: '',
                 checkBox: '',
+                registerSuccess: false,
             };
         },
         mounted: {
@@ -61,27 +62,22 @@
         },
         methods: {
             registerUser() {
-                if (this.password === this.passwordRepeat) {
-                    console.log('register');
-                    AXIOS.post('/api/register', {username: this.email, password: this.password, email: this.email}) // TODO username : email
-                        .then(request => {
-                            console.log('registered user: ', {
-                                username: this.email,
-                                password: this.password,
-                                email: this.email
-                            });
-                            console.log(request);
-                            this.register = false;
-                            // this.$router.push('/login')
-                            document.getElementById('registerSuccess').style.visibility = 'unset';
-                        })
-                        .catch(error => {
-                            console.log(error)
-                        })
-                } else {
-                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';
-                    document.getElementById('exampleInputPassword2').style.border = 'red 2px solid';
-                }
+                console.log('register');
+                AXIOS.post('/api/register', {username: this.email, password: this.password, email: this.email}) // TODO username : email
+                    .then(request => {
+                        console.log('registered user: ', {
+                            username: this.email,
+                            password: this.password,
+                            email: this.email
+                        });
+                        console.log(request);
+                        this.register = false;
+                        // this.$router.push('/login')
+                        this.registerSuccess = true;
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             },
             loginUser() {
                 AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
@@ -139,7 +135,8 @@
 
     #registerSuccess {
         margin-top: 1em;
-        visibility: hidden;
+        margin-bottom: 1em;
+        font-weight: bold;
     }
 
     .pwdMatchError {
