@@ -11,9 +11,8 @@
         </button>
         <!--<button v-if="arrived">ava ülesannne</button>-->
         <!--TODO see eraldi componendiks, ja algul võibolla väike nupuke, mis teavitaks et saab ülesannet teha vms-->
-        <div @click="hideTaskContainer()" id="taskContainer">
-            <span v-if="!$store.state.finishedTrail">Jõudsid punkti kohale! Saad ühe punkti</span>
-            <span v-if="$store.state.finishedTrail">Said raja läbitud!</span>
+        <div @click="hideTaskContainer()">
+            <Task></Task>
         </div>
         <Info :map="map"></Info>
         <Footer :map=map></Footer>
@@ -25,10 +24,11 @@
     import Map from '../../classes/Map';
     import Info from './Menu/Info';
     import Footer from './Menu/Footer';
+    import Task from './Task';
 
     export default {
         name: 'Map',
-        components: { Info, Footer },
+        components: { Info, Footer, Task },
         data() {
             return {
                 map: null,
@@ -106,16 +106,6 @@
         bottom: 45px !important;
     }
 
-    #taskContainer {
-        top: 60px !important;
-        bottom: 45px !important;
-        background-color: white;
-        height: 100% !important;
-        width: 100% !important;
-        z-index: 1010;
-        position: fixed;
-        visibility: hidden;
-    }
     .ol-popup {
         position: absolute;
         background-color: white;
