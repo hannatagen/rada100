@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form onsubmit="return false;">
        <div id="loginform" v-if="!$store.state.loggedInToken">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
@@ -29,6 +29,7 @@
                         kasutamiseks ja arhiveerimiseks. </div>
                 </div>
                 <button class="btn btn-primary loginRegButton" @click="registerUser" type="submit">Registreeri</button>
+                <div id="registerSuccess">Registreerimine õnnestus!</div>
             </div>
        </div>
     </form>
@@ -67,7 +68,8 @@
                             });
                             console.log(request);
                             this.register = false;
-                            this.$router.push('/login')
+                            // this.$router.push('/login')
+                            document.getElementById('registerSuccess').style.visibility = 'unset';
                         })
                         .catch(error => {
                             console.log(error)
@@ -75,7 +77,6 @@
                 } else {
                     document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';                    document.getElementById('exampleInputPassword1').style.border = 'red 2px solid';
                     document.getElementById('exampleInputPassword2').style.border = 'red 2px solid';
-                    document.getElementById('acceptCheckBox').style.border = 'red 2px solid';
                 }
             },
             loginUser() {
@@ -130,5 +131,10 @@
 
     .acceptDiv {
         margin-top: 1em;
+    }
+
+    #registerSuccess {
+        margin-top: 1em;
+        visibility: hidden;
     }
 </style>
