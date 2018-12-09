@@ -18,7 +18,9 @@
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
             <div v-else id="registerContainer">
                 <label for="exampleInputPassword2">Korda parooli</label>
-                <input required v-model="passwordRepeat" type="password" class="form-control" id="exampleInputPassword2"
+                <input required v-model="passwordRepeat" type="password"
+                       :class="{ 'password !== passwordRepeat' : pwdMatchError }"
+                       class="form-control" id="exampleInputPassword2"
                        placeholder="Sisesta parool...">
                 <div class="form-group input-group mb-3 acceptDiv">
                     <div class="input-group-prepend">
@@ -137,6 +139,10 @@
     #registerSuccess {
         margin-top: 1em;
         visibility: hidden;
+    }
+
+    .pwdMatchError {
+        border: red 2px solid;
     }
 
 </style>
