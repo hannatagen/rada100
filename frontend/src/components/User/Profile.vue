@@ -12,18 +12,18 @@
                     <!--<strong>Tase:</strong>-->
                     <!--<span id="level">3</span>-->
                 <!--</li>-->
-                <li class="list-group-item">
-                    <h6 class="card-title">Pooleliolevad mängud:</h6>
-                </li>
-                <li class="list-group-item">
-                    <h6 class="card-title">Lõpetatud mängud:</h6>
-                    <div v-if="completedTrailsList.length > 0">
-                        <div v-for="trail in completedTrailsList" :key="trail.trailId">
-                            {{ trail.name }}
-                        </div>
-                    </div>
-                    <div v-else>Ühtegi mängu pole lõpetatud.</div>
-                </li>
+                <!--<li class="list-group-item">-->
+                    <!--<h6 class="card-title">Pooleliolevad mängud:</h6>-->
+                <!--</li>-->
+                <!--<li class="list-group-item">-->
+                    <!--<h6 class="card-title">Lõpetatud mängud:</h6>-->
+                    <!--<div v-if="completedTrailsList.length > 0">-->
+                        <!--<div v-for="trail in completedTrailsList" :key="trail.trailId">-->
+                            <!--{{ trail.name }}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div v-else>Ühtegi mängu pole lõpetatud.</div>-->
+                <!--</li>-->
             </ul>
         </div>
         <!--<div v-else class="container">-->
