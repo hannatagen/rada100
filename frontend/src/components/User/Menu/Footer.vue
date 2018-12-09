@@ -8,6 +8,7 @@
             <div id="pauseButton"
                  @click="pausePlaying()">Paus <i class="fas fa-pause"></i></div>
         </div>
+        <!--Jääb skoobist välja-->
         <!--<div @click="openGoogleMapsLink()" class="googleMapsButton"><i class="fas fa-car"></i></div>-->
     </nav>
 </template>
