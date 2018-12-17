@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-primary"
-                        @click="addToDatabase()" :disabled="points.length === 0 || trail.name === '' || trail.description === ''">Lisa rada
+                        @click="addToDatabase()" :disabled="points.length === 0 || trail.name === '' || trail.description === ''">Salvesta
                 </button>
             </div>
         </div>
