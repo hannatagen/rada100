@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-primary"
-                            @click="cancel()">Katkesta
+                            @click="cancel()">Tagasi/Katkesta
                     </button>
                 </div>
             </div>
