@@ -18,8 +18,9 @@
             <div v-else class="footerButtonDiv">
                 <div id="closeInfoGame" class="closeInfo"
                      @click="closeGameFooter()">Sulge info <i class="fas fa-times"></i></div>
-                <div id="pausButton" class="playButton"
-                     @click="pausePlaying()">Paus <i class="fas fa-pause"></i></div> </div>
+                <!--<div id="pausButton" class="playButton"-->
+                     <!--@click="pausePlaying()">Paus <i class="fas fa-pause"></i></div> -->
+            </div>
         </nav>
     </div>
 </template>
