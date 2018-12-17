@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card" v-for="trail in trailsList" :key="trail.trailId">
+        <div @click="trailClicked(trail.trailId)" class="card" v-for="trail in trailsList" :key="trail.trailId">
             <div class="card-header">
                 {{ trail.name }}
             </div>
@@ -13,6 +13,7 @@
 
 <script>
     import { AXIOS } from './.././http-common'
+    import { serverBus } from '../../main';
 
     export default {
         name: 'TrailsList',
@@ -25,6 +26,10 @@
             trailsData(trails) {
                 this.trailsList = trails;
             },
+            trailClicked(trailId) {
+                console.log('trailslist',trailId)
+                serverBus.$emit('trailSelected', trailId);
+            }
         },
         mounted() {
             AXIOS.get('/api/trails/')

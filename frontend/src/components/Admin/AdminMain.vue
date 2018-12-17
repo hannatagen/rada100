@@ -112,7 +112,14 @@
                 this.points.splice(pointId, 1);
             },
             addToDatabase() {
-                AXIOS.post('/api/trails/', {name: this.trail.name, description: this.trail.description}, {
+                const trail = this.trail;
+                const points = this.points;
+                this.trail =  {
+                    name: '',
+                        description: '',
+                };
+                this.points = [];
+                AXIOS.post('/api/trails/', {name: trail.name, description: trail.description}, {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
                         'Conent-Type': 'application/json',
@@ -120,8 +127,8 @@
                 })
                     .then(request => {
                         const trailID = request.data;
-                        for (let i in this.points) {
-                            const point = this.points[i];
+                        for (let i in points) {
+                            const point = points[i];
                             console.log('point',point);
                             AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.lat, longitude: point.lon, link: point.link}, {
                                 headers: {

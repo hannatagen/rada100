@@ -20,6 +20,7 @@
 
 <script>
     import { AXIOS } from './.././http-common'
+    import { serverBus } from '../../main';
     import Map from '../../classes/Map';
     import Info from './Menu/Info';
     import Footer from './Menu/Footer';
@@ -91,6 +92,13 @@
                 .catch(error => {
                     console.log(error)
                 });
+        },
+        created() {
+            serverBus.$on('trailSelected', (trailId) => {
+                console.log('eeeeee');
+                console.log(trailId);
+                this.map.handleSelectedTrail(null, trailId);
+            });
         },
     };
 </script>
