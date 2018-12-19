@@ -439,7 +439,7 @@ export default class Map {
     pointNearFeature(point1) {
         const coordinates = point1.getPosition();
         // teeme nähtamatu ringi, mille abil vaadata kas koordinaadid lõikuvad
-        const bufferCircle = new Feature(new Circle(coordinates, 8000)); // TODO change distance
+        const bufferCircle = new Feature(new Circle(coordinates, 120)); // TODO change distance
         bufferCircle.setStyle(MapStyles.circleStyle);
         this.locationLayer.getSource().addFeature(bufferCircle);
         // Võrdleme geomeetriaid
