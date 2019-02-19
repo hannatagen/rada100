@@ -22,12 +22,14 @@
     .headerDiv {
         text-align: left;
         height: 4em;
+        display: flex;
     }
 
     #nameDiv {
-        margin-top: 1em;
+        /*margin-top: 1em;*/
         margin-left: 4em;
         border: none !important;
+        margin-top: 0.2em;
     }
     .fa-bars {
         font-size: 2.5em;
@@ -35,5 +37,7 @@
 
     #headerMenuButton {
         cursor: pointer;
+        position: absolute;
+        margin-top: 0.2em;
     }
 </style>

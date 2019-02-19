@@ -1,7 +1,9 @@
 <template>
     <nav id="sidebar">
-        <router-link id="menuBack" v-if="$route.name !== 'Main'" class="routerLink"
-                     :to="{ name : 'Main'}"><i class="fas fa-arrow-left"></i></router-link>
+        <router-link id="menuBack" v-if="$route.name !== 'Main'" class="menuBack routerLink"
+                     :to="{ name : 'Main'}"><i class="fas fa-home"></i></router-link>
+        <router-link v-else class="menuBack routerLink"
+                     :to="{ name : 'Main'}"><span class="sidebarTitle">SadaRada</span></router-link>
         <div id="dismiss" @click="closeSidebar">
             <i class="fas fa-times"></i>
         </div>
@@ -58,11 +60,15 @@
         color: darkgreen;
     }
 
-    .fa-times, .fa-arrow-left {
+    .fa-times, .fa-home {
         font-size: 2em;
     }
 
-    #menuBack {
+    .sidebarTitle {
+        font-size: 1.5em;
+    }
+
+    .menuBack {
         position: absolute;
         top: 1em;
         left: 0.5em;

@@ -3,6 +3,11 @@
        <div id="loginform" v-if="!$store.state.loggedInToken">
            <div v-if="registerSuccess" id="registerSuccess">Registreerimine õnnestus!</div>
            <div class="form-group">
+               <label for="exampleInputUName1">Kasutajanimi</label>
+               <input v-model="email" type="email" class="form-control" id="exampleInputUName1"
+                      placeholder="Sisesta kasutajanimi...">
+           </div>
+           <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
                        placeholder="Sisesta email...">

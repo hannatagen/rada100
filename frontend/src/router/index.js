@@ -5,6 +5,7 @@ import KKK from '@/components/User/KKK';
 import Contact from '@/components/User/Contact';
 import Rules from '@/components/User/Rules';
 import Profile from '@/components/User/Profile';
+import Settings from '@/components/User/Settings';
 import ScoreBoard from '@/components/User/ScoreBoard';
 import Login from '@/components/User/Login';
 import Register from '@/components/User/Register';
@@ -42,6 +43,11 @@ export default new Router({
             path: '/profile',
             name: 'Profile',
             component: Profile,
+        },
+        {
+            path: '/settings',
+            name: 'Settings',
+            component: Settings,
         },
         {
             path: '/scoreboard',

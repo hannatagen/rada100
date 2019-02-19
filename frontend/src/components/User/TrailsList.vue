@@ -1,5 +1,17 @@
 <template>
     <div>
+        <h3 class="sidebarHeadline">Radade nimekiri</h3>
+        <div>
+            <p>
+                Klikkides sobival rajal, kuvatakse kaardil ainult
+                selle raja punktid.
+            </p>
+        </div>
+        <div class="card">
+            <div class="card-header allTrailsCard">
+                Kuva kaardil kõik rajad
+            </div>
+        </div>
         <div class="card" v-for="trail in trailsList" :key="trail.trailId">
             <div class="card-header">
                 {{ trail.name }}
@@ -48,5 +60,10 @@
 
     .card-header {
         font-weight: bolder;
+    }
+
+    .allTrailsCard {
+        background-color: darkgreen;
+        color: white;
     }
 </style>

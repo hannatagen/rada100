@@ -3,32 +3,34 @@
         <!--<div v-if="$store.state.loggedInToken" class="card">-->
         <div class="card">
             <div class="card-body">
-                <!--<img class="card-img-top" src="../../assets/user_default.png" alt="Profile picture">-->
-                <h5 class="card-title">{{ username }}</h5>
+                <h5>
+                    Profiil:
+                    <router-link id="settingsBtn" class="routerLink" :to="{ name : 'Settings'}">
+                        <i class="fas fa-cog cogIcon"></i>
+                    </router-link>
+                </h5>
+                <br>
+                <strong class="card-title">Kasutajanimi: </strong>
+                <div> hannatagen{{ username }}</div>
+                <br>
+                <strong class="card-title">Email: </strong>
+                <div> hanna.tagen@gmail.com{{ email }}</div>
             </div>
             <ul class="list-group list-group-flush">
-                <!--Jääb praegu skoobist välja-->
-                <!--<li class="list-group-item">-->
-                    <!--<strong>Tase:</strong>-->
-                    <!--<span id="level">3</span>-->
-                <!--</li>-->
-                <!--<li class="list-group-item">-->
-                    <!--<h6 class="card-title">Pooleliolevad mängud:</h6>-->
-                <!--</li>-->
-                <!--<li class="list-group-item">-->
-                    <!--<h6 class="card-title">Lõpetatud mängud:</h6>-->
-                    <!--<div v-if="completedTrailsList.length > 0">-->
-                        <!--<div v-for="trail in completedTrailsList" :key="trail.trailId">-->
-                            <!--{{ trail.name }}-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div v-else>Ühtegi mängu pole lõpetatud.</div>-->
-                <!--</li>-->
+                <li class="list-group-item">
+                    <h6 class="card-title">Pooleliolevad mängud:</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-title">Lõpetatud mängud:</h6>
+                    <div v-if="completedTrailsList.length > 0">
+                        <div v-for="trail in completedTrailsList" :key="trail.trailId">
+                            {{ trail.name }}
+                        </div>
+                    </div>
+                    <div v-else>Ühtegi mängu pole lõpetatud.</div>
+                </li>
             </ul>
         </div>
-        <!--<div v-else class="container">-->
-            <!--See lehekülg on ainult sisselogitud kasutajatele.-->
-        <!--</div>-->
     </div>
 </template>
 
@@ -98,22 +100,21 @@
 </script>
 
 <style scoped>
-    .card-img-top {
-        width: 8em !important;
-    }
-
     .card-body {
-        text-align: center;
+        text-align: left;
     }
-
     .card {
         color: black;
     }
-
-    #level {
-        float: right;
-    }
     .card-title {
         font-weight: bold;
+    }
+    .cogIcon {
+        float: right;
+        margin-top: 0.2em;
+        cursor: pointer;
+    }
+    #settingsBtn {
+        border: none;
     }
 </style>
