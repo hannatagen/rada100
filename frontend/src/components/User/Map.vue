@@ -20,6 +20,7 @@
 
 <script>
     import { AXIOS } from './.././http-common'
+    import { serverBus } from '../../main';
     import Map from '../../classes/Map';
     import Info from './Menu/Info';
     import Footer from './Menu/Footer';
@@ -91,6 +92,17 @@
                 .catch(error => {
                     console.log(error)
                 });
+        },
+        created() {
+            serverBus.$on('trailSelected', (trailId) => {
+                if(trailId) {
+                    this.map.handleSelectedTrail(null, trailId);
+                } else {
+                    document.getElementById('map').style.bottom = '45px';
+                    document.getElementById('infoWindow').style.visibility = 'hidden';
+                    this.map.closeFooter();
+                }
+            });
         },
     };
 </script>

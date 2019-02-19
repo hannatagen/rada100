@@ -172,59 +172,69 @@ export default class Map {
                     // eslint-disable-next-line
                     if (this.locationLayer === layer) {
                     } else {
-                        document.getElementById('map').style.bottom = '195px';
-
-                        document.getElementById('infoWindow').style.visibility = 'unset';
-                        this.map.updateSize();
-                        this.vectorLayer.getSource()
-                            .clear();
-
-                        store.commit('setPlayingId', feature.get('trailId'));
-                        this.playingTrailID = feature.get('trailId');
-                        console.log('playingTrailID clickmeetodis',this.playingTrailID);
-                        this.selectedTrailFeatures = this.trailFeaturesObject[feature.get('trailId')];
-                        this.vectorLayer.getSource()
-                            .addFeatures(this.selectedTrailFeatures);
-
-                        const extent = this.vectorLayer.getSource()
-                            .getExtent();
-
-                        this.map.getView()
-                            .fit(extent, this.map.getSize());
-
-                        this.map.getView()
-                            .setZoom(this.map.getView()
-                                .getZoom() - 1);
-                        MapUtils.resetMapMarkers(this.vectorLayer);
-                        MapUtils.setVisitedMarker(this.visitedPointsObject.visited)
-                        const selectedFeature = this.vectorLayer.getSource()
-                            .getFeatureById(
-                                feature.getId());
-                        selectedFeature.setStyle(MapStyles.selectedMarkerStyle);
-
-                        const totalTrailPoints = this.vectorLayer.getSource()
-                            .getFeatures().length;
-
-                        const trail = this.trailsList.filter(
-                            // eslint-disable-next-line eqeqeq
-                            object => object.trailId == feature.get('trailId'));
-                        const point = this.pointsList.filter(
-                            // eslint-disable-next-line eqeqeq
-                            object => object.pointId == feature.getId());
-
-                        const trailName = trail[0].name;
-                        const selectedPointName = point[0].name;
-                        const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
-                        if (!this.gameStarted) {
-                            MapUtils.openFooter(totalTrailPoints, trailName, false);
-                            this.overlay.setPosition(coordinate);
-                        } else {
-                            const pointDescription = point[0].description;
-                            MapUtils.openFooter(pointDescription, selectedPointName, true);
-                        }
+                        const featureClicked = feature;
+                        this.handleSelectedTrail(featureClicked, null)
                     }
                 });
         });
+    }
+
+    handleSelectedTrail(featureClicked, selectedTrailId) {
+        if (selectedTrailId !== null) {
+            console.log(this.trailFeaturesObject);
+            featureClicked = this.trailFeaturesObject[selectedTrailId][0];
+            console.log(featureClicked);
+        }
+        document.getElementById('map').style.bottom = '195px';
+
+        document.getElementById('infoWindow').style.visibility = 'unset';
+        this.map.updateSize();
+        this.vectorLayer.getSource()
+            .clear();
+
+        store.commit('setPlayingId', featureClicked.get('trailId'));
+        this.playingTrailID = featureClicked.get('trailId');
+        console.log('playingTrailID clickmeetodis',this.playingTrailID);
+        this.selectedTrailFeatures = this.trailFeaturesObject[featureClicked.get('trailId')];
+        this.vectorLayer.getSource()
+            .addFeatures(this.selectedTrailFeatures);
+
+        const extent = this.vectorLayer.getSource()
+            .getExtent();
+
+        this.map.getView()
+            .fit(extent, this.map.getSize());
+
+        this.map.getView()
+            .setZoom(this.map.getView()
+                .getZoom() - 1);
+        MapUtils.resetMapMarkers(this.vectorLayer);
+        MapUtils.setVisitedMarker(this.visitedPointsObject.visited)
+        const selectedFeature = this.vectorLayer.getSource()
+            .getFeatureById(
+                featureClicked.getId());
+        selectedFeature.setStyle(MapStyles.selectedMarkerStyle);
+
+        const totalTrailPoints = this.vectorLayer.getSource()
+            .getFeatures().length;
+
+        const trail = this.trailsList.filter(
+            // eslint-disable-next-line eqeqeq
+            object => object.trailId == featureClicked.get('trailId'));
+        const point = this.pointsList.filter(
+            // eslint-disable-next-line eqeqeq
+            object => object.pointId == featureClicked.getId());
+
+        const trailName = trail[0].name;
+        const selectedPointName = point[0].name;
+        const coordinate = MapUtils.getPopupCoordinates(selectedFeature, selectedPointName);
+        if (!this.gameStarted) {
+            MapUtils.openFooter(totalTrailPoints, trailName, false);
+            this.overlay.setPosition(coordinate);
+        } else {
+            const pointDescription = point[0].description;
+            MapUtils.openFooter(pointDescription, selectedPointName, true);
+        }
     }
 
     toggleLocation() {
@@ -429,7 +439,7 @@ export default class Map {
     pointNearFeature(point1) {
         const coordinates = point1.getPosition();
         // teeme nähtamatu ringi, mille abil vaadata kas koordinaadid lõikuvad
-        const bufferCircle = new Feature(new Circle(coordinates, 8000)); // TODO change distance
+        const bufferCircle = new Feature(new Circle(coordinates, 120)); // TODO change distance
         bufferCircle.setStyle(MapStyles.circleStyle);
         this.locationLayer.getSource().addFeature(bufferCircle);
         // Võrdleme geomeetriaid
