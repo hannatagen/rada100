@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Router from 'vue-router';
 import Main from '@/components/User/Main';
 import KKK from '@/components/User/KKK';
@@ -8,12 +7,12 @@ import Profile from '@/components/User/Profile';
 import Settings from '@/components/User/Settings';
 import ScoreBoard from '@/components/User/ScoreBoard';
 import Login from '@/components/User/Login';
-import Register from '@/components/User/Register';
 import TrailsList from '@/components/User/TrailsList';
 import AdminMain from '@/components/Admin/AdminMain';
 // import Admin from '@/components/Admin/Admin';
 import AdminRules from '@/components/Admin/AdminRules';
 import AdminLogin from '@/components/Admin/AdminLogin';
+import Vue from 'vue';
 
 Vue.use(Router);
 
@@ -75,7 +74,7 @@ export default new Router({
             component: AdminLogin,
         },
         {
-            path: '/radade-nimekiri',
+            path: '/trails-list',
             name: 'TrailsList',
             component: TrailsList,
         },

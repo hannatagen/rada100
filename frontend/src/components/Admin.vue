@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!--<AdminHeader></AdminHeader>-->
-        <AdminMain></AdminMain>
+        <AdminHeader></AdminHeader>
+        <router-view/>
     </div>
 </template>
 

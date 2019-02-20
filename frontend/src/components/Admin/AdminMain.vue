@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Halduskeskkond</h1>
         <div class="container" id="addTrailForm">
             <h2>Uue raja lisamine</h2>
             <div class="form-group">
@@ -91,6 +90,11 @@
                     lon: '',
                     link: '',
                 }
+            }
+        },
+        beforeCreate() {
+            if(!this.$store.state.adminLoggedInToken){
+                this.$router.replace('/admin')
             }
         },
         methods: {

@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\GameRepositoryTest.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\TrailRepositoryTest.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\GameUserRepositoryTest.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\PointRepositoryTest.java
-=======
-C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\TrailRepositoryTest.java
-C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\PointRepositoryTest.java
-C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\GameRepositoryTest.java
-C:\Users\Kerttu\Nextcloud\Semester5\Fall2018\Tarkvaraprojekt\rada100\backend\src\test\java\com\example\ekm\Repository\GameUserRepositoryTest.java
->>>>>>> ddfc3b72fc94295bf247f91a3d347650da87df77

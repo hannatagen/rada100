@@ -38,6 +38,11 @@
     min-width: unset !important;
   }
 
+  .btn {
+    color: white;
+    background-color: darkgreen;
+  }
+
   #sidebar {
     background-image: url('./assets/sbg6.jpg') !important;
     background-position: bottom;

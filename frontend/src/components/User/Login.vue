@@ -4,10 +4,10 @@
            <div v-if="registerSuccess" id="registerSuccess">Registreerimine õnnestus!</div>
            <div class="form-group">
                <label for="exampleInputUName1">Kasutajanimi</label>
-               <input v-model="email" type="email" class="form-control" id="exampleInputUName1"
+               <input v-model="username" type="text" class="form-control" id="exampleInputUName1"
                       placeholder="Sisesta kasutajanimi...">
            </div>
-           <div class="form-group">
+           <div class="form-group" v-if="register">
                 <label for="exampleInputEmail1">Email</label>
                 <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
                        placeholder="Sisesta email...">
@@ -17,7 +17,7 @@
                 <input v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn btn-primary loginRegButton" type="submit">Logi sisse</button>
+            <button v-if="!register" @click="loginUser" class="btn loginRegButton" type="submit">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -37,7 +37,7 @@
                         kasutamiseks ja arhiveerimiseks. </div>
                 </div>
                 <button :disabled="password !== passwordRepeat || !checkBox || email.length === 0"
-                        class="btn btn-primary loginRegButton" @click="registerUser">Registreeri</button>
+                        class="btn loginRegButton" @click="registerUser">Registreeri</button>
             </div>
        </div>
     </div>
@@ -100,7 +100,6 @@
                     this.loginFailed();
                     return
                 }
-                console.log('store commit');
                 this.$store.commit('setUserTokenID', req.headers.authorization);
                 this.$router.push('/')
                 // this.$router.replace(this.$route.query.redirect || '/authors')
@@ -120,6 +119,7 @@
     }
     #registerButton {
         cursor: pointer;
+        color: darkgreen;
     }
     #registerContainer {
         margin-top: -3em;

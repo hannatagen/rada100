@@ -10,9 +10,7 @@
             <i class="fas fa-crosshairs"></i>
         </button>
         <!--<button v-if="arrived">ava ülesannne</button>-->
-        <div @click="hideTaskContainer()">
-            <Task></Task>
-        </div>
+        <Task></Task>
         <Info :map="map"></Info>
         <Footer :map=map></Footer>
     </div>
@@ -75,10 +73,6 @@
                     }
                 }
             },
-            hideTaskContainer() {
-                document.getElementById('taskContainer').style.visibility = 'hidden';
-                this.arrived = false;
-            },
         },
         mounted() {
             this.map = new Map();
@@ -92,6 +86,10 @@
                 .catch(error => {
                     console.log(error)
                 });
+
+            serverBus.$on('arrived', (arrived) => {
+                this.arrived = arrived;
+            });
         },
         created() {
             serverBus.$on('trailSelected', (trailId) => {
