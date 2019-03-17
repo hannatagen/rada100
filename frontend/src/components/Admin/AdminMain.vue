@@ -23,17 +23,18 @@
 <style scoped>
     #contentContainer {
         position: fixed;
-        top: 6em;
-        left: 220px;
+        top: 4em;
+        left: 200px;
+        margin-right: 0 !important;
         text-align: center;
-        width: 80vw;
-        height: 100vh;
+        /*width: 80%;*/
+        /*height: 1S00vh;*/
     }
 
     @media only screen and (max-width: 600px) {
         #contentContainer {
-            top: 1em;
-            left: 70px;
+            top: 0;
+            left: 60px;
         }
     }
 

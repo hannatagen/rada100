@@ -120,4 +120,15 @@
   ::-webkit-scrollbar-thumb:hover {
     background: darkgreen;
   }
+
+  .adminSubHeader {
+    background-color: lightgray;
+    height: 3em;
+    width: 90vw;
+  }
+
+  .adminSubHeaderTitle {
+    font-size: 1.5em;
+    padding-top: 0.1em;
+  }
 </style>
