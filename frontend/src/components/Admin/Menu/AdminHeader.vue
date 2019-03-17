@@ -25,9 +25,13 @@
     }
 
     #adminHeaderTitleDiv {
-        /*margin-top: 1em;*/
-        /*margin-left: 4em;*/
         border: none !important;
         margin-top: 0.2em;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .adminHeaderDiv {
+            visibility: hidden;
+        }
     }
 </style>

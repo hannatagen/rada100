@@ -12,6 +12,13 @@ import AdminMain from '@/components/Admin/AdminMain';
 // import Admin from '@/components/Admin/Admin';
 import AdminRules from '@/components/Admin/AdminRules';
 import AdminLogin from '@/components/Admin/AdminLogin';
+import TrailsManagement from '@/components/Admin/TrailsManagement';
+import TasksManagement from '@/components/Admin/TasksManagement';
+import AdminManagement from '@/components/Admin/AdminManagement';
+import ContentManagement from '@/components/Admin/ContentManagement';
+import Languages from '@/components/Admin/Languages';
+import UsersList from '@/components/Admin/UsersList';
+import AdminProfile from '@/components/Admin/AdminProfile';
 import Vue from 'vue';
 
 Vue.use(Router);
@@ -77,6 +84,41 @@ export default new Router({
             path: '/trails-list',
             name: 'TrailsList',
             component: TrailsList,
+        },
+        {
+            path: '/admin/profile',
+            name: 'AdminProfile',
+            component: AdminProfile,
+        },
+        {
+            path: '/admin/trails',
+            name: 'TrailsManagement',
+            component: TrailsManagement,
+        },
+        {
+            path: '/admin/tasks',
+            name: 'TasksManagement',
+            component: TasksManagement,
+        },
+        {
+            path: '/admin/content',
+            name: 'ContentManagement',
+            component: ContentManagement,
+        },
+        {
+            path: '/admin/languages',
+            name: 'Languages',
+            component: Languages,
+        },
+        {
+            path: '/admin/admin-management',
+            name: 'AdminManagement',
+            component: AdminManagement,
+        },
+        {
+            path: '/admin/users',
+            name: 'UsersList',
+            component: UsersList,
         },
     ],
 });

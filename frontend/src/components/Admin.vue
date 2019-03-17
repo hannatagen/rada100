@@ -1,7 +1,7 @@
 <template>
     <div>
         <AdminHeader></AdminHeader>
-        <router-view/>
+        <AdminMain></AdminMain>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
 
     export default {
         name: 'Admin',
-        components: {AdminMain, AdminHeader },
+        components: { AdminMain, AdminHeader },
     };
 </script>
 
