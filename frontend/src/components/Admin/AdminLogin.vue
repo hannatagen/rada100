@@ -8,13 +8,13 @@
                 <label for="inputAdminName">Email</label>
                 <input type="text" class="form-control" id="inputAdminName"
                        placeholder="Sisesta email..."
-                        v-model="email">
+                       v-model="email">
             </div>
             <div class="form-group">
                 <label for="inputAdminPassword">Parool</label>
                 <input type="password" class="form-control" id="inputAdminPassword"
                        placeholder="Sisesta parool..."
-                        v-model="password">
+                       v-model="password">
             </div>
             <button @click="loginUser()" class="btn btnGreen loginAdminButton">Logi sisse</button>
         </div>
@@ -50,6 +50,7 @@
                     this.loginFailed();
                     return
                 }
+                console.log('login success');
                 this.$store.commit('setUserTokenID', req.headers.authorization);
                 this.$router.replace('/admin/main')
             },
