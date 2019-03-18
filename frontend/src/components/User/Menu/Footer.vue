@@ -26,7 +26,7 @@
             openGoogleMapsLink() {
                 // TODO
                 // eslint-disable-next-line no-console
-                console.log('selle info peab saama andmebaasist');
+                // console.log('selle info peab saama andmebaasist');
             },
             pausePlaying() {
                 this.$store.commit('changePlaying', false);
@@ -41,7 +41,7 @@
                 if (this.scoredPoints) {
                     this.map.getUserCurrentPoints();
                     this.userScore = this.map.visitedPointsObject.visited.length;
-                    if (this.totalScorePoints == this.userScore) {
+                    if (this.totalScorePoints === this.userScore) {
                         this.pausePlaying();
                     }
                 }

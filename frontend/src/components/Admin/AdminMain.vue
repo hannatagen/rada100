@@ -34,6 +34,7 @@
         text-align: center;
         width: 100vw;
         height: 100vh;
+        overflow-y: scroll;
     }
 
     @media only screen and (min-width: 700px) {

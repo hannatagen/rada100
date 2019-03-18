@@ -17,7 +17,9 @@ export default new Vuex.Store({
         playingTrail: null,
         loggedInToken: false, //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
         adminLoggedInToken: false,
-        finishedTrail: false
+        finishedTrail: false,
+        modifyTrailId: null,
+        modifyTrailModeActive: false
     },
     mutations: {
         changePlaying(state, boolean) {
@@ -34,6 +36,12 @@ export default new Vuex.Store({
         },
         setFinishTrail(state, boolean) {
             state.finishedTrail = boolean;
+        },
+        setModifyTrailId(state, id) {
+            state.modifyTrailId = id;
+        },
+        setModifyModeActive(state, boolean) {
+            state.modifyTrailModeActive = boolean
         }
     },
     plugins: [vuexLocal.plugin]

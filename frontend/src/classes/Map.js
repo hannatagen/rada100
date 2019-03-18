@@ -220,10 +220,10 @@ export default class Map {
 
         const trail = this.trailsList.filter(
             // eslint-disable-next-line eqeqeq
-            object => object.trailId == featureClicked.get('trailId'));
+            object => object.trailId === featureClicked.get('trailId'));
         const point = this.pointsList.filter(
             // eslint-disable-next-line eqeqeq
-            object => object.pointId == featureClicked.getId());
+            object => object.pointId === featureClicked.getId());
 
         const trailName = trail[0].name;
         const selectedPointName = point[0].name;

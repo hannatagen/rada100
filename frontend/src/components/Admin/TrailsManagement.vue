@@ -4,11 +4,10 @@
             <span class="navbar-brand">Radade ja punktide haldus</span>
         </nav>
         <nav class="adminNavbar navbar navbar-expand-lg navbar-light">
-            <button @click="[trailsListBtnClicked = true, addTrailBtnClicked = false]"
-                    :disabled="trailsListBtnClicked"
+            <button @click="[trailsListBtnClicked = true, addTrailBtnClicked = false,
+                    $store.commit('setModifyModeActive',false)]"
                     class="navbarBtn btn btn-dark">Radade nimekiri</button>
             <button @click="[trailsListBtnClicked = false, addTrailBtnClicked = true]"
-                    :disabled="addTrailBtnClicked"
                     class="navbarBtn btn btn-dark">Lisa rada</button>
         </nav>
         <AddTrail v-if="addTrailBtnClicked"></AddTrail>
