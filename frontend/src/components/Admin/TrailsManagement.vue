@@ -126,7 +126,7 @@
                 AXIOS.post('/api/trails/', {name: trail.name, description: trail.description}, {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
-                        'Conent-Type': 'application/json',
+                        'Content-Type': 'application/json',
                     }
                 })
                     .then(request => {
@@ -137,7 +137,7 @@
                             AXIOS.post('/api/points/', {trailId: trailID, name: point.name, description: point.description, latitude: point.lat, longitude: point.lon, link: point.link}, {
                                 headers: {
                                     Authorization: this.$store.state.loggedInToken,
-                                    'Conent-Type': 'application/json',
+                                    'Content-Type': 'application/json',
                                 }
                             }).catch(error => {
                                     console.log(error)
@@ -164,16 +164,16 @@
 
 <style scoped>
     .addPointForm {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100vw;
+        /*position: fixed;*/
+        /*top: 0;*/
+        /*left: 0;*/
+        /*bottom: 0;*/
+        /*right: 0;*/
+        /*width: 100vw;*/
         display: flex;
-        overflow: hidden;
+        overflow-y: hidden;
         flex-direction: column;
-        background-color: #ffffff;
+        /*background-color: #ffffff;*/
         flex: 1;
         overflow-x: auto;
     }

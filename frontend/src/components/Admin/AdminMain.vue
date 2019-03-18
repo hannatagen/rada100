@@ -23,6 +23,7 @@
 <style scoped>
     #contentContainer {
         position: fixed;
+        background-color: pink;
         top: 4em;
         left: 200px;
         margin-right: 0 !important;
@@ -43,14 +44,10 @@
     @media only screen and (max-width: 700px) {
         #contentContainer {
             top: 0;
-            padding-right: 1em;
-            padding-left: 0.5em;
+            /*padding-left: 0.5em;*/
             left: 60px;
-        }
-    }
-    @media only screen and (max-width: 700px) {
-        #contentContainer {
-            width: auto;
+            display: inline-grid;
+            padding-right: 4.5em;
         }
     }
 

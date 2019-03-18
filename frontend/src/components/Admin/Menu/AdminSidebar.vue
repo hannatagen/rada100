@@ -73,6 +73,14 @@
         color: antiquewhite;
     }
 
+    .adminIcon {
+        text-align: center;
+    }
+
+    .adminHomeBtn:hover {
+        background-color: forestgreen;
+    }
+
     .adminSidebarBtnTitle {
         position: absolute;
         left: 0;
