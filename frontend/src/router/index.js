@@ -19,6 +19,7 @@ import ContentManagement from '@/components/Admin/ContentManagement';
 import Languages from '@/components/Admin/Languages';
 import UsersList from '@/components/Admin/UsersList';
 import AdminProfile from '@/components/Admin/AdminProfile';
+import AddTrail from '@/components/Admin/AddTrail';
 import Vue from 'vue';
 
 Vue.use(Router);
@@ -119,6 +120,11 @@ export default new Router({
             path: '/admin/users',
             name: 'UsersList',
             component: UsersList,
+        },
+        {
+            path: '/admin/new-trail',
+            name: 'AddTrail',
+            component: AddTrail,
         },
     ],
 });

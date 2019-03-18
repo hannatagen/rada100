@@ -125,5 +125,14 @@
     /*height: 3em;*/
     /*left: 0;*/
     width: 91vw;
+    display: -webkit-box !important;
   }
+
+  .navbarBtn {
+    margin-left: 0.5em;
+  }
+
+  /*.routerBtnDisabled {*/
+    /*di*/
+  /*}*/
 </style>
