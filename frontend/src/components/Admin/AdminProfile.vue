@@ -1,8 +1,10 @@
 <template>
     <div class="adminProfileContainer">
-        <nav class="adminSubHeader">
-            <p class="adminSubHeaderTitle">Minu konto</p>
-        </nav>
+        <div>
+            <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
+                <span class="navbar-brand">Minu andmed</span>
+            </nav>
+        </div>
         <div class="card adminCard">
             <div class="card-body">
                 <strong class="card-title">Nimi: </strong>

@@ -1,5 +1,10 @@
 <template>
     <div>
+        <div>
+            <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
+                <span class="navbar-brand">Radade ja punktide haldus</span>
+            </nav>
+        </div>
         <div id="addTrailForm">
             <h2>Uue raja lisamine</h2>
             <div class="form-group">
