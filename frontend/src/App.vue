@@ -38,7 +38,7 @@
     min-width: unset !important;
   }
 
-  .btn {
+  .btnGreen {
     color: white;
     background-color: darkgreen;
   }

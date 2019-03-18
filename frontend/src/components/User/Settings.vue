@@ -34,7 +34,7 @@
                     <input v-model="password" type="password" class="form-control" id="exampleInputPassword2"
                            placeholder="parool">
                 </div>
-                <button @click="changeSuccess = !changeSuccess" class="btn" type="submit">Salvesta</button>
+                <button @click="changeSuccess = !changeSuccess" class="btn btnGreen" type="submit">Salvesta</button>
                 <br>
                 <button class="btn btn-danger loginRegButton" type="submit">Kustuta konto</button>
             </div>

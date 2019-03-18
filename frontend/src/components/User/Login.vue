@@ -17,7 +17,7 @@
                 <input v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn loginRegButton" type="submit">Logi sisse</button>
+            <button v-if="!register" @click="loginUser" class="btn btnGreen loginRegButton" type="submit">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -37,7 +37,7 @@
                         kasutamiseks ja arhiveerimiseks. </div>
                 </div>
                 <button :disabled="password !== passwordRepeat || !checkBox || email.length === 0"
-                        class="btn loginRegButton" @click="registerUser">Registreeri</button>
+                        class="btn btnGreen loginRegButton" @click="registerUser">Registreeri</button>
             </div>
        </div>
     </div>

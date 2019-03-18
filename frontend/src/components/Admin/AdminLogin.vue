@@ -14,7 +14,7 @@
                 <input type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button @click="adminLogin()" class="btn loginAdminButton">Logi sisse</button>
+            <button @click="adminLogin()" class="btn btnGreen loginAdminButton">Logi sisse</button>
         </div>
     </div>
 </template>
