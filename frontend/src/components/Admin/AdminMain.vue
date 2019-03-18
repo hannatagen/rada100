@@ -1,7 +1,7 @@
 <template>
     <div>
         <AdminSidebar v-if="$route.name !== 'AdminLogin'"></AdminSidebar>
-        <div id="contentContainer">
+        <div id="contentContainer" :class="{loginContentContainer: $route.name === 'AdminLogin'}">
             <div v-if="$route.name === 'AdminMain'">
                 <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
                     <span class="navbar-brand">SadaRada halduskeskkond</span>
@@ -28,7 +28,6 @@
 <style scoped>
     #contentContainer {
         position: fixed;
-        background-color: pink;
         /*top: 4em;*/
         left: 200px;
         margin-right: 0 !important;
@@ -58,5 +57,9 @@
 
     #greetingDiv {
         margin-top: 25vh;
+    }
+
+    .loginContentContainer {
+        left: 0 !important;
     }
 </style>

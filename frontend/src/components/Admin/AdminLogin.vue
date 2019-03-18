@@ -1,7 +1,8 @@
 <template>
     <div id="adminLoginContainer">
         <br>
-        <h3>SadaRada halduskeskkond</h3>
+        <br>
+        <h3 id="adminLoginTitle">SadaRada halduskeskkond</h3>
         <div class="container subAdminLoginContainer">
             <div class="form-group">
                 <label for="exampleInputAdminName">Kasutajanimi</label>
@@ -33,8 +34,8 @@
 <style scoped>
     #adminLoginContainer {
         /*top: 10em !important;*/
-        /*height: 100% !important;*/
-        /*width: 100% !important;*/
+        height: 100% !important;
+        width: 100vw !important;
         /*position: fixed;*/
     }
 
