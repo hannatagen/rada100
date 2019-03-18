@@ -56,7 +56,7 @@
         width: 200px;
         height: 100vh;
         position: fixed;
-        top: 4em;
+        /*top: 4em;*/
         left: 0;
         /* top layer */
         z-index: 9999;
@@ -92,7 +92,7 @@
     @media only screen and (max-width: 700px) {
         #adminSidebar {
             width: 60px;
-            top: 0;
+            /*top: 0;*/
         }
 
         .adminSidebarBtnTitle {

@@ -121,14 +121,9 @@
     background: darkgreen;
   }
 
-  .adminSubHeader {
-    background-color: lightgray;
-    height: 3em;
-    width: 90vw;
-  }
-
-  .adminSubHeaderTitle {
-    font-size: 1.5em;
-    padding-top: 0.1em;
+  .adminNavbar {
+    /*height: 3em;*/
+    /*left: 0;*/
+    width: 91vw;
   }
 </style>

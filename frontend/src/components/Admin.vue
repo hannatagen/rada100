@@ -1,6 +1,6 @@
 <template>
     <div id="adminContainer">
-        <AdminHeader></AdminHeader>
+        <!--<AdminHeader></AdminHeader>-->
         <AdminMain id="adminMainContainer"></AdminMain>
     </div>
 </template>
