@@ -81,7 +81,7 @@
         margin-top: 0.3em;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 700px) {
         #adminSidebar {
             width: 60px;
             top: 0;

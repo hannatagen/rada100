@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container" id="addTrailForm">
+        <div id="addTrailForm">
             <h2>Uue raja lisamine</h2>
             <div class="form-group">
                 <label for="trailName">Raja nimi</label>
@@ -180,6 +180,11 @@
 
     .btn {
         width: 200px;
+    }
+
+    #addTrailForm {
+        /*width: 90%;*/
+        padding: 1em;
     }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div id="adminContainer">
         <AdminHeader></AdminHeader>
-        <AdminMain></AdminMain>
+        <AdminMain id="adminMainContainer"></AdminMain>
     </div>
 </template>
 
@@ -16,5 +16,7 @@
 </script>
 
 <style scoped>
-
+    #adminContainer {
+        max-width: 100vw !important;
+    }
 </style>

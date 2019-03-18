@@ -29,7 +29,7 @@
         margin-top: 0.2em;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 700px) {
         .adminHeaderDiv {
             visibility: hidden;
         }
