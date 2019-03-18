@@ -2,7 +2,7 @@
     <div>
         <AdminSidebar v-if="$route.name !== 'AdminLogin'"></AdminSidebar>
         <div id="contentContainer">
-            <div>
+            <div v-if="$route.name === 'AdminMain'">
                 <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
                     <span class="navbar-brand">SadaRada halduskeskkond</span>
                 </nav>
@@ -51,7 +51,7 @@
             /*top: 0;*/
             /*padding-left: 0.5em;*/
             left: 60px;
-            display: inline-grid;
+            /*display: inline-grid;*/
             padding-right: 4.5em;
         }
     }
