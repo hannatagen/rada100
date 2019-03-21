@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface TrailRepository extends JpaRepository<Trail, Long> {
     List<Trail> findAll();
+    
+    @Override
+    void deleteById(Long aLong);
 }
