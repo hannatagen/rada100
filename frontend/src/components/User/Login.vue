@@ -17,7 +17,7 @@
                 <input v-model="password" type="password" class="form-control" id="exampleInputPassword1"
                        placeholder="Sisesta parool...">
             </div>
-            <button v-if="!register" @click="loginUser" class="btn btnGreen loginRegButton" type="submit">Logi sisse</button>
+            <button v-if="!register" @click="loginUser()" class="btn btnGreen loginRegButton" type="submit">Logi sisse</button>
             <br><br>
             <a href="#" v-if="!register" id="registerButton" class="card-link"
                @click="register = !register">Pole veel kasutajat? Registreeri kasutajaks.</a>
@@ -91,7 +91,7 @@
                     })
                     .catch(error => {
                         console.log(error);
-                        document.getElementById('exampleInputEmail1').style.border = 'red 2px solid';
+                        document.getElementById('exampleInputUName1').style.border = 'red 2px solid';
                         document.getElementById('exampleInputPassword1').style.border = 'red 2px solid'
                     })
             },
