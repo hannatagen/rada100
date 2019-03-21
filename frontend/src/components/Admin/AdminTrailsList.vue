@@ -19,7 +19,7 @@
                     <th>{{ trail.description }}</th>
                     <!--<th>{{ pointsToTrail[trail.trailId] }}</th>-->
                     <th><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></th>
-                    <th><i class="deleteTrailBtn fas fa-trash-alt"></i></th>
+                    <th><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></th>
                 </tr>
             </tbody>
         </table>
@@ -57,12 +57,16 @@
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
                         'Content-Type': 'application/json',
-                    }});
+                    },
+                    withCredentials: true
+                });
                 AXIOS.delete('/api/trails/' + trail.trailId + '/points/', {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
                         'Content-Type': 'application/json',
-                    }});
+                    },
+                    withCredentials: true
+                });
             },
             getPointsDict() {
                 return this.pointsToTrail;

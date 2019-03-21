@@ -24,7 +24,13 @@
             },
         },
         mounted() {
-            AXIOS.get('/api/users/')
+            AXIOS.get('/api/users/', {
+                headers: {
+                    Authorization: this.$store.state.loggedInToken,
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true
+                })
                 .then(response => {
                     // JSON responses are automatically parsed.
                     const users = response.data;
