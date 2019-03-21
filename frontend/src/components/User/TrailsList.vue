@@ -76,7 +76,6 @@
                 this.trailsListOriginal = trails;
             },
             trailClicked(trailId) {
-                // console.log('trailslist',trailId);
                 serverBus.$emit('trailSelected', trailId);
             }
         },
@@ -107,6 +106,10 @@
     .allTrailsCard {
         background-color: darkgreen;
         color: white;
+    }
+
+    .allTrailsCard:hover {
+        background-color: #005600;
     }
 
     .trailsListTableRow {
