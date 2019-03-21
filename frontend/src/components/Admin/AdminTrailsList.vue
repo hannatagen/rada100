@@ -1,12 +1,28 @@
 <template>
     <div class="container">
+        <input v-model="search" class="form-control" placeholder="Filtreeri radasid nimetuse või kirjelduse järgi...">
         <table id="trailsTable"
                 v-if="!$store.state.modifyTrailModeActive" class="table table-hover sortable">
             <thead>
                 <tr>
+                    <!--<th v-for="column in columns">-->
+                        <!--<a class="tableColumnTitle" href="#" @click="sortBy(column)" :class="{active: sortKey === column}">-->
+                            <!--{{ column }}-->
+                        <!--</a>-->
+                    <!--</th>-->
                     <th>ID</th>
-                    <th>Nimetus</th>
-                    <th>Kirjeldus</th>
+                    <th>
+                        <a class="tableColumnTitle" href="#" @click="sortByName">
+                            Nimetus
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </a>
+                    </th>
+                    <th>
+                        <a class="tableColumnTitle" href="#" @click="sortByDesc">
+                            Kirjeldus
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </a>
+                    </th>
                     <!--<th>Punkte</th>-->
                     <th>Muuda</th>
                     <th>Kustuta</th>
@@ -14,12 +30,12 @@
             </thead>
             <tbody>
                 <tr v-for="trail in trailsList" :key="trail.trailId">
-                    <th>{{ trailsList.indexOf(trail) + 1 }}</th>
-                    <th>{{ trail.name }}</th>
-                    <th>{{ trail.description }}</th>
+                    <td>{{ trailsList.indexOf(trail) + 1 }}</td>
+                    <td>{{ trail.name }}</td>
+                    <td>{{ trail.description }}</td>
                     <!--<th>{{ pointsToTrail[trail.trailId] }}</th>-->
-                    <th><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></th>
-                    <th><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></th>
+                    <td><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></td>
+                    <td><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></td>
                 </tr>
             </tbody>
         </table>
@@ -39,13 +55,47 @@
         data() {
             return {
                 // modifyModeActive: false,
+                trailsListOriginal: [],
                 trailsList: [],
                 pointsToTrail: [],
+                sortKey: '',
+                reverse: false,
+                search: ''
             };
         },
+        watch: {
+            search: function (val) {
+                this.trailsList = this.trailsListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
+            }
+        },
         methods: {
+            sortByName() {
+                this.reverse = (this.sortKey === 'name') ? ! this.reverse : false;
+                this.trailsList.sort(function (a,b) {
+                    let trailA = a,
+                        trailB = b;
+                    if (trailA.name < trailB.name) return -1;
+                    if (trailA.name > trailB.name) return 1;
+                    return 0;
+                });
+                if (this.reverse) this.trailsList.reverse();
+                this.sortKey = 'name';
+            },
+            sortByDesc() {
+                this.reverse = (this.sortKey === 'description') ? ! this.reverse : false;
+                this.trailsList.sort(function (a,b) {
+                    let trailA = a,
+                        trailB = b;
+                    if (trailA.description < trailB.description) return -1;
+                    if (trailA.description > trailB.description) return 1;
+                    return 0;
+                });
+                if (this.reverse) this.trailsList.reverse();
+                this.sortKey = 'description';
+            },
             trailsData(trails) {
                 this.trailsList = trails;
+                this.trailsListOriginal = trails;
             },
             modifyTrail(trailId) {
                 this.$store.commit('setModifyTrailId', trailId);
@@ -66,7 +116,8 @@
                     },
                     withCredentials: true
                 });
-                this.trailsList = this.trailsList.filter(item => item !== trail);
+                this.trailsListOriginal = this.trailsListOriginal.filter(item => item !== trail);
+                this.trailsList = this.trailsListOriginal
             },
             getPointsDict() {
                 return this.pointsToTrail;
@@ -134,4 +185,9 @@
     .table {
         text-align: left;
     }
+
+    .tableColumnTitle {
+        color: black;
+    }
+
 </style>

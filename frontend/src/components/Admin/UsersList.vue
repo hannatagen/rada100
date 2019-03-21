@@ -24,7 +24,7 @@
             },
         },
         mounted() {
-            AXIOS.get('/api/users/list', {
+            AXIOS.get('/api/users', {
                 headers: {
                     Authorization: this.$store.state.loggedInToken,
                     'Content-Type': 'application/json',
