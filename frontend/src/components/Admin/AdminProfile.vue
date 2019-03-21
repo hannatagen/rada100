@@ -12,26 +12,42 @@
                         class="navbarBtn btn btn-danger">Kustuta konto</button>
             </nav>
         </div>
-        <div class="card adminCard">
-            <div class="card-body">
-                <div>
-                    <strong class="card-title">Nimi: </strong>
-                    {{ username }}
+        <div id="adminProfileCardContainer">
+            <div class="card adminCard container">
+                <img class="adminProfileImg card-img-top" src="../../assets/sbg2x-small.jpg" alt="Illustrative picture of a man in the forest.">
+                <div class="card-body">
+                    <div>
+                        <h5 class="card-title">Nimi: </h5>
+                        <span v-if="!modifyDataModeActive"> {{ username }} </span>
+                        <input v-else v-model="username" type="text" class="form-control" aria-label="Name">
+                    </div>
+                    <br>
+                    <div>
+                        <h5 class="card-title">Email: </h5>
+                        <span v-if="!modifyDataModeActive"> {{ email }} </span>
+                        <input v-else v-model="email" type="email" class="form-control" aria-label="Name">
+                    </div>
+                    <div v-if="modifyDataModeActive">
+                        <br>
+                        <h5 class="card-title">Parool: </h5>
+                        <input id="adminProfilePasswordInput" v-model="password" type="password" class="form-control" aria-label="Password">
+                    </div>
+                    <div v-if="modifyDataModeActive">
+                        <br>
+                        <h5 class="card-title">Korda parooli: </h5>
+                        <input id="adminProfilePasswordRepeatInput" v-model="passwordRepeat" type="password" class="form-control" aria-label="Password repeat">
+                    </div>
+                    <br>
+                    <div>
+                        <h5 class="card-title">Staatus: </h5>
+                        {{ authorizationLevel }}
+                    </div>
+                    <br>
+                    <button id="adminProfileSaveBtn"
+                            v-if="modifyDataModeActive"
+                            @click="[modifyDataModeActive = false, ]"
+                            class="navbarBtn btn btnGreen">Salvesta</button>
                 </div>
-                <br>
-                <div>
-                    <strong class="card-title">Email: </strong>
-                    {{ email }}
-                </div>
-                <br>
-                <div>
-                    <strong class="card-title">Staatus: </strong>
-                    {{ authorizationLevel }}
-                </div>
-                <br>
-                <button v-if="modifyDataModeActive"
-                        @click="[modifyDataModeActive = false, ]"
-                        class="navbarBtn btn btnGreen">Salvesta</button>
             </div>
         </div>
     </div>
@@ -47,6 +63,7 @@
                 email: 'marike@gmail.com',
                 username: 'Mari Sarv',
                 password: '',
+                passwordRepeat: '',
                 authorizationLevel: 'SuperAdmin',
                 modifyDataModeActive: false,
             };
@@ -82,10 +99,25 @@
 <style scoped>
     .adminCard {
         /*left: 50%;*/
+        width: max-content;
         max-width: 20em !important;
+        display: block;
     }
 
     .adminProfileContainer {
         text-align: left;
+    }
+
+    .adminProfileImg {
+        height: 120px;
+        width: unset;
+    }
+
+    #adminProfileCardContainer {
+        margin-top: 1em;
+    }
+
+    #adminProfileSaveBtn {
+        margin-left: 35%;
     }
 </style>
