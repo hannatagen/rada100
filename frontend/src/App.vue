@@ -43,6 +43,10 @@
     background-color: darkgreen;
   }
 
+  .btnGreen:hover {
+    background-color: #005600;
+  }
+
   #sidebar {
     background-image: url('./assets/sbg6.jpg') !important;
     background-position: bottom;

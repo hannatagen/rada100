@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!--<div v-if="$store.state.loggedInToken" class="card">-->
-        <div class="card">
+        <div v-if="$store.state.loggedInToken" class="card">
+        <!--<div class="card">-->
             <div class="card-body">
                 <h5>
                     Profiil:

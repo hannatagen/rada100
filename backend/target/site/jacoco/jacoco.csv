@@ -28,7 +28,7 @@ backend,com.example.ekm.Model,UserRole,0,34,0,0,0,2,0,1,0,1
 backend,com.example.ekm.Model,Point,351,14,62,0,7,3,47,4,16,4
 backend,com.example.ekm.Model,Trail,178,3,30,0,5,1,26,1,11,1
 backend,com.example.ekm.Model,Game,252,21,46,0,4,4,33,6,10,6
-backend,com.example.ekm.Controller,TrailController,74,0,0,0,12,0,7,0,7,0
+backend,com.example.ekm.Controller,TrailController,93,0,0,0,15,0,9,0,9,0
 backend,com.example.ekm.Controller,GameUserController,23,0,0,0,5,0,3,0,3,0
 backend,com.example.ekm.Controller,AdminController,37,0,0,0,11,0,2,0,2,0
 backend,com.example.ekm.Controller,GameController,249,0,14,0,48,0,16,0,9,0
