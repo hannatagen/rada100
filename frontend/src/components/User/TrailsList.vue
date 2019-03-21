@@ -7,18 +7,21 @@
                 selle raja punktid.
             </p>
         </div>
-        <div class="card">
+        <input v-model="search" class="form-control" placeholder="Otsi...">
+        <br>
+        <div class="card trailsListCard">
             <div @click="trailClicked(null)" class="card-header allTrailsCard">
                 Kuva kaardil kõik rajad
             </div>
-        </div>
-        <div @click="trailClicked(trail.trailId)" class="card" v-for="trail in trailsList" :key="trail.trailId">
-            <div class="card-header">
-                {{ trail.name }}
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item"> {{ trail.description }}</li>
-            </ul>
+            <table class="trailsListTable table table-striped">
+                <tbody>
+                <tr class="trailsListTableRow"
+                    @click="trailClicked(trail.trailId)"
+                    v-for="trail in trailsList" :key="trail.trailId">
+                    <td>{{ trail.name }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -31,12 +34,46 @@
         name: 'TrailsList',
         data() {
             return {
+                trailsListOriginal: [],
                 trailsList: [],
+                sortKey: '',
+                reverse: false,
+                search: ''
             };
         },
+        watch: {
+            search: function (val) {
+                this.trailsList = this.trailsListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
+            }
+        },
         methods: {
+            sortByName() {
+                this.reverse = (this.sortKey === 'name') ? ! this.reverse : false;
+                this.trailsList.sort(function (a,b) {
+                    let trailA = a,
+                        trailB = b;
+                    if (trailA.name < trailB.name) return -1;
+                    if (trailA.name > trailB.name) return 1;
+                    return 0;
+                });
+                if (this.reverse) this.trailsList.reverse();
+                this.sortKey = 'name';
+            },
+            sortByDesc() {
+                this.reverse = (this.sortKey === 'description') ? ! this.reverse : false;
+                this.trailsList.sort(function (a,b) {
+                    let trailA = a,
+                        trailB = b;
+                    if (trailA.description < trailB.description) return -1;
+                    if (trailA.description > trailB.description) return 1;
+                    return 0;
+                });
+                if (this.reverse) this.trailsList.reverse();
+                this.sortKey = 'description';
+            },
             trailsData(trails) {
                 this.trailsList = trails;
+                this.trailsListOriginal = trails;
             },
             trailClicked(trailId) {
                 // console.log('trailslist',trailId);
@@ -70,5 +107,22 @@
     .allTrailsCard {
         background-color: darkgreen;
         color: white;
+    }
+
+    .trailsListTableRow {
+        cursor: pointer;
+    }
+
+    .trailsListTableRow:hover {
+        background-color: whitesmoke;
+    }
+
+    .trailsListTable {
+        background-color: rgba(245, 245, 245, 0.55);
+    }
+
+    .trailsListCard {
+        background-color: transparent !important;
+        border: none !important;
     }
 </style>
