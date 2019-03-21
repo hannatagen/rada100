@@ -35,6 +35,7 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/users/information").hasAnyAuthority("PLAYER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/points/").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/trails/").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/trails/").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), gameUserRepository))

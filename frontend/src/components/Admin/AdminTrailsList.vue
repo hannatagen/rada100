@@ -52,14 +52,6 @@
                 this.$store.commit('setModifyModeActive', true);
             },
             deleteTrail(trail) {
-                this.trailsList = this.trailsList.filter(item => item !== trail);
-                AXIOS.delete('/api/trails/' + trail.trailId, {
-                    headers: {
-                        Authorization: this.$store.state.loggedInToken,
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true
-                });
                 AXIOS.delete('/api/trails/' + trail.trailId + '/points/', {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
@@ -67,6 +59,14 @@
                     },
                     withCredentials: true
                 });
+                AXIOS.delete('/api/trails/' + trail.trailId, {
+                    headers: {
+                        Authorization: this.$store.state.loggedInToken,
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true
+                });
+                this.trailsList = this.trailsList.filter(item => item !== trail);
             },
             getPointsDict() {
                 return this.pointsToTrail;
