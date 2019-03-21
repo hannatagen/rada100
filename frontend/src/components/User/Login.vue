@@ -68,7 +68,7 @@
         methods: {
             registerUser() {
                 console.log('register');
-                AXIOS.post('/api/register', {username: this.email, password: this.password, email: this.email}) // TODO username : email
+                AXIOS.post('/api/register', {username: this.username, password: this.password, email: this.email}) // TODO username : email
                     .then(request => {
                         console.log('registered user: ', {
                             username: this.email,
@@ -84,7 +84,7 @@
                     })
             },
             loginUser() {
-                AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
+                AXIOS.post('/login', {username: this.username, password: this.password}) // TODO username : email
                     .then(request => {
                         console.log('login user: ');
                         this.loginSuccessful(request);

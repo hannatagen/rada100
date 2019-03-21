@@ -52,7 +52,7 @@
                 }
                 console.log('login success');
                 this.$store.commit('setUserTokenID', req.headers.authorization);
-                this.$router.replace('/admin/main')
+                this.$router.push('/admin/main')
             },
             loginFailed () {
                 //eslint-disable-next-line
