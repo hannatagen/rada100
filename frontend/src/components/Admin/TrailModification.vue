@@ -70,6 +70,9 @@
         watch: {
             search: function (val) {
                 this.pointsList = this.pointsListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
+            },
+            $route (to, from){
+                if (to !== from) this.$store.commit('setModifyModeActive', false);
             }
         },
         methods: {
