@@ -3,7 +3,8 @@
         <nav class="adminNavbar navbar navbar-expand-lg navbar-light">
             <button @click="$store.commit('setModifyModeActive',false)"
                     class="navbarBtn btn btnGreen">Salvesta</button>
-            <button class="navbarBtn btn btn-danger">Katkesta</button>
+            <button @click="$store.commit('setModifyModeActive',false)"
+                    class="navbarBtn btn btn-danger">Katkesta</button>
         </nav>
         <br>
         <h5 class="card-title">Nimetus:</h5>
@@ -71,9 +72,9 @@
             search: function (val) {
                 this.pointsList = this.pointsListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
             },
-            $route (to, from){
-                if (to !== from) this.$store.commit('setModifyModeActive', false);
-            }
+            '$route' (to, from){
+                if (to !== '/admin/trails') this.$store.commit('setModifyModeActive', false);
+            },
         },
         methods: {
             trailData(trail) {
