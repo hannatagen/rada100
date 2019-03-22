@@ -70,7 +70,7 @@
     .adminHomeBtn, .adminHomeBtn:hover {
         font-size: 1.5em;
         border: none !important;
-        color: antiquewhite;
+        color: whitesmoke;
     }
 
     .adminIcon {
@@ -78,7 +78,7 @@
     }
 
     .adminHomeBtn:hover {
-        background-color: forestgreen;
+        background-color: #005600;
     }
 
     .adminSidebarBtnTitle {

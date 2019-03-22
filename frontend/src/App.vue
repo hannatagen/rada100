@@ -34,6 +34,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   .button {
     min-width: unset !important;
   }
@@ -139,4 +140,30 @@
   /*.routerBtnDisabled {*/
     /*di*/
   /*}*/
+
+  .deleteTrailBtn {
+    color: #a40000;
+    cursor: pointer;
+  }
+
+  .editTrailBtn {
+    color: darkgreen;
+    cursor: pointer;
+  }
+
+  .tableColumnTitle {
+    color: black;
+  }
+
+  .tableColumnTitle:hover {
+    color: darkgreen;
+  }
+
+  .btn-danger {
+    background-color: #a40000;
+  }
+
+  .btn-danger:hover {
+    background-color: #960000;
+  }
 </style>

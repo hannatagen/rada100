@@ -26,6 +26,7 @@
     </div>
 </template>
 
+
 <script>
     import { AXIOS } from './.././http-common'
     import { serverBus } from '../../main';

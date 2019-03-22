@@ -1,15 +1,11 @@
 <template>
     <div class="container">
-        <input v-model="search" class="form-control" placeholder="Filtreeri radasid nimetuse või kirjelduse järgi...">
+        <input v-if="!$store.state.modifyTrailModeActive"
+                v-model="search" class="form-control" placeholder="Filtreeri radasid nimetuse või kirjelduse järgi...">
         <table id="trailsTable"
                 v-if="!$store.state.modifyTrailModeActive" class="table table-hover sortable">
             <thead>
                 <tr>
-                    <!--<th v-for="column in columns">-->
-                        <!--<a class="tableColumnTitle" href="#" @click="sortBy(column)" :class="{active: sortKey === column}">-->
-                            <!--{{ column }}-->
-                        <!--</a>-->
-                    <!--</th>-->
                     <th>ID</th>
                     <th>
                         <a class="tableColumnTitle" href="#" @click="sortByName">
@@ -172,22 +168,5 @@
 </script>
 
 <style scoped>
-     .deleteTrailBtn {
-         color: #a40000;
-         cursor: pointer;
-     }
-
-    .editTrailBtn {
-        color: darkgreen;
-        cursor: pointer;
-    }
-
-    .table {
-        text-align: left;
-    }
-
-    .tableColumnTitle {
-        color: black;
-    }
 
 </style>

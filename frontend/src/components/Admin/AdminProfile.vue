@@ -50,6 +50,9 @@
                 </div>
             </div>
         </div>
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
     </div>
 </template>
 
@@ -109,12 +112,15 @@
     }
 
     .adminProfileImg {
-        height: 120px;
-        width: unset;
+        height: 150px;
+        width: 111%;
+        margin-left: -1em;
+        margin-top: -0.1em;
     }
 
     #adminProfileCardContainer {
         margin-top: 1em;
+        padding-bottom: 2em;
     }
 
     #adminProfileSaveBtn {
