@@ -109,16 +109,20 @@
   /* width */
   ::-webkit-scrollbar {
     width: 4px;
+    margin-left: 0.5em;
+    border-radius: 25px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0);
+    border-radius: 25px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: rgba(41, 41, 41, 0.2);
+    border-radius: 25px;
   }
 
   /* Handle on hover */
@@ -160,10 +164,10 @@
   }
 
   .btn-danger {
-    background-color: #a40000;
+    background-color: #a40000 !important;
   }
 
   .btn-danger:hover {
-    background-color: #960000;
+    background-color: #960000 !important;
   }
 </style>

@@ -1,9 +1,47 @@
 <template>
-    <div>
+    <div id="userListContainer">
         <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
             <span class="navbar-brand">Mängijate nimekiri</span>
         </nav>
-        {{users}}
+        <br>
+        <div class="usersTableContainer container">
+            <input v-model="search" class="form-control" placeholder="Otsi...">
+            <div class="tableDiv">
+                <table class="adminTable table table-hover sortable">
+                    <thead id="userTableHead">
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            <a class="tableColumnTitle" href="#" @click="sortByName">
+                                Kasutajanimi
+                                <i class="fas fa-arrows-alt-v"></i>
+                            </a>
+                        </th>
+                        <th>Email</th>
+                        <th  class="selectionTableCell"
+                             @click="checkAll">
+                                <span   v-if="!allSelected"
+                                        class="btn btnGreen selectionBtn">Vali kõik</span>
+                                <span   v-else
+                                        class="btn btnGreen selectionBtn">Tühista valik</span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="user in usersListOriginal" :key="user.userId">
+                        <td>{{ usersList.indexOf(user) + 1 }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td class="selectionTableCell">
+                            <input  v-model="selected"
+                                    :value="user.userId"
+                                    aria-label="Select" type="checkbox" id="customCheck1">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,16 +53,61 @@
         data() {
             return {
                 // modifyModeActive: false,
-                users: [],
+                usersListOriginal: [],
+                usersList: [],
+                sortKey: '',
+                search: '',
+                allSelected: false,
+                selected: []
             };
+        },
+        watch: {
+            search: function (val) {
+                this.usersList = this.usersListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
+            },
+            selected: function () {
+                if (this.selected.length !== 0) {
+                    this.allSelected = true;
+                }
+            }
         },
         methods: {
             usersData(users) {
-                this.users = users;
+                this.usersListOriginal = users;
+                this.usersList = users;
             },
+            sortByName() {
+                this.usersList.sort(function (a,b) {
+                    let userA = a,
+                        userB = b;
+                    if (userA.name < userB.name) return -1;
+                    if (userA.name > userB.name) return 1;
+                    return 0;
+                });
+                this.usersList.reverse();
+            },
+            checkAll() {
+                this.allSelected = !this.allSelected;
+
+                if (this.allSelected) {
+                    for (let user in this.usersListOriginal) {
+                        this.selected.push(user)
+                    }
+                } else {
+                    this.selected = []
+                }
+            },
+            handleScroll() {
+                let bgHeight = document.getElementById('userTableHead').offsetHeight;
+                if (document.pageYOffset >= bgHeight) {
+                    document.getElementById('userTableHead').style.position = 'fixed';
+                } else {
+                    document.getElementById('userTableHead').style.position = 'unset';
+                }
+            }
         },
         mounted() {
-            AXIOS.get('/api/users', {
+            AXIOS.get('/api/users/list', {
                 headers: {
                     Authorization: this.$store.state.loggedInToken,
                     'Content-Type': 'application/json',
@@ -41,10 +124,40 @@
                     //eslint-disable-next-line
                     console.log(error)
                 });
-        }
+        },
+        created() {
+            window.addEventListener('scroll', this.handleScroll);
+        },
+        destroyed() {
+            window.removeEventListener('scroll', this.handleScroll);
+        },
     }
 </script>
 
 <style scoped>
+    #userListContainer {
+        text-align: left;
+    }
 
+    .usersTableContainer {
+        text-align: left;
+        width: auto;
+        /*margin-left: 1em;*/
+    }
+
+    .sendmailBtn {
+        color: #0000d6;
+    }
+
+    .selectionBtn {
+        width: 7em;
+    }
+
+    .selectionTableCell {
+        text-align: right;
+    }
+
+    .tableDiv {
+        overflow-x: scroll;
+    }
 </style>

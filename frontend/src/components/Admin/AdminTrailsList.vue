@@ -1,41 +1,42 @@
 <template>
     <div class="container">
         <input v-if="!$store.state.modifyTrailModeActive"
-                v-model="search" class="form-control" placeholder="Filtreeri radasid nimetuse või kirjelduse järgi...">
-        <table id="trailsTable"
-                v-if="!$store.state.modifyTrailModeActive" class="table table-hover sortable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>
-                        <a class="tableColumnTitle" href="#" @click="sortByName">
-                            Nimetus
-                            <i class="fas fa-arrows-alt-v"></i>
-                        </a>
-                    </th>
-                    <th>
-                        <a class="tableColumnTitle" href="#" @click="sortByDesc">
-                            Kirjeldus
-                            <i class="fas fa-arrows-alt-v"></i>
-                        </a>
-                    </th>
-                    <!--<th>Punkte</th>-->
-                    <th>Muuda</th>
-                    <th>Kustuta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="trail in trailsList" :key="trail.trailId">
-                    <td>{{ trailsList.indexOf(trail) + 1 }}</td>
-                    <td>{{ trail.name }}</td>
-                    <td>{{ trail.description }}</td>
-                    <!--<th>{{ pointsToTrail[trail.trailId] }}</th>-->
-                    <td><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></td>
-                    <td><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></td>
-                </tr>
-            </tbody>
-        </table>
-        <TrailModification v-else></TrailModification>
+                v-model="search" class="form-control" placeholder="Otsi...">
+        <div class="tableDiv">
+            <table v-if="!$store.state.modifyTrailModeActive" class="adminTable table table-hover sortable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            <a class="tableColumnTitle" href="#" @click="sortByName">
+                                Nimetus
+                                <i class="fas fa-arrows-alt-v"></i>
+                            </a>
+                        </th>
+                        <th>
+                            <a class="tableColumnTitle" href="#" @click="sortByDesc">
+                                Kirjeldus
+                                <i class="fas fa-arrows-alt-v"></i>
+                            </a>
+                        </th>
+                        <!--<th>Punkte</th>-->
+                        <th>Muuda</th>
+                        <th>Kustuta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="trail in trailsList" :key="trail.trailId">
+                        <td>{{ trailsList.indexOf(trail) + 1 }}</td>
+                        <td>{{ trail.name }}</td>
+                        <td>{{ trail.description }}</td>
+                        <!--<th>{{ pointsToTrail[trail.trailId] }}</th>-->
+                        <td><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></td>
+                        <td><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <TrailModification v-else></TrailModification>
+        </div>
     </div>
 </template>
 
@@ -98,14 +99,14 @@
                 this.$store.commit('setModifyModeActive', true);
             },
             deleteTrail(trail) {
-                AXIOS.delete('/api/trails/' + trail.trailId + '/points/', {
+                AXIOS.get('/api/trails/delete/' + trail.trailId + '/points/', {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
                         'Content-Type': 'application/json',
                     },
                     withCredentials: true
                 });
-                AXIOS.delete('/api/trails/' + trail.trailId, {
+                AXIOS.get('/api/trails/delete/' + trail.trailId, {
                     headers: {
                         Authorization: this.$store.state.loggedInToken,
                         'Content-Type': 'application/json',
@@ -168,5 +169,7 @@
 </script>
 
 <style scoped>
-
+    .tableDiv {
+        overflow-x: scroll;
+    }
 </style>

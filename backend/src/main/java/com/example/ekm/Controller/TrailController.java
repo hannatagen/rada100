@@ -51,10 +51,9 @@ public class TrailController {
         return trailAssembler.toResource(trail);
     }
     
-    @DeleteMapping("/{id}")
+    @GetMapping("/delete/{id}")
     public void deleteTrail(@PathVariable long id) {
         trailRepository.deleteById(id);
-        trailRepository.flush();
     }
 
     @GetMapping("/{id}/points/")
@@ -64,10 +63,9 @@ public class TrailController {
         return pointAssembler.toResources(points);
     }
     
-    @DeleteMapping("/{id}/points/")
+    @GetMapping("/delete/{id}/points/")
     public void deleteTrailPoints(@PathVariable long id) {
         List<Point> points = pointRepository.findAllByTrail(trailRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Didn't find trail specified.")));
         points.forEach(point -> pointRepository.delete(point));
-        pointRepository.flush();
     }
 }
