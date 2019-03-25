@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping("/users/list")
     public @ResponseBody
     List<GameUserOutputDTO> getAllUsers() {
-        List<GameUser> users = gameUserRepository.findAll();
+        List<GameUser> users = gameUserRepository.findAllByRole(UserRole.PLAYER);
         return gameUserAssembler.toResources(users);
     }
     

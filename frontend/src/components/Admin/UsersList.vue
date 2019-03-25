@@ -66,7 +66,6 @@
         name: "UsersList",
         data() {
             return {
-                // modifyModeActive: false,
                 usersListOriginal: [],
                 usersList: [],
                 sortKey: '',

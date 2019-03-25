@@ -1,6 +1,7 @@
 package com.example.ekm.Repository;
 
 import com.example.ekm.Model.GameUser;
+import com.example.ekm.Model.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,6 @@ public interface GameUserRepository extends JpaRepository<GameUser, Long> {
     
     @Override
     void deleteById(Long aLong);
+    
+    List<GameUser> findAllByRole(UserRole userRole);
 }

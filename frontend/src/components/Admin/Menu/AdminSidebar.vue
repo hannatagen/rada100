@@ -52,7 +52,7 @@
 
     #adminSidebar {
         background-color: darkgreen;
-        overflow: scroll;
+        overflow-y: scroll;
         width: 200px;
         height: 100vh;
         position: fixed;
