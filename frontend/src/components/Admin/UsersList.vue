@@ -79,9 +79,7 @@
                 this.usersList = this.usersListOriginal.filter(user => user.username.toLowerCase().includes(val.toLowerCase(),0) || user.email.toLowerCase().includes(val.toLowerCase(),0))
             },
             selected: function () {
-                if (this.selected.length !== 0) {
-                    this.allSelected = true;
-                }
+                this.allSelected = this.selected.length !== 0;
             },
         },
         methods: {
