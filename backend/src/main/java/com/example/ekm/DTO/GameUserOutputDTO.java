@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,5 +17,5 @@ public class GameUserOutputDTO extends ResourceSupport {
     private Long userId;
     private String username;
     private String email;
-    private Long role;
+    private UserRole role;
 }

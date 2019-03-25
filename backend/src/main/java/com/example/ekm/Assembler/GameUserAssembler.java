@@ -17,6 +17,7 @@ public class GameUserAssembler extends ResourceAssemblerSupport<GameUser, GameUs
                 .userId(gameUser.getId())
                 .email(gameUser.getEmail())
                 .username(gameUser.getUsername())
+                .role(gameUser.getRole())
                 .build();
     }
 }

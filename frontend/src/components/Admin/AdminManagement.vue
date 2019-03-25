@@ -3,7 +3,8 @@
         <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
             <span class="navbar-brand">Adminite haldus</span>
         </nav>
-        <nav class="adminNavbar navbar navbar-expand-lg navbar-light">
+        <nav v-if="!addAdmin"
+                class="adminNavbar navbar navbar-expand-lg navbar-light">
             <button id="sendMailBtn"
                     v-b-tooltip.hover
                     @click="sendMail"
@@ -17,12 +18,18 @@
                     class="navbarBtn btn btn-danger"
                     title="Kustuta valitud kasutajad.">Kustuta</button>
             <button v-b-tooltip.hover
-                    @click="[trailsListBtnClicked = false, addTrailBtnClicked = true]"
-                    class="navbarBtn btn btnGreen"
+                    @click="addAdmin = true"
+                    class="navbarBtn btn btn-dark"
                     title="Lisa uus admin kasutaja.">Lisa admin</button>
         </nav>
-        <br>
-        <div class="usersTableContainer container">
+        <nav    v-else
+                class="adminNavbar navbar navbar-expand-lg navbar-light">
+            <button @click="addAdmin = false"
+                    class="navbarBtn btn btn-danger">Katkesta</button>
+        </nav>
+        <br v-if="!addAdmin">
+        <div    v-if="!addAdmin"
+                class="usersTableContainer container">
             <input v-model="search" class="form-control" placeholder="Otsi...">
             <div class="tableDiv">
                 <table class="adminTable table table-hover sortable">
@@ -67,14 +74,19 @@
                 </table>
             </div>
         </div>
+        <AddAdmin v-else></AddAdmin>
     </div>
 </template>
 
 <script>
     import { AXIOS } from './.././http-common'
+    import AddAdmin from './AddAdmin';
 
     export default {
         name: "AdminManagement",
+        components: {
+            AddAdmin
+        },
         data() {
             return {
                 usersListOriginal: [],
@@ -83,11 +95,12 @@
                 search: '',
                 allSelected: false,
                 selected: [],
+                addAdmin: false
             };
         },
         watch: {
             search: function (val) {
-                this.usersList = this.usersListOriginal.filter(user => user.username.toLowerCase().includes(val.toLowerCase(),0) || user.email.toLowerCase().includes(val.toLowerCase(),0))
+                this.usersList = this.usersListOriginal.filter(user => user.username.toLowerCase().includes(val.toLowerCase(),0) || user.role.toLowerCase().includes(val.toLowerCase(),0) || user.email.toLowerCase().includes(val.toLowerCase(),0))
             },
             selected: function () {
                 this.allSelected = this.selected.length !== 0;
@@ -97,6 +110,7 @@
             usersData(users) {
                 this.usersListOriginal = users;
                 this.usersList = users;
+                console.log(this.usersListOriginal)
             },
             sortByName() {
                 this.usersList.sort(function (a,b) {

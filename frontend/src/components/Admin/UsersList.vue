@@ -101,7 +101,7 @@
                 this.allSelected = !this.allSelected;
 
                 if (this.allSelected) {
-                    for (let userIndex in this.usersListOriginal) {
+                    for (let userIndex in this.usersList) {
                         this.selected.push(userIndex);
                     }
                 } else {

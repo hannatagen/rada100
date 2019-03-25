@@ -20,8 +20,8 @@
                             </a>
                         </th>
                         <!--<th>Punkte</th>-->
-                        <th>Muuda</th>
-                        <th>Kustuta</th>
+                        <th class="centreAlignCell">Muuda</th>
+                        <th class="centreAlignCell">Kustuta</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,8 +30,8 @@
                         <td>{{ trail.name }}</td>
                         <td>{{ trail.description }}</td>
                         <!--<th>{{ pointsToTrail[trail.trailId] }}</th>-->
-                        <td><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></td>
-                        <td><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></td>
+                        <td class="centreAlignCell"><i @click="modifyTrail(trail.trailId)" class="editTrailBtn fas fa-edit"></i></td>
+                        <td class="centreAlignCell"><i @click="deleteTrail(trail)" class="deleteTrailBtn fas fa-trash-alt"></i></td>
                     </tr>
                 </tbody>
             </table>
@@ -171,9 +171,13 @@
 <style scoped>
     .tableDiv {
         overflow-x: scroll;
+        text-align: left;
     }
 
     .adminTrailsTableDiv {
         width: auto;
+    }
+    .centreAlignCell {
+        text-align: center;
     }
 </style>

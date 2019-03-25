@@ -39,8 +39,8 @@
                     </div>
                     <br>
                     <div>
-                        <h5 class="card-title">Staatus: </h5>
-                        {{ authorizationLevel }}
+                        <h5 class="card-title">Roll: </h5>
+                        {{ role }}
                     </div>
                     <br>
                     <button id="adminProfileSaveBtn"
@@ -64,7 +64,7 @@
                 username: '',
                 password: '',
                 passwordRepeat: '',
-                authorizationLevel: 'SuperAdmin',
+                role: '',
                 modifyDataModeActive: false,
             };
         },
@@ -74,6 +74,9 @@
             },
             setUsername(username) {
                 this.username = username;
+            },
+            setRole(role) {
+                this.role = role;
             },
         },
         mounted() {
@@ -86,9 +89,11 @@
                 console.log(request.data);
                 const email = request.data.email;
                 const username = request.data.username;
+                const role = request.data.role;
 
                 this.setEmail(email);
                 this.setUsername(username);
+                this.setRole(role)
             }).catch(error => {
                 console.log(error)
             });
