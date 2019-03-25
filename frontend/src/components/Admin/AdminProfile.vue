@@ -50,9 +50,6 @@
                 </div>
             </div>
         </div>
-        <!--<br>-->
-        <!--<br>-->
-        <!--<br>-->
     </div>
 </template>
 
@@ -63,8 +60,8 @@
         name: "AdminProfile",
         data() {
             return {
-                email: 'marike@gmail.com',
-                username: 'Mari Sarv',
+                email: '',
+                username: '',
                 password: '',
                 passwordRepeat: '',
                 authorizationLevel: 'SuperAdmin',

@@ -1,7 +1,21 @@
 <template>
     <div id="userListContainer">
         <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-brand">Mängijate nimekiri</span>
+        <span class="navbar-brand">Mängijate nimekiri</span>
+        </nav>
+        <nav class="adminNavbar navbar navbar-expand-lg navbar-light">
+            <button id="sendMailBtn"
+                    v-b-tooltip.hover
+                    @click="sendMail"
+                    :disabled="!allSelected"
+                    class="navbarBtn btn btn-primary"
+                    title="Saada valitud kasutajatele email."
+                    mailto="selectedEmails">Saada kiri</button>
+            <button v-b-tooltip.hover
+                    @click="[trailsListBtnClicked = false, addTrailBtnClicked = true]"
+                    :disabled="!allSelected"
+                    class="navbarBtn btn btn-danger"
+                    title="Kustuta valitud kasutajad.">Kustuta</button>
         </nav>
         <br>
         <div class="usersTableContainer container">
@@ -58,7 +72,7 @@
                 sortKey: '',
                 search: '',
                 allSelected: false,
-                selected: []
+                selected: [],
             };
         },
         watch: {
@@ -69,7 +83,7 @@
                 if (this.selected.length !== 0) {
                     this.allSelected = true;
                 }
-            }
+            },
         },
         methods: {
             usersData(users) {
@@ -90,20 +104,19 @@
                 this.allSelected = !this.allSelected;
 
                 if (this.allSelected) {
-                    for (let user in this.usersListOriginal) {
-                        this.selected.push(user)
+                    for (let userIndex in this.usersListOriginal) {
+                        this.selected.push(userIndex);
                     }
                 } else {
-                    this.selected = []
+                    this.selected = [];
                 }
             },
-            handleScroll() {
-                let bgHeight = document.getElementById('userTableHead').offsetHeight;
-                if (document.pageYOffset >= bgHeight) {
-                    document.getElementById('userTableHead').style.position = 'fixed';
-                } else {
-                    document.getElementById('userTableHead').style.position = 'unset';
+            sendMail() {
+                let selectedEmails = [];
+                for (const userIndex in this.selected) {
+                    selectedEmails.push(this.usersList[userIndex].email)
                 }
+                window.location.href = 'mailto:' + selectedEmails.join(',')
             }
         },
         mounted() {
@@ -118,18 +131,11 @@
                     // JSON responses are automatically parsed.
                     const users = response.data;
                     this.usersData(users);
-                    console.log(users);
                 })
                 .catch(error => {
                     //eslint-disable-next-line
                     console.log(error)
                 });
-        },
-        created() {
-            window.addEventListener('scroll', this.handleScroll);
-        },
-        destroyed() {
-            window.removeEventListener('scroll', this.handleScroll);
         },
     }
 </script>
@@ -142,11 +148,6 @@
     .usersTableContainer {
         text-align: left;
         width: auto;
-        /*margin-left: 1em;*/
-    }
-
-    .sendmailBtn {
-        color: #0000d6;
     }
 
     .selectionBtn {

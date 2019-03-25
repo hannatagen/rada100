@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="adminTrailsTableDiv container">
         <input v-if="!$store.state.modifyTrailModeActive"
                 v-model="search" class="form-control" placeholder="Otsi...">
         <div class="tableDiv">
@@ -171,5 +171,9 @@
 <style scoped>
     .tableDiv {
         overflow-x: scroll;
+    }
+
+    .adminTrailsTableDiv {
+        width: auto;
     }
 </style>
