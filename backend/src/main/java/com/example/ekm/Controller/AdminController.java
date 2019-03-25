@@ -49,7 +49,7 @@ public class AdminController {
     public @ResponseBody
     List<GameUserOutputDTO> getAllAdmins() {
         List<GameUser> users = gameUserRepository.findAllByRole(UserRole.ADMIN);
-        users.addAll(gameUserRepository.findAllByRole(UserRole.ADMIN));
+        users.addAll(gameUserRepository.findAllByRole(UserRole.SUPERADMIN));
         return gameUserAssembler.toResources(users);
     }
 }

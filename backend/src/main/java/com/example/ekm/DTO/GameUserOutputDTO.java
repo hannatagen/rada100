@@ -15,5 +15,5 @@ public class GameUserOutputDTO extends ResourceSupport {
     private Long userId;
     private String username;
     private String email;
-    private UserRole role;
+    private Long role;
 }
