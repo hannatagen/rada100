@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="user in usersListOriginal" :key="user.userId">
+                    <tr v-for="user in usersList" :key="user.userId">
                         <td>{{ usersList.indexOf(user) + 1 }}</td>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
@@ -76,7 +76,7 @@
         },
         watch: {
             search: function (val) {
-                this.usersList = this.usersListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
+                this.usersList = this.usersListOriginal.filter(user => user.username.toLowerCase().includes(val.toLowerCase(),0) || user.email.toLowerCase().includes(val.toLowerCase(),0))
             },
             selected: function () {
                 if (this.selected.length !== 0) {
