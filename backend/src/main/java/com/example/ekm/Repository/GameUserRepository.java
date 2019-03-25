@@ -12,4 +12,7 @@ public interface GameUserRepository extends JpaRepository<GameUser, Long> {
     
     @Override
     List<GameUser> findAll();
+    
+    @Override
+    void deleteById(Long aLong);
 }
