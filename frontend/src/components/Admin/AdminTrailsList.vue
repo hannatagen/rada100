@@ -43,6 +43,7 @@
 <script>
     import { AXIOS } from './.././http-common'
     import TrailModification from './TrailModification';
+    import Mercury from "@postlight/mercury-parser";
 
     export default {
         name: "AdminTrailsList",

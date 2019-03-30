@@ -46,18 +46,36 @@
                     })
             },
             loginSuccessful(req) {
-                if (!req.headers.authorization) {
+                if (!req.headers.authorization || !this.checkAdminStatus(req.headers.authorization)) {
                     this.loginFailed();
                     return
                 }
+
+                //eslint-disable-next-line
                 console.log('login success');
                 this.$store.commit('setUserTokenID', req.headers.authorization);
                 this.$router.push('/admin/main')
             },
             loginFailed () {
+                document.getElementById('inputAdminName').style.border = 'red 2px solid';
+                document.getElementById('inputAdminPassword').style.border = 'red 2px solid';
                 //eslint-disable-next-line
                 console.log('Login failed!')
             },
+            checkAdminStatus(auth) {
+                AXIOS.get('/api/users/information', {
+                    headers: {
+                        Authorization: auth,
+                        'Content-Type': 'application/json',
+                    }
+                }).then(request => {
+                    const role = request.data.role;
+                    return role === 'ADMIN' || role === 'SUPERADMIN';
+                }).catch(error => {
+                    //eslint-disable-next-line
+                    console.log(error)
+                });
+            }
         }
     };
 </script>
