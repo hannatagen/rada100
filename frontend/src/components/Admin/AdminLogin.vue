@@ -46,8 +46,9 @@
                     })
             },
             loginSuccessful(req) {
-                if (!req.headers.authorization || !this.checkAdminStatus(req.headers.authorization)) {
+                if (!this.checkAdminStatus(req.headers.authorization || !req.headers.authorization)) {
                     this.loginFailed();
+                    this.$store.commit('setUserTokenID', null);
                 } else {
                     //eslint-disable-next-line
                     console.log('login success');
@@ -69,12 +70,15 @@
                     }
                 }).then(request => {
                     const role = request.data.role;
+                    console.log('ROLL');
+                    console.log(typeof role);
+                    console.log(role);
                     return role === 'ADMIN' || role === 'SUPERADMIN';
                 }).catch(error => {
                     //eslint-disable-next-line
                     console.log(error);
-                    return false
                 });
+                return false
             }
         }
     };

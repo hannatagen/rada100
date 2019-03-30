@@ -86,7 +86,6 @@
                     'Content-Type': 'application/json',
                 }
             }).then(request => {
-                console.log(request.data);
                 const email = request.data.email;
                 const username = request.data.username;
                 const role = request.data.role;
