@@ -48,13 +48,12 @@
             loginSuccessful(req) {
                 if (!req.headers.authorization || !this.checkAdminStatus(req.headers.authorization)) {
                     this.loginFailed();
-                    return
+                } else {
+                    //eslint-disable-next-line
+                    console.log('login success');
+                    this.$store.commit('setUserTokenID', req.headers.authorization);
+                    this.$router.push('/admin/main')
                 }
-
-                //eslint-disable-next-line
-                console.log('login success');
-                this.$store.commit('setUserTokenID', req.headers.authorization);
-                this.$router.push('/admin/main')
             },
             loginFailed () {
                 document.getElementById('inputAdminName').style.border = 'red 2px solid';
@@ -73,7 +72,8 @@
                     return role === 'ADMIN' || role === 'SUPERADMIN';
                 }).catch(error => {
                     //eslint-disable-next-line
-                    console.log(error)
+                    console.log(error);
+                    return false
                 });
             }
         }
