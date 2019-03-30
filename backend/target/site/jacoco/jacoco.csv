@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 backend,com.example.ekm.Assembler,PointAssembler,30,0,0,0,11,0,2,0,2,0
 backend,com.example.ekm.Assembler,GameAssembler,22,0,0,0,8,0,2,0,2,0
-backend,com.example.ekm.Assembler,GameUserAssembler,17,0,0,0,7,0,2,0,2,0
+backend,com.example.ekm.Assembler,GameUserAssembler,20,0,0,0,8,0,2,0,2,0
 backend,com.example.ekm.Assembler,TrailAssembler,17,0,0,0,7,0,2,0,2,0
 backend,com.example.ekm.DTO,TrailInputDTO.TrailInputDTOBuilder,38,0,0,0,1,0,5,0,5,0
 backend,com.example.ekm.DTO,TrailInputDTO,139,0,22,0,6,0,22,0,11,0
@@ -32,7 +32,7 @@ backend,com.example.ekm.Controller,TrailController,107,0,0,0,17,0,11,0,11,0
 backend,com.example.ekm.Controller,GameUserController,23,0,0,0,5,0,3,0,3,0
 backend,com.example.ekm.Controller,AdminController,85,0,0,0,22,0,4,0,4,0
 backend,com.example.ekm.Controller,GameController,249,0,14,0,48,0,16,0,9,0
-backend,com.example.ekm.Controller,UserController,55,0,0,0,16,0,4,0,4,0
+backend,com.example.ekm.Controller,UserController,56,0,0,0,16,0,4,0,4,0
 backend,com.example.ekm.Controller,PointController,70,0,0,0,14,0,5,0,5,0
 backend,com.example.ekm.Service,UserDetailsServiceImpl,27,0,2,0,7,0,3,0,2,0
 backend,com.example.ekm.Exception,ErrorDetails,178,0,30,0,9,0,26,0,11,0

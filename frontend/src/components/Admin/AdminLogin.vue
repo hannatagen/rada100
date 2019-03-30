@@ -30,9 +30,13 @@
             return {
                 email: '',
                 password: '',
+                role: ''
             };
         },
         methods: {
+            setRole(role) {
+              this.role = role;
+            },
             loginUser() {
                 AXIOS.post('/login', {username: this.email, password: this.password}) // TODO username : email
                     .then(request => {
@@ -46,7 +50,11 @@
                     })
             },
             loginSuccessful(req) {
-                if (!this.checkAdminStatus(req.headers.authorization || !req.headers.authorization)) {
+                this.checkAdminStatus(req.headers.authorization);
+                console.log('ROLL');
+                console.log(typeof this.role);
+                console.log(this.role);
+                if (!req.headers.authorization || this.role === 'PLAYER') {
                     this.loginFailed();
                     this.$store.commit('setUserTokenID', null);
                 } else {
@@ -63,22 +71,23 @@
                 console.log('Login failed!')
             },
             checkAdminStatus(auth) {
+                let role;
+
                 AXIOS.get('/api/users/information', {
                     headers: {
                         Authorization: auth,
                         'Content-Type': 'application/json',
                     }
                 }).then(request => {
-                    const role = request.data.role;
-                    console.log('ROLL');
-                    console.log(typeof role);
-                    console.log(role);
-                    return role === 'ADMIN' || role === 'SUPERADMIN';
+                    this.setRole(request.data.role);
                 }).catch(error => {
                     //eslint-disable-next-line
                     console.log(error);
                 });
-                return false
+                // console.log('ROLL');
+                // console.log(typeof this.role);
+                // console.log(role === 'ADMIN');
+                // return role === 'ADMIN' || role === 'SUPERADMIN';
             }
         }
     };
