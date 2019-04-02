@@ -65,8 +65,15 @@
                 }
             },
             loginFailed () {
-                document.getElementById('inputAdminName').style.border = 'red 2px solid';
-                document.getElementById('inputAdminPassword').style.border = 'red 2px solid';
+                let nameInput = document.getElementById('inputAdminName');
+                if (nameInput) {
+                    nameInput.style.border = 'red 2px solid';
+                }
+
+                let pwdInput = document.getElementById('inputAdminPassword');
+                if (pwdInput) {
+                    pwdInput.style.border = 'red 2px solid';
+                }
                 //eslint-disable-next-line
                 console.log('Login failed!')
             },

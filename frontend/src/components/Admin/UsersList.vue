@@ -103,7 +103,7 @@
                 this.allSelected = !this.allSelected;
 
                 if (this.allSelected) {
-                    for (const user in this.usersList) {
+                    for (const user in this.usersListOriginal) {
                         this.selected.push(this.usersList[user].userId.toString());
                     }
                 } else {
