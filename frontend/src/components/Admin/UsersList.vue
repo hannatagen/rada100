@@ -49,7 +49,9 @@
                         <td class="selectionTableCell">
                             <input  v-model="selected"
                                     :value="user.userId"
-                                    aria-label="Select" type="checkbox" id="customCheck1">
+                                    aria-label="Select"
+                                    type="checkbox"
+                                    id="customCheck1">
                         </td>
                     </tr>
                     </tbody>
@@ -68,10 +70,10 @@
             return {
                 usersListOriginal: [],
                 usersList: [],
+                selected: [],
                 sortKey: '',
                 search: '',
                 allSelected: false,
-                selected: [],
             };
         },
         watch: {
@@ -101,8 +103,8 @@
                 this.allSelected = !this.allSelected;
 
                 if (this.allSelected) {
-                    for (let userIndex in this.usersList) {
-                        this.selected.push(userIndex);
+                    for (const user in this.usersList) {
+                        this.selected.push(this.usersList[user].userId.toString());
                     }
                 } else {
                     this.selected = [];

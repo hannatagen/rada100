@@ -90,7 +90,7 @@
                         <td>{{ user.email }}</td>
                         <td class="selectionTableCell">
                             <input  v-model="selected"
-                                    :value="user.role"
+                                    :value="user.userId"
                                     aria-label="Select"
                                     type="checkbox"
                                     id="customCheck1">
@@ -169,8 +169,8 @@
                 this.allSelected = !this.allSelected;
 
                 if (this.allSelected) {
-                    for (let userIndex in this.usersListOriginal) {
-                        this.selected.push(userIndex);
+                    for (let user in this.usersListOriginal) {
+                        this.selected.push(this.usersList[user].userId.toString());
                     }
                 } else {
                     this.selected = [];
