@@ -54,7 +54,7 @@
                 console.log('ROLL');
                 console.log(typeof this.role);
                 console.log(this.role);
-                if (!req.headers.authorization || this.role === 'PLAYER') {
+                if (this.role === 'PLAYER') {
                     this.loginFailed();
                     this.$store.commit('setUserTokenID', null);
                 } else {
