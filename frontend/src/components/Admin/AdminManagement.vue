@@ -27,12 +27,23 @@
             <button @click="addAdmin = false"
                     class="navbarBtn btn btn-danger">Katkesta</button>
         </nav>
+        <nav    v-if="selectionHasChanged && !addAdmin"
+                class="adminNavbar navbar navbar-expand-lg navbar-light">
+            <button v-b-tooltip.hover
+                    @click="saveChanges"
+                    title="Salvesta rollide muudatused."
+                    class="navbarBtn btn btnGreen">Salvesta</button>
+            <button v-b-tooltip.hover
+                    @click="cancelChanges"
+                    title="Tühista rollide muudatused."
+                    class="navbarBtn btn btn-danger">Tühista</button>
+        </nav>
         <br v-if="!addAdmin">
         <div    v-if="!addAdmin"
                 class="usersTableContainer container">
             <input v-model="search" class="form-control" placeholder="Otsi...">
             <div class="tableDiv">
-                <table class="adminTable table table-hover sortable">
+                <table  class="adminTable table table-hover sortable">
                     <thead id="userTableHead">
                     <tr>
                         <th>ID</th>
@@ -43,7 +54,7 @@
                             </a>
                         </th>
                         <th>
-                            <a class="tableColumnTitle" href="#" @click="sortByName">
+                            <a class="tableColumnTitle" href="#" @click="sortByRole">
                                 Roll
                                 <i class="fas fa-arrows-alt-v"></i>
                             </a>
@@ -62,12 +73,27 @@
                     <tr v-for="user in usersList" :key="user.userId">
                         <td>{{ usersList.indexOf(user) + 1 }}</td>
                         <td>{{ user.username }}</td>
-                        <td>{{ user.role }}</td>
+                        <td>
+                            <select @change="selectionHasChanged = true"
+                                    v-model="user.role"
+                                    :key="user.role"
+                                    class="form-control selectDropDown"
+                                    aria-label="Role">
+                                <option value="ADMIN">
+                                    ADMIN
+                                </option>
+                                <option value="SUPERADMIN">
+                                    SUPERADMIN
+                                </option>
+                            </select>
+                        </td>
                         <td>{{ user.email }}</td>
                         <td class="selectionTableCell">
                             <input  v-model="selected"
-                                    :value="user.userId"
-                                    aria-label="Select" type="checkbox" id="customCheck1">
+                                    :value="user.role"
+                                    aria-label="Select"
+                                    type="checkbox"
+                                    id="customCheck1">
                         </td>
                     </tr>
                     </tbody>
@@ -91,6 +117,7 @@
             return {
                 usersListOriginal: [],
                 usersList: [],
+                selectionHasChanged: false,
                 sortKey: '',
                 search: '',
                 allSelected: false,
@@ -107,10 +134,16 @@
             },
         },
         methods: {
+            saveChanges() {
+                this.selectionHasChanged = false;
+            },
+            cancelChanges() {
+                // this.usersList = this.usersListOriginal;
+                this.selectionHasChanged = false;
+            },
             usersData(users) {
                 this.usersListOriginal = users;
                 this.usersList = users;
-                console.log(this.usersListOriginal)
             },
             sortByName() {
                 this.usersList.sort(function (a,b) {
@@ -192,5 +225,9 @@
 
     .tableDiv {
         overflow-x: scroll;
+    }
+
+    .selectDropDown {
+        width: fit-content;
     }
 </style>

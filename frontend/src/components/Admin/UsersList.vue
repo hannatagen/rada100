@@ -12,7 +12,7 @@
                     title="Saada valitud kasutajatele email."
                     mailto="selectedEmails">Saada kiri</button>
             <button v-b-tooltip.hover
-                    @click="[trailsListBtnClicked = false, addTrailBtnClicked = true]"
+                    @click=""
                     :disabled="!allSelected"
                     class="navbarBtn btn btn-danger"
                     title="Kustuta valitud kasutajad.">Kustuta</button>

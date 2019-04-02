@@ -80,6 +80,7 @@
                     }
                 }).then(request => {
                     this.setRole(request.data.role);
+                    return request.data.role
                 }).catch(error => {
                     //eslint-disable-next-line
                     console.log(error);
