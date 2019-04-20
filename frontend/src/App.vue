@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <notifications group="foo"></notifications>
     <Admin v-if="(this.$route.path).includes('admin')"></Admin>
     <div v-else>
       <User></User>

@@ -22,7 +22,8 @@
     "vue-trix": "^0.4.1",
     "vuex": "^3.0.1",
     "vuex-persist": "^2.0.0",
-    "vue-element-loading": "latest"
+    "vue-element-loading": "latest",
+    "lodash": "latest"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",

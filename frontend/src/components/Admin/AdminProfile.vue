@@ -5,7 +5,9 @@
                 <span class="navbar-brand">Minu andmed</span>
             </nav>
             <nav class="adminNavbar navbar navbar-expand-lg navbar-light">
-                <button :disabled="modifyDataModeActive"
+                <button v-if="modifyDataModeActive"
+                        class="navbarBtn btn btn-danger">Katkesta</button>
+                <button v-else
                         @click="[modifyDataModeActive = true, ]"
                         class="navbarBtn btn btn-dark">Muuda andmeid</button>
                 <button v-if="modifyDataModeActive"
@@ -103,13 +105,14 @@
 <style scoped>
     .adminCard {
         /*left: 50%;*/
-        width: max-content;
+        width: fit-content;
         max-width: 20em !important;
         display: block;
     }
 
     .adminProfileContainer {
         text-align: left;
+        overflow-x: scroll;
     }
 
     .adminProfileImg {
@@ -122,6 +125,7 @@
     #adminProfileCardContainer {
         margin-top: 1em;
         padding-bottom: 2em;
+        padding-left: 1em;
     }
 
     #adminProfileSaveBtn {

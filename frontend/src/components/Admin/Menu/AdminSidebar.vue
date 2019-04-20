@@ -18,12 +18,8 @@
                 <span class="adminSidebarBtnTitle">Ülesanded</span>
             </router-link>
             <router-link class="adminHomeBtn routerLink"
-                         :to="{ name : 'ContentManagement'}"><i class="fas adminIcon fa-font"></i>
-                <span class="adminSidebarBtnTitle">Sisu haldus</span>
-            </router-link>
-            <router-link class="adminHomeBtn routerLink"
-                         :to="{ name : 'Languages'}"><i class="fas adminIcon fa-flag"></i>
-                <span class="adminSidebarBtnTitle">Keeled</span>
+                         :to="{ name : 'Languages'}"><i class="fas adminIcon fa-font"></i>
+                <span class="adminSidebarBtnTitle">Keeled ja sisu</span>
             </router-link>
             <router-link class="adminHomeBtn routerLink"
                          :to="{ name : 'AdminManagement'}"><i class="fas adminIcon fa-users-cog"></i>

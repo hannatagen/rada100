@@ -8,11 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'ol/ol.css';
 import store from './store/store';
-
+import Notifications from 'vue-notification'
 
 // Bootstrap
 Vue.use(Vuex);
 Vue.use(BootstrapVue);
+Vue.use(Notifications);
 Vue.config.productionTip = false;
 
 export const serverBus = new Vue();
