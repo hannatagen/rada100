@@ -3,9 +3,12 @@ com\example\ekm\DTO\PointInputDTO.class
 com\example\ekm\DTO\GameOutputDTO$GameOutputDTOBuilder.class
 com\example\ekm\Repository\GameRepository.class
 com\example\ekm\Assembler\GameAssembler.class
+com\example\ekm\Controller\LanguageController.class
 com\example\ekm\DTO\GameUserInputDTO.class
 com\example\ekm\Assembler\TrailAssembler.class
+com\example\ekm\DTO\LanguageOutputDTO.class
 com\example\ekm\DTO\PointOutputDTO$PointOutputDTOBuilder.class
+com\example\ekm\DTO\LanguageInputDTO$LanguageInputDTOBuilder.class
 com\example\ekm\Model\UserRole.class
 com\example\ekm\Security\SecurityConstants.class
 com\example\ekm\Service\UserDetailsServiceImpl.class
@@ -16,10 +19,12 @@ com\example\ekm\DTO\GameUserInputDTO$GameUserInputDTOBuilder.class
 com\example\ekm\Exception\CustomizedResponseExceptionHandler.class
 com\example\ekm\Exception\ErrorDetails.class
 com\example\ekm\Controller\TrailController.class
+com\example\ekm\DTO\LanguageOutputDTO$LanguageOutputDTOBuilder.class
 com\example\ekm\Controller\GameController.class
 com\example\ekm\Controller\UserController.class
 com\example\ekm\Security\SpringSecurityWebAppConfig.class
 com\example\ekm\DTO\GameOutputDTO.class
+com\example\ekm\DTO\LanguageInputDTO.class
 com\example\ekm\Assembler\PointAssembler.class
 com\example\ekm\DTO\PointOutputDTO.class
 com\example\ekm\DTO\TrailOutputDTO$TrailOutputDTOBuilder.class
@@ -39,4 +44,7 @@ com\example\ekm\DTO\GameUserOutputDTO$GameUserOutputDTOBuilder.class
 com\example\ekm\Model\Point.class
 com\example\ekm\Assembler\GameUserAssembler.class
 com\example\ekm\DTO\TrailInputDTO.class
+com\example\ekm\Model\Language.class
+com\example\ekm\Repository\LanguageRepository.class
+com\example\ekm\Assembler\LanguageAssembler.class
 com\example\ekm\Repository\PointRepository.class

@@ -1,3 +1,4 @@
+C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\LanguageController.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\GameUser.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\PointInputDTO.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Assembler\GameUserAssembler.java
@@ -6,7 +7,9 @@ C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\ja
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Security\SpringConfig.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Security\SpringSecurityWebAppConfig.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\GameUserController.java
+C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Assembler\LanguageAssembler.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Repository\GameUserRepository.java
+C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Repository\LanguageRepository.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\UserRole.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\GameController.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Security\SecurityConstants.java
@@ -15,6 +18,7 @@ C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\ja
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\AdminController.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\Trail.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\TrailOutputDTO.java
+C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\LanguageOutputDTO.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Security\JWTAuthenticationFilter.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\Point.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\TrailController.java
@@ -24,6 +28,8 @@ C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\ja
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Repository\PointRepository.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\PointOutputDTO.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Controller\PointController.java
+C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\LanguageInputDTO.java
+C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\Language.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\DTO\TrailInputDTO.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Exception\ErrorDetails.java
 C:\Users\Hanna\Documents\18-19_Sygis\Tarkvaraprojekt\rada100\backend\src\main\java\com\example\ekm\Model\Game.java

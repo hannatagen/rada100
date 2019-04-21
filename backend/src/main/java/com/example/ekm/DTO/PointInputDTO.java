@@ -16,4 +16,28 @@ public class PointInputDTO {
     String longitude;
     String latitude;
     String link;
+    
+    public Long getTrailId() {
+        return trailId;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public String getLongitude() {
+        return longitude;
+    }
+    
+    public String getLatitude() {
+        return latitude;
+    }
+    
+    public String getLink() {
+        return link;
+    }
 }

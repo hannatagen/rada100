@@ -13,4 +13,12 @@ import org.springframework.hateoas.ResourceSupport;
 public class TrailInputDTO extends ResourceSupport {
     String name;
     String description;
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
 }
