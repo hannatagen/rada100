@@ -3,15 +3,43 @@
         <nav class="adminNavbar navbar navbar-expand-lg navbar-light bg-light">
             <span class="navbar-brand">Keele- ja sisuhaldus</span>
         </nav>
-        <p>
+        <p v-for="tip in tips" :key="tip">
             <i class="fas fa-lightbulb lightBulbCustom"></i>
-            Keeleelementide nägemiseks ja muutmiseks, vali esmalt sobiv komponent.
+            {{ tip }}
         </p>
-        <p>
-            <i class="fas fa-lightbulb lightBulbCustom"></i>
-            Tekstiväljade suurust, mis ulatuvad üle mitme rea, on võimalik paremast alt nurgast
-            muuta.
-        </p>
+        <div class="mb-3 langButtonsGroup addLangGroup"
+        >
+            <button v-b-tooltip.hover
+                    id="newLangBtn"
+                    type="button"
+                    class="btn btn-primary btn-sm langBtn plusBtn"
+                    title="Lisa keel"
+                    data-toggle="collapse"
+                    data-target="#newLanguage"
+                    aria-expanded="true"
+                    aria-controls="newLanguage"
+            >
+                Lisa keel
+                <i class="fas fa-plus"></i>
+            </button>
+            <div id="newLanguage"
+                 class="collapse mb-3 langButtonsGroup"
+                 aria-labelledby="newLangBtn"
+                 data-parent="#newLangBtn"
+            >
+                <input  id="newLangInput"
+                        ref="newLanguage"
+                        class="form-control"
+                        type="text"
+                        aria-label="language"
+                />
+                <button class="btn btnGreen btn-sm langBtn plusBtn"
+                        @click="addLang"
+                >
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
         <div id="accordion">
             <div class="card languageCard"
                  v-for="component in components"
@@ -34,27 +62,26 @@
                 </div>
 
                 <div :id="component + 'Body'"
-                     class="collapse"
+                     class="collapse cardBodyCollapsed"
                      :aria-labelledby="component"
-                     data-parent="#accordion">
+                     data-parent="#accordion"
+                >
                     <div class="card-body">
-                        <button v-for="language in languages"
-                                :key="language"
-                                v-b-tooltip.hover
-                                type="button"
-                                class="btn btn-primary btn-sm langBtn"
-                                title="Vaheta keelt"
-                                @click="selectedLang = language">
-                            {{ language }}
-                        </button>
-                        <button v-b-tooltip.hover
-                                type="button"
-                                class="btn btn-primary btn-sm langBtn plusBtn"
-                                title="Lisa keel">
-                            <i class="fas fa-plus"></i>
-                        </button>
                         <form   :id="component + 'Form'"
                                 class="langForm">
+                            <div    class="mb-3 langButtonsGroup"
+                            >
+                                <button v-for="language in languages"
+                                        :key="language"
+                                        v-model="languages"
+                                        v-b-tooltip.hover
+                                        type="button"
+                                        class="btn btn-primary btn-sm langBtn"
+                                        title="Vaheta keelt"
+                                        @click="[selectedLang = language, addLangClicked = false]">
+                                    {{ language }}
+                                </button>
+                            </div>
                             <div    v-for="element in getLanguageTranslationsOfComponent(selectedLang, component.split('_').join(' '))"
                                    :key="element.langId">
                                 <div v-if="!element.textarea"
@@ -109,6 +136,13 @@
         props: ['value'],
         data() {
             return {
+                tips: [
+                    'Keeleelementide nägemiseks ja muutmiseks vali esmalt sobiv komponent.',
+                    'Tekstiväljade suurust, mis ulatuvad üle mitme rea, on võimalik paremalt alt nurgast muuta.',
+                    'Lisades uut keelt salvestatakse andmebaasi esmalt kõik uue keele ' +
+                    'keeleelementide tõlkeväärtused vaikekeele väärtusega. Antud juhul on selleks eesti keel. ' +
+                    'See on oluline, et vältida rakenduses (näiteks nuppude tekstides) tühjasid väärtuseid.'
+                ],
                 translationsList: [],
                 components: [],
                 languages: [],
@@ -117,6 +151,7 @@
                 selectedLang: 'eesti',
                 emptyInputFields: {},
                 changed: {},
+                addLangClicked: false,
             };
         },
         methods: {
@@ -140,6 +175,32 @@
                 return [...new Set(languages)].sort()
             },
             getLanguageTranslationsOfComponent(lang, component) {
+                if (this.addLangClicked) {
+                    const translationsBase = this.translationsList.filter(translation => translation.lang === 'eesti' && translation.component === component);
+                    let newLangList = [];
+
+                    for (let i = 0; i < translationsBase.length; i++) {
+                        const element = translationsBase[i];
+                        let newElement = {
+                            name: element.name,
+                            lang: this.$refs.newLanguage[0].value,
+                            langId: this.$refs.newLanguage[0].value + element.langId,
+                            translation: '',
+                            component: element.component,
+                            textarea: element.textarea
+                        };
+                        newLangList.push(newElement);
+                    }
+
+                    return newLangList.sort(function (a,b) {
+                            let elementA = a,
+                                elementB = b;
+                            if (elementA.name < elementB.name) return -1;
+                            if (elementA.name > elementB.name) return 1;
+                            return 0;
+                        });
+                }
+
                 return this.translationsList.filter(translation => translation.lang === lang && translation.component === component)
                     .sort(function (a,b) {
                         let elementA = a,
@@ -159,11 +220,55 @@
             resetFields(formId) {
                 document.getElementById(formId).reset();
             },
+            addLang() {
+                let saveSuccess = true;
+                const languageElements = this.translationsList.filter(translation => translation.lang === 'eesti');
+                const apiUrl = '/api/language/';
+                const notificationSuccessText = 'Uus keel lisatud.';
+
+                for (let i = 0; i < languageElements.length; i++) {
+                    const element = languageElements[i];
+                    let newElement = {
+                        name: element.name,
+                        lang: this.$refs.newLanguage.value,
+                        translation: element.translation,
+                        component: element.component,
+                        textarea: element.textarea
+                    };
+
+                    AXIOS.post(apiUrl, newElement)
+                        .then(request => {
+                            this.$refs[element.langId][0].placeholder = this.$refs[element.langId][0].value;
+                            this.$refs[element.langId][0].value = '';
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            saveSuccess = false;
+                            this.$notify({
+                                group: 'foo',
+                                type: 'error',
+                                title: 'Teavitus',
+                                text: 'Midagi läks valesti. Proovi mõne aja pärast uuesti. ('+ newElement.component + ': ' + newElement.name +')'
+                            });
+                        });
+                }
+                this.loadTranslations();
+                if (saveSuccess) {
+                    this.$notify({
+                        group: 'foo',
+                        title: 'Teavitus',
+                        text: notificationSuccessText
+                    });
+                }
+            },
             saveData(elements) {
+                let saveSuccess = true;
                 for (let i = 0; i < elements.length; i++) {
                     let ref = elements[i].langId;
                     if (this.$refs[ref][0].value !== '') {
-                        AXIOS.post('/api/language/update/' + ref, {
+                        let apiUrl = '/api/language/update/' + ref;
+                        let notificationSuccessText = 'Andmed edukalt salvestatud!';
+                        AXIOS.post(apiUrl, {
                             name: elements[i].name,
                             lang: elements[i].lang,
                             translation: this.$refs[ref][0].value,
@@ -171,32 +276,35 @@
                             textarea: elements[i].textarea,
                         })
                             .then(request => {
-                                // console.log(this.translationsList);
                                 const elementIndexOfList = this.translationsList.map(function(e) { return e.langId; }).indexOf(ref);
                                 this.translationsList[elementIndexOfList].langId = request.data;
                                 this.$refs[ref][0].placeholder = this.$refs[ref][0].value;
                                 this.$refs[ref][0].value = '';
-                                this.$notify({
-                                    group: 'foo',
-                                    title: 'Teavitus',
-                                    text: 'Andmed edukalt salvestatud!'
-                                });
                             })
                             .catch(error => {
                                 console.log(error);
+                                saveSuccess = false;
                                 this.$notify({
                                     group: 'foo',
-                                    type: 'warn',
+                                    type: 'error',
                                     title: 'Teavitus',
-                                    text: 'Midagi läks valesti. Proovi mõne aja pärast uuesti.'
+                                    text: 'Midagi läks valesti. Proovi mõne aja pärast uuesti. ('+ elements[i].name +')'
                                 });
-                            })
+                            });
+                        if (saveSuccess) {
+                            this.$notify({
+                                group: 'foo',
+                                title: 'Teavitus',
+                                text: notificationSuccessText
+                            });
+                        }
                     }
                 }
-
+                this.loadTranslations();
+            },
+            loadTranslations() {
                 AXIOS.get('/api/language/')
                     .then(response => {
-                        // JSON responses are automatically parsed.
                         const translations = response.data;
                         this.translationsData(translations);
                     })
@@ -207,16 +315,7 @@
             },
         },
         mounted() {
-            AXIOS.get('/api/language/')
-                .then(response => {
-                    // JSON responses are automatically parsed.
-                    const translations = response.data;
-                    this.translationsData(translations);
-                })
-                .catch(error => {
-                    //eslint-disable-next-line
-                    console.log(error)
-                });
+            this.loadTranslations();
         },
     }
 </script>
@@ -282,7 +381,25 @@
 
     .langForm {
         overflow-x: scroll;
+        padding: 0.2em;
     }
+
+    #newLanguage {
+        max-width: 7em;
+    }
+
+    #newLangInput {
+        margin-right: 1em !important;
+    }
+
+    .langButtonsGroup {
+        display: -webkit-box;
+    }
+
+    .addLangGroup {
+        margin-left: 1em;
+    }
+
 
     @media only screen and (max-width: 700px) {
         #accordion {
