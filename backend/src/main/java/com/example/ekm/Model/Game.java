@@ -24,44 +24,4 @@ public class Game {
     @ManyToOne
     GameUser gameUser;
     Boolean visited;
-    
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public Trail getTrail() {
-        return trail;
-    }
-    
-    public void setTrail(Trail trail) {
-        this.trail = trail;
-    }
-    
-    public Point getPoint() {
-        return point;
-    }
-    
-    public void setPoint(Point point) {
-        this.point = point;
-    }
-    
-    public GameUser getGameUser() {
-        return gameUser;
-    }
-    
-    public void setGameUser(GameUser gameUser) {
-        this.gameUser = gameUser;
-    }
-    
-    public Boolean getVisited() {
-        return visited;
-    }
-    
-    public void setVisited(Boolean visited) {
-        this.visited = visited;
-    }
 }
