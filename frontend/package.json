@@ -14,6 +14,7 @@
     "babel-loader": "^8.0.4",
     "bootstrap-vue": "^2.0.0-rc.18",
     "font-awesome": "^4.7.0",
+    "ip": "^1.1.5",
     "jquery": "^3.3.1",
     "lodash": "latest",
     "ol": "^5.3.0",
