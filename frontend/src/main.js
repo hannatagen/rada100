@@ -9,11 +9,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'ol/ol.css';
 import store from './store/store';
 import Notifications from 'vue-notification'
+import VuejsDialog from 'vuejs-dialog';
+import 'vuejs-dialog/dist/vuejs-dialog.min.css';
 
 // Bootstrap
 Vue.use(Vuex);
 Vue.use(BootstrapVue);
 Vue.use(Notifications);
+Vue.use(VuejsDialog);
 Vue.config.productionTip = false;
 
 export const serverBus = new Vue();

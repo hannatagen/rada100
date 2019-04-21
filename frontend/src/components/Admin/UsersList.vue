@@ -12,7 +12,13 @@
                     title="Saada valitud kasutajatele email."
                     mailto="selectedEmails">Saada kiri</button>
             <button v-b-tooltip.hover
-                    @click=""
+                    v-confirm="{
+                        ok: dialog => deleteUsers(),
+                        okText: 'Kustuta',
+                        cancelText: 'Katkesta',
+                        backdropClose: true,
+                        customClass: 'mainConfirm',
+                        message: 'Valitud kasutajad kustutatakse jäädavalt. Kas soovite jätkata?'}"
                     :disabled="!allSelected"
                     class="navbarBtn btn btn-danger"
                     title="Kustuta valitud kasutajad.">Kustuta</button>
@@ -116,6 +122,38 @@
                     selectedEmails.push(this.usersList[userIndex].email)
                 }
                 window.location.href = 'mailto:' + selectedEmails.join(',')
+            },
+            deleteUsers() {
+                let deleteSuccess = true;
+                for (let i = 0; i < this.selected.length; i++) {
+                    const id = this.selected[i];
+                    console.log(id);
+                    AXIOS.get('/api/users/delete/' + id, {
+                        headers: {
+                            Authorization: this.$store.state.loggedInToken,
+                            'Content-Type': 'application/json',
+                        },
+                        withCredentials: true
+                    })
+                        .catch(error => {
+                            //eslint-disable-next-line
+                            console.log(error);
+                            deleteSuccess = false;
+                            this.$notify({
+                                group: 'foo',
+                                type: 'error',
+                                title: 'Teavitus',
+                                text: 'Midagi läks valesti. Proovi mõne aja pärast uuesti. (userId: '+ id + ')'
+                            });
+                        });
+                }
+                if (deleteSuccess) {
+                    this.$notify({
+                        group: 'foo',
+                        title: 'Teavitus',
+                        text: 'Kasutajate kustutamine oli edukas.'
+                    });
+                }
             }
         },
         mounted() {

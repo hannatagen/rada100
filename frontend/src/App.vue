@@ -173,4 +173,9 @@
     background-color: #a90000 !important;
     border-color: #a90000 !important;
   }
+
+  .mainConfirm {
+    z-index: 999999;
+    position: absolute;
+  }
 </style>
