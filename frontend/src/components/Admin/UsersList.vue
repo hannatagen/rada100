@@ -127,23 +127,20 @@
                 let deleteSuccess = true;
                 for (let i = 0; i < this.selected.length; i++) {
                     const id = this.selected[i];
-                    console.log(id);
                     AXIOS.get('/api/users/delete/' + id, {
                         headers: {
                             Authorization: this.$store.state.loggedInToken,
                             'Content-Type': 'application/json',
                         },
-                        withCredentials: true
                     })
                         .catch(error => {
-                            //eslint-disable-next-line
-                            console.log(error);
                             deleteSuccess = false;
+                            console.log(error); //eslint-disable-line
                             this.$notify({
                                 group: 'foo',
                                 type: 'error',
                                 title: 'Teavitus',
-                                text: 'Midagi läks valesti. Proovi mõne aja pärast uuesti. (userId: '+ id + ')'
+                                text: 'Midagi läks valesti. Proovi mõne aja pärast uuesti. (userId: ' + id + ')'
                             });
                         });
                 }

@@ -42,7 +42,7 @@ public class UserController {
         return gameUserAssembler.toResources(users);
     }
     
-    @GetMapping("users/delete/{id}")
+    @GetMapping("/users/delete/{id}")
     public void deleteUserById(@PathVariable long id) {
         gameUserRepository.deleteById(id);
     }
