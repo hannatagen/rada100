@@ -221,7 +221,7 @@
                     'Lisades uut keelt salvestatakse andmebaasi esmalt kõik uue keele ' +
                     'keeleelementide tõlkeväärtused vaikekeele väärtusega. Antud juhul on selleks eesti keel. ' +
                     'See on oluline, et vältida rakenduses (näiteks nuppude tekstides) tühjasid väärtuseid.',
-                    'Keelt vahetades, salvesta esmalt sisestatud info.'
+                    'Keelt vahetades salvesta esmalt sisestatud info.'
                 ],
                 kkkTips: ['Uut keelt saab lisada Keele- ja sisuhalduse pealehelt. Uue keele lisamisel lisatakse uue keele ' +
                 'tõlkeelemendid kõikidele sisuelementidele üle rakenduse.'],
