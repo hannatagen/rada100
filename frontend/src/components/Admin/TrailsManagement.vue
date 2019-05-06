@@ -5,30 +5,24 @@
         </nav>
         <nav    v-if="!$store.state.modifyTrailModeActive"
                 class="adminNavbar navbar navbar-expand-lg navbar-light">
-            <button @click="[trailsListBtnClicked = true, addTrailBtnClicked = false,
-                    $store.commit('setModifyModeActive',false)]"
+            <button @click="[$store.commit('setModifyModeActive',false), $store.commit('setModifyTrailId', null)]"
                     class="navbarBtn btn btn-dark">Radade nimekiri</button>
-            <button @click="[trailsListBtnClicked = false, addTrailBtnClicked = true]"
+            <button @click="[$store.commit('setModifyModeActive',true), $store.commit('setModifyTrailId', null)]"
                     class="navbarBtn btn btn-dark">Lisa rada</button>
         </nav>
-        <AddTrail v-if="addTrailBtnClicked"></AddTrail>
-        <AdminTrailsList v-if="trailsListBtnClicked"></AdminTrailsList>
+        <TrailModification v-if="$store.state.modifyTrailModeActive"></TrailModification>
+        <AdminTrailsList v-else></AdminTrailsList>
     </div>
 </template>
 
 <script>
     import AddTrail from './AddTrail';
+    import TrailModification from './TrailModification';
     import AdminTrailsList from './AdminTrailsList';
 
     export default {
         name: "TrailsManagement",
-        components: { AddTrail, AdminTrailsList },
-        data() {
-            return {
-                trailsListBtnClicked: true,
-                addTrailBtnClicked: false,
-            }
-        },
+        components: { TrailModification, AdminTrailsList },
     }
 </script>
 

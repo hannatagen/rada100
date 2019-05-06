@@ -3,19 +3,24 @@ package com.example.ekm.Controller;
 import com.example.ekm.Assembler.GameUserAssembler;
 import com.example.ekm.DTO.GameUserInputDTO;
 import com.example.ekm.DTO.GameUserOutputDTO;
+import com.example.ekm.Model.Game;
 import com.example.ekm.Model.GameUser;
 import com.example.ekm.Model.UserRole;
+import com.example.ekm.Repository.GameRepository;
 import com.example.ekm.Repository.GameUserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
     private GameUserRepository gameUserRepository;
+    private GameRepository gameRepository;
     private GameUserAssembler gameUserAssembler;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     
@@ -44,6 +49,13 @@ public class UserController {
     
     @GetMapping("/users/delete/{id}")
     public void deleteUserById(@PathVariable long id) {
-        gameUserRepository.deleteById(id);
+        GameUser user = gameUserRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Didn't find user specified."));
+        List<Game> gameList = gameRepository.findByGameUser(user);
+        if (gameList != null) {
+            for (int i = 0; i < gameList.size(); i++) {
+                gameRepository.deleteById(gameList.get(i).getId());
+            }
+            gameUserRepository.deleteById(id);
+        }
     }
 }

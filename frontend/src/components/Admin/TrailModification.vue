@@ -118,20 +118,28 @@
                 if (this.reverse) this.pointsList.reverse();
                 this.sortKey = 'description';
             },
+            modifyTrail(trailId, boolean) {
+                this.$store.commit('setModifyTrailId', trailId);
+                this.$store.commit('setModifyModeActive', boolean);
+            },
         },
         mounted() {
             this.trailId = this.$store.state.modifyTrailId;
-
-            AXIOS.get('/api/trails/' + this.trailId)
-                .then(response => {
-                    // JSON responses are automatically parsed.
-                    const trail = response.data;
-                    this.trailData(trail);
-                })
-                .catch(error => {
-                    //eslint-disable-next-line
-                    console.log(error)
-                });
+            if (this.trailId !== null) {
+                AXIOS.get('/api/trails/' + this.trailId)
+                    .then(response => {
+                        // JSON responses are automatically parsed.
+                        const trail = response.data;
+                        this.trailData(trail);
+                    })
+                    .catch(error => {
+                        //eslint-disable-next-line
+                        console.log(error)
+                    });
+            }
+        },
+        destroyed() {
+            this.modifyTrail(null, false)
         }
     }
 </script>
