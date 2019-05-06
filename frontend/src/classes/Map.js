@@ -23,35 +23,77 @@ import {AXIOS} from '../components/http-common'
 
 export default class Map {
     constructor() {
-        this.geolocation = null;
-        this.trackingOn = false;
-        this.location = false;
-        this.pointsList = [];
-        this.trailsList = [];
-        AXIOS.get('/api/trails/')
-            .then(response => {
-                // JSON responses are automatically parsed.
-                this.trailsList = response.data;
-            })
-            .catch(error => {
-                console.log(error)
-            });
-        this.playingTrailID = store.state.playingTrail;
+        this.adminMap = store.state.adminMap;
+        if (!this.adminMap) {
+            this.geolocation = null;
+            this.trackingOn = false;
+            this.location = false;
+            this.pointsList = [];
+            this.trailsList = [];
+            AXIOS.get('/api/trails/')
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.trailsList = response.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+            this.playingTrailID = store.state.playingTrail;
 
-        this.trailFeaturesObject = {};
-        this.pointsAndTrails = {};
+            this.trailFeaturesObject = {};
+            this.pointsAndTrails = {};
+            this.trailFeaturesArray = [];
+            this.format = new GeoJSON();
+            this.extent = [2256311.733318761, 7860193.197535333, 3340960.9706381336, 8447281.118052645];
+            this.gameStarted = store.state.playing;
+            this.initVectorLayers();
+            this.initMap();
+            this.accuracyFeature = null;
+            this.positionFeature = null;
+            this.selectedTrailFeatures = null;
+            this.locationcoordinates = null;
+
+            this.visitedPointsObject = {};
+        } else {
+            this.constructorAdmin();
+        }
+    }
+
+    constructorAdmin() {
+        this.adminMap = true;
+        this.adminAddPointLayer = [];
+        this.pointsList = [];
+        this.modifyTrailId = store.state.modifyTrailId;
+        if (this.modifyTrailId) {
+            AXIOS.get('/api/trails/' + this.modifyTrailId + '/points')
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.pointsList = response.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
         this.trailFeaturesArray = [];
         this.format = new GeoJSON();
         this.extent = [2256311.733318761, 7860193.197535333, 3340960.9706381336, 8447281.118052645];
-        this.gameStarted = store.state.playing;
-        this.initVectorLayers();
+        this.initAdminVectorLayers();
+        this.initTrailPoints(this.pointsList, null);
         this.initMap();
         this.accuracyFeature = null;
         this.positionFeature = null;
-        this.selectedTrailFeatures = null;
         this.locationcoordinates = null;
+    }
 
-        this.visitedPointsObject = {};
+    initAdminVectorLayers() {
+        this.adminAddPointLayer = new VectorLayer({
+            map: this.map,
+            source: new VectorSource({
+                features: [],
+                wrapX: false,
+            }),
+            style: MapStyles.markerStyle,
+        });
     }
 
     initVectorLayers() {
@@ -118,6 +160,7 @@ export default class Map {
         }
     }
 
+
     initMap() {
         this.popupContainer = document.getElementById('popup');
         this.overlay = new Overlay({
@@ -129,8 +172,10 @@ export default class Map {
         const raster = new TileLayer({
             source: new OSM(),
         });
+        const layerList = [raster, this.vectorLayer, this.locationLayer, this.trackLayer];
+        if (this.adminMap) layerList.push(this.adminAddPointLayer);
         this.map = new OlMap({
-            layers: [raster, this.vectorLayer, this.locationLayer, this.trackLayer],
+            layers: layerList,
             target: document.getElementById('map'),
             controls: defaultControls({
                 attributionOptions: {
@@ -162,21 +207,31 @@ export default class Map {
     }
 
     handleMapClick() {
-        this.map.on('click', (evt) => {
-            this.overlay.setPosition(undefined);
-            MapUtils.resetMapMarkers(this.vectorLayer);
-            // eslint-disable-next-line no-unused-vars
-            const clickedFeature = this.map.forEachFeatureAtPixel(evt.pixel,
+        if (this.adminMap) {
+            this.map.on('click', (evt) => {
+                this.adminAddPointLayer = [];
+                var coordinate = evt.coordinate;
+                var hdms = toStringHDMS(toLonLat(coordinate));
+                this.overlay.setPosition(undefined);
+                MapUtils.resetMapMarkers(this.adminAddPointLayer);
+            });
+        } else {
+            this.map.on('click', (evt) => {
+                this.overlay.setPosition(undefined);
+                MapUtils.resetMapMarkers(this.vectorLayer);
                 // eslint-disable-next-line no-unused-vars
-                (feature, layer) => {
-                    // eslint-disable-next-line
-                    if (this.locationLayer === layer) {
-                    } else {
-                        const featureClicked = feature;
-                        this.handleSelectedTrail(featureClicked, null)
-                    }
-                });
-        });
+                const clickedFeature = this.map.forEachFeatureAtPixel(evt.pixel,
+                    // eslint-disable-next-line no-unused-vars
+                    (feature, layer) => {
+                        // eslint-disable-next-line
+                        if (this.locationLayer === layer) {
+                        } else {
+                            const featureClicked = feature;
+                            this.handleSelectedTrail(featureClicked, null)
+                        }
+                    });
+            });
+        }
     }
 
     handleSelectedTrail(featureClicked, selectedTrailId) {

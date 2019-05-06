@@ -17,5 +17,4 @@ public class PointOutputDTO extends ResourceSupport {
     String description;
     String longitude;
     String latitude;
-    String link;
 }

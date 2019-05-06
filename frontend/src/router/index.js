@@ -15,7 +15,6 @@ import AdminLogin from '@/components/Admin/AdminLogin';
 import TrailsManagement from '@/components/Admin/TrailsManagement';
 import TasksManagement from '@/components/Admin/TasksManagement';
 import AdminManagement from '@/components/Admin/AdminManagement';
-import ContentManagement from '@/components/Admin/ContentManagement';
 import Languages from '@/components/Admin/Languages';
 import UsersList from '@/components/Admin/UsersList';
 import AdminProfile from '@/components/Admin/AdminProfile';
@@ -100,11 +99,6 @@ export default new Router({
             path: '/admin/tasks',
             name: 'TasksManagement',
             component: TasksManagement,
-        },
-        {
-            path: '/admin/content',
-            name: 'ContentManagement',
-            component: ContentManagement,
         },
         {
             path: '/admin/languages',

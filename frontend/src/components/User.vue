@@ -2,7 +2,6 @@
     <div id="app">
         <Header></Header>
         <SideBar></SideBar>
-        <!--<Info></Info>-->
     </div>
 </template>
 

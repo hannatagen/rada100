@@ -180,4 +180,8 @@
     z-index: 999999;
     position: absolute;
   }
+
+  .extraNavBtns {
+    margin-left: -1.5em;
+  }
 </style>

@@ -15,13 +15,17 @@ export default new Vuex.Store({
     state: {
         playing: false, // TODO seda andmebaasist küsida, kas hetkel sisselogitud mängija mängib v mitte
         playingTrail: null,
-        loggedInToken: false, //TODO, välja logida kui leht kinni pannakse, aga mitte refreshil?
+        loggedInToken: false,
         adminLoggedInToken: false,
         finishedTrail: false,
         modifyTrailId: null,
-        modifyTrailModeActive: false
+        modifyTrailModeActive: false,
+        newPointLonLat: null,
     },
     mutations: {
+        setNewPointLonLat(state, obj) {
+            state.newPointLonLat = obj;
+        },
         changePlaying(state, boolean) {
             state.playing = boolean;
         },

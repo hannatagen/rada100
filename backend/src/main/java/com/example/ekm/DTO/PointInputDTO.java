@@ -15,7 +15,6 @@ public class PointInputDTO {
     String description;
     String longitude;
     String latitude;
-    String link;
     
     public Long getTrailId() {
         return trailId;
@@ -37,7 +36,4 @@ public class PointInputDTO {
         return latitude;
     }
     
-    public String getLink() {
-        return link;
-    }
 }

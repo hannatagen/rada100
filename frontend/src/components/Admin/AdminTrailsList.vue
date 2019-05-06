@@ -43,6 +43,7 @@
 <script>
     import { AXIOS } from './.././http-common'
     import TrailModification from './TrailModification';
+    import { serverBus } from '../../main';
 
     export default {
         name: "AdminTrailsList",
@@ -95,8 +96,8 @@
                 this.trailsListOriginal = trails;
             },
             modifyTrail(trailId) {
-                this.$store.commit('setModifyTrailId', trailId);
                 this.$store.commit('setModifyModeActive', true);
+                this.$store.commit('setModifyTrailId', trailId);
             },
             deleteTrail(trail) {
                 AXIOS.get('/api/trails/delete/' + trail.trailId + '/points/', {
