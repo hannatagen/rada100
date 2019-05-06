@@ -2,7 +2,7 @@
     <nav class="navbar headerDiv sticky-top navbar-dark bg-light">
         <div id="headerMenuButton" @click="openSidebar"><i class="fas fa-bars"></i></div>
         <router-link id="nameDiv" class="routerLink" :to="{ name : 'Main'}">
-            <h3>SadaRada</h3>
+            <h3>PärimusRajad</h3>
         </router-link>
     </nav>
 </template>

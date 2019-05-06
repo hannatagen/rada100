@@ -3,7 +3,7 @@
         <router-link id="menuBack" v-if="$route.name !== 'Main'" class="menuBack routerLink"
                      :to="{ name : 'Main'}"><i class="fas fa-home"></i></router-link>
         <router-link v-else class="menuBack routerLink"
-                     :to="{ name : 'Main'}"><span class="sidebarTitle">SadaRada</span></router-link>
+                     :to="{ name : 'Main'}"><span class="sidebarTitle">PärimusRajad</span></router-link>
         <div id="dismiss" @click="closeSidebar">
             <i class="fas fa-times"></i>
         </div>

@@ -1,4 +1,4 @@
-# Sadarada
+# PärimusRajad
 This web application using a mobile positioning is being developed to make folklore more popular.
 
 # Running front-end only
