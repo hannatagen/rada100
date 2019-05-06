@@ -41,12 +41,14 @@
   }
 
   .btnGreen {
-    color: white;
-    background-color: darkgreen;
+    color: white !important;
+    background-color: darkgreen !important;
+    cursor: pointer;
   }
 
   .btnGreen:hover {
-    background-color: #005600;
+    background-color: #005600 !important;
+    color: white !important;
   }
 
   #sidebar {

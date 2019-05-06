@@ -72,9 +72,6 @@
             search: function (val) {
                 this.pointsList = this.pointsListOriginal.filter(trail => trail.name.toLowerCase().includes(val.toLowerCase(),0) || trail.description.toLowerCase().includes(val.toLowerCase(),0))
             },
-            '$route' (to, from){
-                if (to !== '/admin/trails') this.$store.commit('setModifyModeActive', false);
-            },
         },
         methods: {
             trailData(trail) {
@@ -148,6 +145,8 @@
     #trailsModificationContainer {
         text-align: left;
         padding-bottom: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
      .trailModificationInput {

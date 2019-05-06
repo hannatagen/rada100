@@ -216,7 +216,7 @@
     }
 
     .selectionBtn {
-        width: 7em;
+        width: 8em;
     }
 
     .selectionTableCell {
